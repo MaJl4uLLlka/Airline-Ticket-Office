@@ -1,0 +1,159 @@
+﻿<Window x:Class="AirLineTicketOffice.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AirLineTicketOffice"
+        mc:Ignorable="d"
+        Icon="ticket_icon.png"
+        Title="Airline Ticket Office" 
+        Height="480" Width="800"
+        MinHeight="480" MinWidth="800">
+    <Grid Background="Azure" ShowGridLines="False">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.5*"></ColumnDefinition>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="120" ></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Background="#0c73fe">
+            <DockPanel Margin="5" >
+                <ComboBox DockPanel.Dock="Right" Width="100" SelectedIndex="0" Margin="3,0,0,0">
+                    <TextBlock Padding="18,3,5,5">USD</TextBlock>
+                    <TextBlock Padding="18,3,5,5">EUR</TextBlock>
+                    <TextBlock Padding="18,3,5,5">BYN</TextBlock>
+                </ComboBox>
+                <ComboBox DockPanel.Dock="Right" Width="100" Name="Language" VerticalAlignment="Top" SelectedIndex="0" Margin="0,0,3,0">
+                    <TextBlock Padding="18,3,5,5">Русский</TextBlock>
+                    <TextBlock Padding="18,3,5,5">English</TextBlock>
+                </ComboBox>
+                <ComboBox DockPanel.Dock="Right" Width="100" Visibility="Hidden"></ComboBox>
+            </DockPanel>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.5*"></RowDefinition>
+                    <RowDefinition Height="3.5*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="140"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,7,0,7">
+                    <Run Foreground="Beige">Откуда</Run>
+                </TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,7,0,7">
+                    <Run Foreground="#E8EBED">
+                        Куда
+                    </Run>
+                </TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,7,0,7">
+                    <Run Foreground="#E8EBED">Дата</Run>
+                </TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,7,0,7">
+                    <Run Foreground="#E8EBED">Класс обслуживания</Run>
+                </TextBlock>
+
+                <TextBox Grid.Column="0" Grid.Row="1" Margin="6,8,3,0" VerticalAlignment="Center" Height="35" Padding="5,7,5,5" Background="White"></TextBox>
+                <TextBox Grid.Column="1" Grid.Row="1" Margin="5,8,3,0" VerticalAlignment="Center" Height="35" Padding="5,7,5,5" Background="White"></TextBox>
+                <DatePicker FirstDayOfWeek="Monday"  Grid.Column="2" Grid.Row="1" Margin="5,8,3,0" VerticalAlignment="Center" Height="35" Padding="5,7,5,5" Background="White" SelectedDateFormat="Short" ></DatePicker>
+                <ComboBox Grid.Column="3" Grid.Row="1" Margin="5,8,3,0" VerticalAlignment="Center" Height="35" Padding="5,7,5,5" SelectedIndex="0">
+                    <TextBlock Padding="18,3,5,5">Эконом</TextBlock>
+                    <TextBlock Padding="18,3,5,5">Премиум-эконом</TextBlock>
+                    <TextBlock Padding="18,3,5,5">Бизнес</TextBlock>
+                    <TextBlock Padding="18,3,5,5">Первый класс</TextBlock>
+                </ComboBox>
+                <Button Grid.Row="1" Grid.Column="4"  Margin="3,8,3,0" VerticalAlignment="Center" Height="35" Background="#FFB426">Поиск</Button>
+            </Grid>
+        </StackPanel>
+        <Border Grid.Row="1" Grid.Column="0" Background="#DCDEE0" BorderBrush="#C3C5C7" BorderThickness="0,0,3,0">
+            <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                <StackPanel >
+                    <Expander Header="Багаж">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="130"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            
+                            <TextBlock Grid.Row="0" Grid.Column="0" Margin="5,8,5,5"  HorizontalAlignment="Stretch">Ручная кладь</TextBlock>
+                       
+                            <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal"  HorizontalAlignment="Right">
+                                <Button Width="20" Height="20" Margin="5,5,2,5">-</Button>
+                                <TextBlock Margin="2,7,2,5">1</TextBlock>
+                                <Button Width="20" Height="20" Margin="2,5,4,5">+</Button>
+                            </StackPanel>
+                            
+                            <TextBlock Grid.Row="1" Margin="5,8,5,5" HorizontalAlignment="Stretch">Зарегистрированный
+                                <LineBreak/>багаж
+                            </TextBlock>
+                            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                                <Button Width="20" Height="20" Margin="5,5,2,5">-</Button>
+                                <TextBlock Margin="2,13,2,5">1</TextBlock>
+                                <Button Width="20" Height="20" Margin="2,5,4,5">+</Button>
+                            </StackPanel>
+                        </Grid>
+                    </Expander>
+                    <Expander Header="Перевозчики">
+                        <ListBox Background="#DCDEE0" BorderThickness="0" MaxHeight="75">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <CheckBox Margin="2" Content="{Binding}" ></CheckBox><!--TODO Here_checkbox_need_binding-->
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Expander>
+                    <Expander Header="Время"> <!--TODO Here_must_be_added_Margin&Padding -->
+                        <UniformGrid Rows="4">
+                            <TextBlock>Время вылета (от 0 до 24 часов)</TextBlock>
+                            <DockPanel VerticalAlignment="Center" Margin="10">
+                                <TextBox Text="{Binding ElementName=Arrival_Hour, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Center" Width="40" />
+                                <Slider Value="0" Minimum="0" Maximum="24"
+                                        SelectionStart="0"
+                                        SelectionEnd="{Binding ElementName=Arrival_Hour, Path=Value, UpdateSourceTrigger=PropertyChanged}"
+                                        IsSelectionRangeEnabled="True" Name="Arrival_Hour"
+                                    IsSnapToTickEnabled="True"
+                                    TickFrequency="1"></Slider>
+                            </DockPanel>
+                            <TextBlock>Время прилета (от 0 до 24 часов)</TextBlock>
+                            <DockPanel VerticalAlignment="Center" Margin="10">
+                                <TextBox Text="{Binding ElementName=Departure_Hour, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Center" Width="40" />
+                                <Slider Value="0" Minimum="0" Maximum="24" SelectionStart="0"
+                                        SelectionEnd="{Binding ElementName=Departure_Hour, Path=Value, UpdateSourceTrigger=PropertyChanged}"
+                                        IsSelectionRangeEnabled="True"
+                                        Name="Departure_Hour"
+                                        IsSnapToTickEnabled="True"
+                                        TickFrequency="1"
+                                        ></Slider>
+                                </DockPanel>
+                        </UniformGrid>
+                    </Expander>
+                    <Expander Header="Цена">
+                        
+                    </Expander>
+                    <Expander Header="Продолжительность">
+
+                    </Expander>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+
+        <Border Grid.Row="1" Grid.Column="1" Background="#DCDEE0" >
+            <Frame ></Frame>
+        </Border>
+
+    </Grid>
+</Window>
