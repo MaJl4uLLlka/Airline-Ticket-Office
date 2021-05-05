@@ -22,7 +22,7 @@
 
         <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Background="#0c73fe">
             <DockPanel Margin="5" >
-                <ComboBox DockPanel.Dock="Right" Width="100" SelectedIndex="0" Margin="3,0,0,0">
+                <ComboBox DockPanel.Dock="Right" Width="100" SelectedIndex="0"  Margin="3,0,0,0" Name="Currency">
                     <TextBlock Padding="18,3,5,5">USD</TextBlock>
                     <TextBlock Padding="18,3,5,5">EUR</TextBlock>
                     <TextBlock Padding="18,3,5,5">BYN</TextBlock>
@@ -141,11 +141,28 @@
                                 </DockPanel>
                         </UniformGrid>
                     </Expander>
-                    <Expander Header="Цена">
-                        
+                    <Expander Header="Цена"> <!-- TODO Here_must_be_Binding_Min&Max_Value-->
+                        <DockPanel VerticalAlignment="Center" Margin="10">
+                            <TextBox Text="{Binding ElementName=Money, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Center" Width="40" />
+                            <Slider Value="0" Minimum="0" Maximum="24" SelectionStart="0"
+                                    SelectionEnd="{Binding ElementName=Money, Path=Value, UpdateSourceTrigger=PropertyChanged}"
+                                    IsSelectionRangeEnabled="True"
+                                    Name="Money"
+                                    IsSnapToTickEnabled="True"
+                                    TickFrequency="1"
+                            ></Slider>
+                        </DockPanel>
                     </Expander>
                     <Expander Header="Продолжительность">
-
+                        <DockPanel VerticalAlignment="Center" Margin="10">
+                            <TextBox Text="{Binding ElementName=Travel_time, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Center" Width="40" />
+                            <Slider Value="1" Minimum="1" Maximum="60"
+                                    SelectionStart="0"
+                                    SelectionEnd="{Binding ElementName=Travel_time, Path=Value, UpdateSourceTrigger=PropertyChanged}"
+                                    IsSelectionRangeEnabled="True" Name="Travel_time"
+                                    IsSnapToTickEnabled="True"
+                                    TickFrequency="1"></Slider>
+                        </DockPanel>
                     </Expander>
                 </StackPanel>
             </ScrollViewer>

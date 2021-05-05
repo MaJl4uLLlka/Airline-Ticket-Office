@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:AirLineTicketOffice"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+         <ResourceDictionary Source="Resources/Dictionary1.xaml"></ResourceDictionary>
     </Application.Resources>
 </Application>

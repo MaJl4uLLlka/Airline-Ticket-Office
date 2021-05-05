@@ -56,6 +56,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Tickets_page.xaml.cs">
+      <DependentUpon>Tickets_page.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -68,6 +71,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Resources\Dictionary1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tickets_page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -98,11 +109,271 @@
   <ItemGroup>
     <Resource Include="ticket_icon.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="img\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Russia.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\Abkhazia.png" />
+    <Resource Include="img\Afghanistan.png" />
+    <Resource Include="img\Aland.png" />
+    <Resource Include="img\Albania.png" />
+    <Resource Include="img\Algeria.png" />
+    <Resource Include="img\American-Samoa.png" />
+    <Resource Include="img\Andorra.png" />
+    <Resource Include="img\Angola.png" />
+    <Resource Include="img\Anguilla.png" />
+    <Resource Include="img\Antarctica.png" />
+    <Resource Include="img\Antigua-and-Barbuda.png" />
+    <Resource Include="img\Argentina.png" />
+    <Resource Include="img\Armenia.png" />
+    <Resource Include="img\Aruba.png" />
+    <Resource Include="img\Australia.png" />
+    <Resource Include="img\Austria.png" />
+    <Resource Include="img\Azerbaijan.png" />
+    <Resource Include="img\Bahamas.png" />
+    <Resource Include="img\Bahrain.png" />
+    <Resource Include="img\Bangladesh.png" />
+    <Resource Include="img\Barbados.png" />
+    <Resource Include="img\Basque-Country.png" />
+    <Resource Include="img\Belarus.png" />
+    <Resource Include="img\Belgium.png" />
+    <Resource Include="img\Belize.png" />
+    <Resource Include="img\Benin.png" />
+    <Resource Include="img\Bermuda.png" />
+    <Resource Include="img\Bhutan.png" />
+    <Resource Include="img\Bolivia.png" />
+    <Resource Include="img\Bosnia-and-Herzegovina.png" />
+    <Resource Include="img\Botswana.png" />
+    <Resource Include="img\Brazil.png" />
+    <Resource Include="img\British-Antarctic-Territory.png" />
+    <Resource Include="img\British-Virgin-Islands.png" />
+    <Resource Include="img\Brunei.png" />
+    <Resource Include="img\Bulgaria.png" />
+    <Resource Include="img\Burkina-Faso.png" />
+    <Resource Include="img\Burundi.png" />
+    <Resource Include="img\Cambodia.png" />
+    <Resource Include="img\Cameroon.png" />
+    <Resource Include="img\Canada.png" />
+    <Resource Include="img\Canary-Islands.png" />
+    <Resource Include="img\Cape-Verde.png" />
+    <Resource Include="img\Cayman-Islands.png" />
+    <Resource Include="img\Central-African-Republic.png" />
+    <Resource Include="img\Chad.png" />
+    <Resource Include="img\Chile.png" />
+    <Resource Include="img\China.png" />
+    <Resource Include="img\Christmas-Island.png" />
+    <Resource Include="img\Cocos-Keeling-Islands.png" />
+    <Resource Include="img\Colombia.png" />
+    <Resource Include="img\Commonwealth.png" />
+    <Resource Include="img\Comoros.png" />
+    <Resource Include="img\Cook-Islands.png" />
+    <Resource Include="img\Costa-Rica.png" />
+    <Resource Include="img\Cote-dIvoire.png" />
+    <Resource Include="img\Croatia.png" />
+    <Resource Include="img\Cuba.png" />
+    <Resource Include="img\Curacao.png" />
+    <Resource Include="img\Cyprus.png" />
+    <Resource Include="img\Czech-Republic.png" />
+    <Resource Include="img\Democratic-Republic-of-the-Congo.png" />
+    <Resource Include="img\Denmark.png" />
+    <Resource Include="img\Djibouti.png" />
+    <Resource Include="img\Dominica.png" />
+    <Resource Include="img\Dominican-Republic.png" />
+    <Resource Include="img\East-Timor.png" />
+    <Resource Include="img\Ecuador.png" />
+    <Resource Include="img\Egypt.png" />
+    <Resource Include="img\El-Salvador.png" />
+    <Resource Include="img\England.png" />
+    <Resource Include="img\Equatorial-Guinea.png" />
+    <Resource Include="img\Eritrea.png" />
+    <Resource Include="img\Estonia.png" />
+    <Resource Include="img\Ethiopia.png" />
+    <Resource Include="img\European-Union.png" />
+    <Resource Include="img\Falkland-Islands.png" />
+    <Resource Include="img\Faroes.png" />
+    <Resource Include="img\Fiji.png" />
+    <Resource Include="img\Finland.png" />
+    <Resource Include="img\France.png" />
+    <Resource Include="img\French-Polynesia.png" />
+    <Resource Include="img\French-Southern-Territories.png" />
+    <Resource Include="img\Gabon.png" />
+    <Resource Include="img\Gambia.png" />
+    <Resource Include="img\Georgia.png" />
+    <Resource Include="img\Germany.png" />
+    <Resource Include="img\Ghana.png" />
+    <Resource Include="img\Gibraltar.png" />
+    <Resource Include="img\GoSquared.png" />
+    <Resource Include="img\Greece.png" />
+    <Resource Include="img\Greenland.png" />
+    <Resource Include="img\Grenada.png" />
+    <Resource Include="img\Guam.png" />
+    <Resource Include="img\Guatemala.png" />
+    <Resource Include="img\Guernsey.png" />
+    <Resource Include="img\Guinea-Bissau.png" />
+    <Resource Include="img\Guinea.png" />
+    <Resource Include="img\Guyana.png" />
+    <Resource Include="img\Haiti.png" />
+    <Resource Include="img\Honduras.png" />
+    <Resource Include="img\Hong-Kong.png" />
+    <Resource Include="img\Hungary.png" />
+    <Resource Include="img\Iceland.png" />
+    <Resource Include="img\India.png" />
+    <Resource Include="img\Indonesia.png" />
+    <Resource Include="img\Iran.png" />
+    <Resource Include="img\Iraq.png" />
+    <Resource Include="img\Ireland.png" />
+    <Resource Include="img\Isle-of-Man.png" />
+    <Resource Include="img\Israel.png" />
+    <Resource Include="img\Italy.png" />
+    <Resource Include="img\Jamaica.png" />
+    <Resource Include="img\Japan.png" />
+    <Resource Include="img\Jersey.png" />
+    <Resource Include="img\Jordan.png" />
+    <Resource Include="img\Kazakhstan.png" />
+    <Resource Include="img\Kenya.png" />
+    <Resource Include="img\Kiribati.png" />
+    <Resource Include="img\Kosovo.png" />
+    <Resource Include="img\Kuwait.png" />
+    <Resource Include="img\Kyrgyzstan.png" />
+    <Resource Include="img\Laos.png" />
+    <Resource Include="img\Latvia.png" />
+    <Resource Include="img\Lebanon.png" />
+    <Resource Include="img\Lesotho.png" />
+    <Resource Include="img\Liberia.png" />
+    <Resource Include="img\Libya.png" />
+    <Resource Include="img\Liechtenstein.png" />
+    <Resource Include="img\Lithuania.png" />
+    <Resource Include="img\Luxembourg.png" />
+    <Resource Include="img\Macau.png" />
+    <Resource Include="img\Macedonia.png" />
+    <Resource Include="img\Madagascar.png" />
+    <Resource Include="img\Malawi.png" />
+    <Resource Include="img\Malaysia.png" />
+    <Resource Include="img\Maldives.png" />
+    <Resource Include="img\Mali.png" />
+    <Resource Include="img\Malta.png" />
+    <Resource Include="img\Mars.png" />
+    <Resource Include="img\Marshall-Islands.png" />
+    <Resource Include="img\Martinique.png" />
+    <Resource Include="img\Mauritania.png" />
+    <Resource Include="img\Mauritius.png" />
+    <Resource Include="img\Mayotte.png" />
+    <Resource Include="img\Mexico.png" />
+    <Resource Include="img\Micronesia.png" />
+    <Resource Include="img\Moldova.png" />
+    <Resource Include="img\Monaco.png" />
+    <Resource Include="img\Mongolia.png" />
+    <Resource Include="img\Montenegro.png" />
+    <Resource Include="img\Montserrat.png" />
+    <Resource Include="img\Morocco.png" />
+    <Resource Include="img\Mozambique.png" />
+    <Resource Include="img\Myanmar.png" />
+    <Resource Include="img\Nagorno-Karabakh.png" />
+    <Resource Include="img\Namibia.png" />
+    <Resource Include="img\NATO.png" />
+    <Resource Include="img\Nauru.png" />
+    <Resource Include="img\Nepal.png" />
+    <Resource Include="img\Netherlands-Antilles.png" />
+    <Resource Include="img\Netherlands.png" />
+    <Resource Include="img\New-Caledonia.png" />
+    <Resource Include="img\New-Zealand.png" />
+    <Resource Include="img\Nicaragua.png" />
+    <Resource Include="img\Niger.png" />
+    <Resource Include="img\Nigeria.png" />
+    <Resource Include="img\Niue.png" />
+    <Resource Include="img\Norfolk-Island.png" />
+    <Resource Include="img\North-Korea.png" />
+    <Resource Include="img\Northern-Cyprus.png" />
+    <Resource Include="img\Northern-Mariana-Islands.png" />
+    <Resource Include="img\Norway.png" />
+    <Resource Include="img\Olympics.png" />
+    <Resource Include="img\Oman.png" />
+    <Resource Include="img\Pakistan.png" />
+    <Resource Include="img\Palau.png" />
+    <Resource Include="img\Palestine.png" />
+    <Resource Include="img\Panama.png" />
+    <Resource Include="img\Papua-New-Guinea.png" />
+    <Resource Include="img\Paraguay.png" />
+    <Resource Include="img\Peru.png" />
+    <Resource Include="img\Philippines.png" />
+    <Resource Include="img\Pitcairn-Islands.png" />
+    <Resource Include="img\Poland.png" />
+    <Resource Include="img\Portugal.png" />
+    <Resource Include="img\Puerto-Rico.png" />
+    <Resource Include="img\Qatar.png" />
+    <Resource Include="img\Red-Cross.png" />
+    <Resource Include="img\Republic-of-the-Congo.png" />
+    <Resource Include="img\Romania.png" />
+    <Resource Include="img\Russia.png" />
+    <Resource Include="img\Rwanda.png" />
+    <Resource Include="img\Saint-Barthelemy.png" />
+    <Resource Include="img\Saint-Helena.png" />
+    <Resource Include="img\Saint-Kitts-and-Nevis.png" />
+    <Resource Include="img\Saint-Lucia.png" />
+    <Resource Include="img\Saint-Martin.png" />
+    <Resource Include="img\Saint-Vincent-and-the-Grenadines.png" />
+    <Resource Include="img\Samoa.png" />
+    <Resource Include="img\San-Marino.png" />
+    <Resource Include="img\Sao-Tome-and-Principe.png" />
+    <Resource Include="img\Saudi-Arabia.png" />
+    <Resource Include="img\Scotland.png" />
+    <Resource Include="img\Senegal.png" />
+    <Resource Include="img\Serbia.png" />
+    <Resource Include="img\Seychelles.png" />
+    <Resource Include="img\Sierra-Leone.png" />
+    <Resource Include="img\Singapore.png" />
+    <Resource Include="img\Slovakia.png" />
+    <Resource Include="img\Slovenia.png" />
+    <Resource Include="img\Solomon-Islands.png" />
+    <Resource Include="img\Somalia.png" />
+    <Resource Include="img\Somaliland.png" />
+    <Resource Include="img\South-Africa.png" />
+    <Resource Include="img\South-Georgia-and-the-South-Sandwich-Islands.png" />
+    <Resource Include="img\South-Korea.png" />
+    <Resource Include="img\South-Ossetia.png" />
+    <Resource Include="img\South-Sudan.png" />
+    <Resource Include="img\Spain.png" />
+    <Resource Include="img\Sri-Lanka.png" />
+    <Resource Include="img\Sudan.png" />
+    <Resource Include="img\Suriname.png" />
+    <Resource Include="img\Swaziland.png" />
+    <Resource Include="img\Sweden.png" />
+    <Resource Include="img\Switzerland.png" />
+    <Resource Include="img\Syria.png" />
+    <Resource Include="img\Taiwan.png" />
+    <Resource Include="img\Tajikistan.png" />
+    <Resource Include="img\Tanzania.png" />
+    <Resource Include="img\Thailand.png" />
+    <Resource Include="img\Togo.png" />
+    <Resource Include="img\Tokelau.png" />
+    <Resource Include="img\Tonga.png" />
+    <Resource Include="img\Trinidad-and-Tobago.png" />
+    <Resource Include="img\Tunisia.png" />
+    <Resource Include="img\Turkey.png" />
+    <Resource Include="img\Turkmenistan.png" />
+    <Resource Include="img\Turks-and-Caicos-Islands.png" />
+    <Resource Include="img\Tuvalu.png" />
+    <Resource Include="img\Uganda.png" />
+    <Resource Include="img\Ukraine.png" />
+    <Resource Include="img\United-Arab-Emirates.png" />
+    <Resource Include="img\United-Kingdom.png" />
+    <Resource Include="img\United-Nations.png" />
+    <Resource Include="img\United-States.png" />
+    <Resource Include="img\Unknown.png" />
+    <Resource Include="img\Uruguay.png" />
+    <Resource Include="img\US-Virgin-Islands.png" />
+    <Resource Include="img\Uzbekistan.png" />
+    <Resource Include="img\Vanuatu.png" />
+    <Resource Include="img\Vatican-City.png" />
+    <Resource Include="img\Venezuela.png" />
+    <Resource Include="img\Vietnam.png" />
+    <Resource Include="img\Wales.png" />
+    <Resource Include="img\Wallis-And-Futuna.png" />
+    <Resource Include="img\Western-Sahara.png" />
+    <Resource Include="img\Yemen.png" />
+    <Resource Include="img\Zambia.png" />
+    <Resource Include="img\Zimbabwe.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
