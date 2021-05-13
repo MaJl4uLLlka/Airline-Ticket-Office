@@ -3,12 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewmodel="clr-namespace:AirLineTicketOffice" d:DataContext="{d:DesignInstance Type=viewmodel:ApplicationViewModel}"
         xmlns:local="clr-namespace:AirLineTicketOffice"
         mc:Ignorable="d"
         Icon="ticket_icon.png"
         Title="Airline Ticket Office" 
         Height="480" Width="800"
-        MinHeight="480" MinWidth="800">
+        MinHeight="480" MinWidth="800"
+        Name="TicketsPage">
     <Grid Background="Azure" ShowGridLines="False">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1.5*"></ColumnDefinition>
@@ -67,9 +69,7 @@
                 <DatePicker FirstDayOfWeek="Monday"  Grid.Column="2" Grid.Row="1" Margin="5,8,3,0" VerticalAlignment="Center" Height="35" Padding="5,7,5,5" Background="White" SelectedDateFormat="Short" ></DatePicker>
                 <ComboBox Grid.Column="3" Grid.Row="1" Margin="5,8,3,0" VerticalAlignment="Center" Height="35" Padding="5,7,5,5" SelectedIndex="0">
                     <TextBlock Padding="18,3,5,5">Эконом</TextBlock>
-                    <TextBlock Padding="18,3,5,5">Премиум-эконом</TextBlock>
                     <TextBlock Padding="18,3,5,5">Бизнес</TextBlock>
-                    <TextBlock Padding="18,3,5,5">Первый класс</TextBlock>
                 </ComboBox>
                 <Button Grid.Row="1" Grid.Column="4"  Margin="3,8,3,0" VerticalAlignment="Center" Height="35" Background="#FFB426">Поиск</Button>
             </Grid>
@@ -77,41 +77,11 @@
         <Border Grid.Row="1" Grid.Column="0" Background="#DCDEE0" BorderBrush="#C3C5C7" BorderThickness="0,0,3,0">
             <ScrollViewer VerticalScrollBarVisibility="Hidden">
                 <StackPanel >
-                    <Expander Header="Багаж">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*"></RowDefinition>
-                                <RowDefinition Height="*"></RowDefinition>
-                            </Grid.RowDefinitions>
-
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="130"></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            
-                            <TextBlock Grid.Row="0" Grid.Column="0" Margin="5,8,5,5"  HorizontalAlignment="Stretch">Ручная кладь</TextBlock>
-                       
-                            <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal"  HorizontalAlignment="Right">
-                                <Button Width="20" Height="20" Margin="5,5,2,5">-</Button>
-                                <TextBlock Margin="2,7,2,5">1</TextBlock>
-                                <Button Width="20" Height="20" Margin="2,5,4,5">+</Button>
-                            </StackPanel>
-                            
-                            <TextBlock Grid.Row="1" Margin="5,8,5,5" HorizontalAlignment="Stretch">Зарегистрированный
-                                <LineBreak/>багаж
-                            </TextBlock>
-                            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Button Width="20" Height="20" Margin="5,5,2,5">-</Button>
-                                <TextBlock Margin="2,13,2,5">1</TextBlock>
-                                <Button Width="20" Height="20" Margin="2,5,4,5">+</Button>
-                            </StackPanel>
-                        </Grid>
-                    </Expander>
                     <Expander Header="Перевозчики">
-                        <ListBox Background="#DCDEE0" BorderThickness="0" MaxHeight="75">
+                        <ListBox Background="#DCDEE0" BorderThickness="0" MaxHeight="75" ItemsSource="{Binding Airlines}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <CheckBox Margin="2" Content="{Binding}" ></CheckBox><!--TODO Here_checkbox_need_binding-->
+                                    <CheckBox Margin="2" Content="{Binding Path=company_name }" ></CheckBox><!--TODO Here_checkbox_need_binding-->
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
