@@ -23,6 +23,7 @@ namespace AirLineTicketOffice
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new ApplicationViewModel();
         }
     }
 }
