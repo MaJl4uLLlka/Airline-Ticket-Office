@@ -135,6 +135,11 @@
                                     TickFrequency="1"></Slider>
                         </DockPanel>
                     </Expander>
+                    
+                    <UniformGrid  Margin="5" Height="30" Width="Auto" HorizontalAlignment="Stretch" Columns="2">
+                        <Button Content="Применить" Margin="5 0 10 0"></Button>
+                        <Button Content="Сбросить все" Height="30" Margin="10 0 5 0"></Button>
+                    </UniformGrid>
                 </StackPanel>
             </ScrollViewer>
         </Border>
