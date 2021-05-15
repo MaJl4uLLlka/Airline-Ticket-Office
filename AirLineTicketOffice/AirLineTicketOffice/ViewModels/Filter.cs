@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace AirLineTicketOffice
+namespace AirLineTicketOffice.ViewModels
 {
     public class Filter : INotifyPropertyChanged
     {

@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace AirLineTicketOffice
+namespace AirLineTicketOffice.ViewModels
 {
     public class FlightVariant:INotifyPropertyChanged
     {

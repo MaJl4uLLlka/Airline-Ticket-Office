@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data.Entity;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using AirLineTicketOffice.Model;
 
-namespace AirLineTicketOffice
+namespace AirLineTicketOffice.ViewModels
 {
     class FlightsViewModel:INotifyPropertyChanged
     {
@@ -19,10 +16,60 @@ namespace AirLineTicketOffice
         private string selected_service = "Economy";
         private string selected_departure_city;
         private string selected_arrival_city;
-        
+        private FlightVariant selectedFlight;
+
+        public FlightVariant SelectedFlight
+        {
+            get => selectedFlight;
+            set
+            {
+                selectedFlight = value;
+                OnPropertyChanged("SelectedFlight");
+            }
+        }
+
         public ObservableCollection<FlightVariant> Flights { get; set; }
         public ObservableCollection<FlightVariant> filteredFlights { get; set; }
+        public DateTime ArrivalDay
+        {
+            get => arrival_day;
+            set
+            {
+                arrival_day = value;
+                OnPropertyChanged("ArrivalDay");
+            }
+        }
 
+        public string SelectedService
+        {
+            get => selected_service;
+            set
+            {
+                selected_service = value;
+                OnPropertyChanged("SelectedService");
+            }
+        }
+
+        public string SelectedDepartureCity
+        {
+            get => selected_departure_city;
+            set
+            {
+                selected_departure_city = value;
+                OnPropertyChanged("SelectedDepartureCity");
+            }
+        }
+
+        public string SelectedArrivalCity
+        {
+            get => selected_arrival_city;
+            set
+            {
+                selected_arrival_city = value;
+                OnPropertyChanged("SelectedArrivalCity");
+            }
+        }
+        
         public DateTime DepartureDay
         {
             get => departure_day;

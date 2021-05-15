@@ -1,11 +1,10 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data.Entity;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using AirLineTicketOffice.Model;
 
-namespace AirLineTicketOffice
+namespace AirLineTicketOffice.ViewModels
 {
     public class ApplicationViewModel:INotifyPropertyChanged
     {
