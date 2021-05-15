@@ -138,8 +138,8 @@
             </ScrollViewer>
         </Border>
 
-        <Border Grid.Row="1" Grid.Column="1" Background="#DCDEE0" >
-            <Frame ></Frame>
+        <Border Grid.Row="1" Grid.Column="1" Background="#DCDEE0" HorizontalAlignment="Stretch">
+            <Frame Source="Tickets_page.xaml" HorizontalAlignment="Stretch"></Frame>
         </Border>
 
     </Grid>

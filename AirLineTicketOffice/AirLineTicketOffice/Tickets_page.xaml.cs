@@ -23,6 +23,7 @@ namespace AirLineTicketOffice
         public Tickets_page()
         {
             InitializeComponent();
+            DataContext = new FlightsViewModel();
         }
     }
 }
