@@ -17,6 +17,7 @@ namespace AirLineTicketOffice.ViewModels
         private string selected_departure_city;
         private string selected_arrival_city;
         private FlightVariant selectedFlight;
+        private Airline selectedAirline;
 
         public FlightVariant SelectedFlight
         {
@@ -30,6 +31,18 @@ namespace AirLineTicketOffice.ViewModels
 
         public ObservableCollection<FlightVariant> Flights { get; set; }
         public ObservableCollection<FlightVariant> filteredFlights { get; set; }
+
+        public ObservableCollection<Airline> Airlines { get; set; }
+        public Airline SelectedAirline
+        {
+            get => selectedAirline;
+            set
+            {
+                selectedAirline = value;
+                OnPropertyChanged("SelectedAirline");
+            }
+        }
+
         public DateTime ArrivalDay
         {
             get => arrival_day;
@@ -93,6 +106,8 @@ namespace AirLineTicketOffice.ViewModels
             db.Tickets.Load();
             db.Passengers.Load();
             db.Accounts.Load();
+
+            Airlines = db.Airlines.Local;
 
             var group_places = db.Places.GroupBy(p=>new {p.Flight_ID,p.service_class,p.price});
 

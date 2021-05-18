@@ -12,6 +12,9 @@
         Height="480" Width="800"
         MinHeight="480" MinWidth="800"
         Name="TicketsPage">
+    <Window.Resources>
+        <ResourceDictionary Source="../Resources/Dictionary1.xaml"></ResourceDictionary>
+    </Window.Resources>
     <Grid Background="Azure" ShowGridLines="False">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1.5*"></ColumnDefinition>
@@ -76,78 +79,7 @@
                 <Button Grid.Row="1" Grid.Column="4"  Margin="3,8,3,0" VerticalAlignment="Center" Height="35" Background="#FFB426">Поиск</Button>
             </Grid>
         </StackPanel>
-        <Border Grid.Row="1" Grid.Column="0" Background="#DCDEE0" BorderBrush="#C3C5C7" BorderThickness="0,0,3,0">
-            <ScrollViewer VerticalScrollBarVisibility="Hidden">
-                <StackPanel >
-                    <Expander Header="Перевозчики">
-                        <ListBox Background="#DCDEE0" BorderThickness="0" MaxHeight="75" ItemsSource="{Binding Airlines}">
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <CheckBox Margin="2" Content="{Binding Path=company_name }" ></CheckBox><!--TODO Here_checkbox_need_binding-->
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
-                    </Expander>
-                    <Expander Header="Время"> <!--TODO Here_must_be_added_Margin&Padding -->
-                        <UniformGrid Rows="4">
-                            <TextBlock>Время вылета (от 0 до 24 часов)</TextBlock>
-                            <DockPanel VerticalAlignment="Center" Margin="10">
-                                <TextBox Text="{Binding ElementName=Arrival_Hour, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Center" Width="40" />
-                                <Slider Value="0" Minimum="0" Maximum="24"
-                                        SelectionStart="0"
-                                        SelectionEnd="{Binding ElementName=Arrival_Hour, Path=Value, UpdateSourceTrigger=PropertyChanged}"
-                                        IsSelectionRangeEnabled="True" Name="Arrival_Hour"
-                                    IsSnapToTickEnabled="True"
-                                    TickFrequency="1"></Slider>
-                            </DockPanel>
-                            <TextBlock>Время прилета (от 0 до 24 часов)</TextBlock>
-                            <DockPanel VerticalAlignment="Center" Margin="10">
-                                <TextBox Text="{Binding ElementName=Departure_Hour, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Center" Width="40" />
-                                <Slider Value="0" Minimum="0" Maximum="24" SelectionStart="0"
-                                        SelectionEnd="{Binding ElementName=Departure_Hour, Path=Value, UpdateSourceTrigger=PropertyChanged}"
-                                        IsSelectionRangeEnabled="True"
-                                        Name="Departure_Hour"
-                                        IsSnapToTickEnabled="True"
-                                        TickFrequency="1"
-                                        ></Slider>
-                                </DockPanel>
-                        </UniformGrid>
-                    </Expander>
-                    <Expander Header="Цена"> <!-- TODO Here_must_be_Binding_Min&Max_Value-->
-                        <DockPanel VerticalAlignment="Center" Margin="10">
-                            <TextBox Text="{Binding ElementName=Money, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Center" Width="40" />
-                            <Slider Value="0" Minimum="0" Maximum="24" SelectionStart="0"
-                                    SelectionEnd="{Binding ElementName=Money, Path=Value, UpdateSourceTrigger=PropertyChanged}"
-                                    IsSelectionRangeEnabled="True"
-                                    Name="Money"
-                                    IsSnapToTickEnabled="True"
-                                    TickFrequency="1"
-                            ></Slider>
-                        </DockPanel>
-                    </Expander>
-                    <Expander Header="Продолжительность">
-                        <DockPanel VerticalAlignment="Center" Margin="10">
-                            <TextBox Text="{Binding ElementName=Travel_time, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Center" Width="40" />
-                            <Slider Value="1" Minimum="1" Maximum="60"
-                                    SelectionStart="0"
-                                    SelectionEnd="{Binding ElementName=Travel_time, Path=Value, UpdateSourceTrigger=PropertyChanged}"
-                                    IsSelectionRangeEnabled="True" Name="Travel_time"
-                                    IsSnapToTickEnabled="True"
-                                    TickFrequency="1"></Slider>
-                        </DockPanel>
-                    </Expander>
-                    
-                    <UniformGrid  Margin="5" Height="30" Width="Auto" HorizontalAlignment="Stretch" Columns="2">
-                        <Button Content="Применить" Margin="5 0 10 0"></Button>
-                        <Button Content="Сбросить все" Height="30" Margin="10 0 5 0"></Button>
-                    </UniformGrid>
-                </StackPanel>
-            </ScrollViewer>
-        </Border>
-
-        <Border Grid.Row="1" Grid.Column="1" Background="#DCDEE0" HorizontalAlignment="Stretch">
-            <Frame Source="Tickets_page.xaml" HorizontalAlignment="Stretch"></Frame>
-        </Border>
+        <Frame Grid.Row="1" Grid.ColumnSpan="2" Source="Tickets_page.xaml"></Frame>
 
     </Grid>
 </Window>
