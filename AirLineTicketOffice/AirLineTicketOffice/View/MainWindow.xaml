@@ -19,13 +19,14 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="120" ></RowDefinition>
+            <RowDefinition Height="130" ></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Background="#0c73fe">
             <DockPanel Margin="5" >
-                <ComboBox DockPanel.Dock="Right" Width="100" SelectedIndex="0"  Margin="3,0,0,0" Name="Currency">
+                <Image Source="../img/client.png" Width="30" Height="30" DockPanel.Dock="Left" Margin="10 0 0 10"></Image> <!--TODO Here must be event-->
+                <ComboBox DockPanel.Dock="Right" Width="100" SelectedIndex="0"  Margin="3,0,0,0" Name="Currency" VerticalAlignment="Top">
                     <TextBlock Padding="18,3,5,5">USD</TextBlock>
                     <TextBlock Padding="18,3,5,5">EUR</TextBlock>
                     <TextBlock Padding="18,3,5,5">BYN</TextBlock>
@@ -34,7 +35,7 @@
                     <TextBlock Padding="18,3,5,5">Русский</TextBlock>
                     <TextBlock Padding="18,3,5,5">English</TextBlock>
                 </ComboBox>
-                <ComboBox DockPanel.Dock="Right" Width="100" Visibility="Hidden"></ComboBox>
+                <ComboBox DockPanel.Dock="Right" Width="100" Visibility="Hidden" ></ComboBox>
             </DockPanel>
             <Grid>
                 <Grid.RowDefinitions>
