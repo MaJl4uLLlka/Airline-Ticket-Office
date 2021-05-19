@@ -16,7 +16,7 @@
             <ColumnDefinition Width="1.5*"></ColumnDefinition>
             <ColumnDefinition Width="3*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Border  Grid.Column="0" Background="#DCDEE0" BorderBrush="#C3C5C7" BorderThickness="0,0,3,0">
+        <Border  Grid.Column="0" Background="#DCDEE0" BorderBrush="#C3C5C7" BorderThickness="0,0,3,0" DataContext="{Binding Filter}">
             <ScrollViewer VerticalScrollBarVisibility="Hidden">
                 <StackPanel >
                     <Expander Header="Перевозчики">
@@ -88,7 +88,7 @@
             </ScrollViewer>
         </Border>
         
-        <ListBox  Grid.Column="1" Background="#DCDEE0" BorderThickness="0" ItemsSource="{Binding Flights}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"
+        <ListBox  Grid.Column="1" Background="#DCDEE0" BorderThickness="0" ItemsSource="{Binding filteredFlights}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"
                  SelectedItem="{Binding Path=SelectedFlight}">
             <ListBox.ItemTemplate >
                 <DataTemplate>

@@ -4,11 +4,12 @@ using System.ComponentModel;
 using System.Data.Entity;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using AirLineTicketOffice.Logic;
 using AirLineTicketOffice.Model;
 
 namespace AirLineTicketOffice.ViewModels
 {
-    class FlightsViewModel:INotifyPropertyChanged
+   public partial class FlightsViewModel:INotifyPropertyChanged
     {
         private ModelContext db;
         private DateTime departure_day=DateTime.Now;
@@ -18,6 +19,35 @@ namespace AirLineTicketOffice.ViewModels
         private string selected_arrival_city;
         private FlightVariant selectedFlight;
         private Airline selectedAirline;
+        private Filter filter = null;
+
+        private RelayCommand getFilterCommand;
+
+        public RelayCommand GetFilterCommand
+        {
+            get
+            {
+                return getFilterCommand ??
+                       (getFilterCommand = new RelayCommand(o =>
+                       {
+                           Filter newFilter = o as Filter;
+                           if (newFilter != null)
+                           {
+                               Filter = newFilter;
+                           }
+                           
+                       }));
+            }
+        }
+        public Filter Filter
+        {
+            get => filter;
+            set
+            {
+                filter = value;
+                OnPropertyChanged("Filter");
+            }
+        }
 
         public FlightVariant SelectedFlight
         {
@@ -151,9 +181,7 @@ namespace AirLineTicketOffice.ViewModels
             //iterator.Reset();
 
             var flights_with_default_filter = Flights.Where(
-                u => u.ServiceClass == selected_service &&
-                     u.DepartureDay == departure_day.DayOfWeek.ToString() &&
-                     u.DepartureTime > departure_day.TimeOfDay).Select(u => u);
+                u => u.ServiceClass == selected_service).Select(u => u);
 
             filteredFlights = new ObservableCollection<FlightVariant>(flights_with_default_filter);
         }

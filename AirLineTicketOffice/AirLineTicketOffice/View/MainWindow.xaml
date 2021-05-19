@@ -80,6 +80,7 @@
             </Grid>
         </StackPanel>
         <Frame Grid.Row="1" Grid.ColumnSpan="2" Source="Tickets_page.xaml"></Frame>
+        
 
     </Grid>
 </Window>
