@@ -20,23 +20,26 @@ namespace AirLineTicketOffice.ViewModels
         private FlightVariant selectedFlight;
         private Airline selectedAirline;
         private Filter filter = null;
+        private DateTime dateToday = DateTime.Now;
+        private MainSearch _mainSearch = new MainSearch();
 
-        private RelayCommand getFilterCommand;
+        public MainSearch MainSearch
+        {
+            get => _mainSearch;
+            set => _mainSearch = value;
+        }
 
-        public RelayCommand GetFilterCommand
+        public DateTime DateToday
         {
             get
             {
-                return getFilterCommand ??
-                       (getFilterCommand = new RelayCommand(o =>
-                       {
-                           Filter newFilter = o as Filter;
-                           if (newFilter != null)
-                           {
-                               Filter = newFilter;
-                           }
-                           
-                       }));
+                return dateToday;
+            }
+
+            set 
+            {
+                dateToday = value;
+                OnPropertyChanged("DateToday");
             }
         }
         public Filter Filter

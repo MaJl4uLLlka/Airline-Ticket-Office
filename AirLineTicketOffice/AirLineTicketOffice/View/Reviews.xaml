@@ -7,7 +7,7 @@
       mc:Ignorable="d"
       ShowsNavigationUI="False"
       Title="Reviews" Height="450" Width="800">
-    <Grid>
+    <Grid Background="Azure">
         
     </Grid>
 </Page>

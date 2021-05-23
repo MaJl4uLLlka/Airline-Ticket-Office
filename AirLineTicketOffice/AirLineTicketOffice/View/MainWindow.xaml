@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:AirLineTicketOffice"
         xmlns:viewModels="clr-namespace:AirLineTicketOffice.ViewModels"
         mc:Ignorable="d"
-        Icon="../ticket_icon.png"
+        Icon="../img/ticket_icon.png"
         Title="Airline Ticket Office" 
         Height="480" Width="800"
         MinHeight="480" MinWidth="800"
@@ -22,13 +22,14 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="130" ></RowDefinition>
+            <RowDefinition Height="40" ></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Background="#0c73fe">
             <DockPanel Margin="5" >
-                <Image Source="../img/client.png" Width="30" Height="30" DockPanel.Dock="Left" Margin="10 0 0 10"></Image> <!--TODO Here must be event-->
+                <Image Source="../img/client.png" Width="30" Height="30" DockPanel.Dock="Left" Margin="10 0 0 10"></Image>
+                <!--TODO Here must be event-->
                 <ComboBox DockPanel.Dock="Right" Width="100" SelectedIndex="0"  Margin="3,0,0,0" Name="Currency" VerticalAlignment="Top">
                     <TextBlock Padding="18,3,5,5">USD</TextBlock>
                     <TextBlock Padding="18,3,5,5">EUR</TextBlock>
@@ -40,44 +41,6 @@
                 </ComboBox>
                 <ComboBox DockPanel.Dock="Right" Width="100" Visibility="Hidden" ></ComboBox>
             </DockPanel>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="0.5*"></RowDefinition>
-                    <RowDefinition Height="3.5*"></RowDefinition>
-                </Grid.RowDefinitions>
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition Width="140"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-
-                <TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,7,0,7">
-                    <Run Foreground="Beige">Откуда</Run>
-                </TextBlock>
-                <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,7,0,7">
-                    <Run Foreground="#E8EBED">
-                        Куда
-                    </Run>
-                </TextBlock>
-                <TextBlock Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,7,0,7">
-                    <Run Foreground="#E8EBED">Дата</Run>
-                </TextBlock>
-                <TextBlock Grid.Row="0" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,7,0,7">
-                    <Run Foreground="#E8EBED">Класс обслуживания</Run>
-                </TextBlock>
-
-                <TextBox Grid.Column="0" Grid.Row="1" Margin="6,8,3,0" VerticalAlignment="Center" Height="35" Padding="5,7,5,5" Background="White"></TextBox>
-                <TextBox Grid.Column="1" Grid.Row="1" Margin="5,8,3,0" VerticalAlignment="Center" Height="35" Padding="5,7,5,5" Background="White"></TextBox>
-                <DatePicker FirstDayOfWeek="Monday"  Grid.Column="2" Grid.Row="1" Margin="5,8,3,0" VerticalAlignment="Center" Height="35" Padding="5,7,5,5" Background="White" SelectedDateFormat="Short" ></DatePicker>
-                <ComboBox Grid.Column="3" Grid.Row="1" Margin="5,8,3,0" VerticalAlignment="Center" Height="35" Padding="5,7,5,5" SelectedIndex="0">
-                    <TextBlock Padding="18,3,5,5">Эконом</TextBlock>
-                    <TextBlock Padding="18,3,5,5">Бизнес</TextBlock>
-                </ComboBox>
-                <Button Grid.Row="1" Grid.Column="4"  Margin="3,8,3,0" VerticalAlignment="Center" Height="35" Background="#FFB426">Поиск</Button>
-            </Grid>
         </StackPanel>
         <Frame Grid.Row="1" Grid.ColumnSpan="2" Source="Tickets_page.xaml"></Frame>
         

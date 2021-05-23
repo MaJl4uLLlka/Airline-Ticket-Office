@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AirLineTicketOffice.View"
         mc:Ignorable="d"
-        Title="Authorization" Height="450" Width="450">
+        Title="Authorization" Height="350" Width="500"
+        Icon="../img/ticket_icon.png"
+        MaxHeight="350" MaxWidth="500"
+        MinHeight="350" MinWidth="500">
     <Grid Background="Azure">
         <Frame Source="LogIn.xaml"></Frame>
     </Grid>

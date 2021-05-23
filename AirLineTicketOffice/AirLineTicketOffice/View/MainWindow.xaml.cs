@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Data;
 using AirLineTicketOffice.ViewModels;
 
 namespace AirLineTicketOffice.View
