@@ -10,8 +10,6 @@ namespace AirLineTicketOffice.View
     /// </summary>
     public partial class MainWindow : Window
     {
-
-        public static bool isAuthorized = false;
         public MainWindow()
         {
             InitializeComponent();

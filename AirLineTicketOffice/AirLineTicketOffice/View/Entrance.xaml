@@ -12,6 +12,6 @@
         MaxHeight="350" MaxWidth="500"
         MinHeight="350" MinWidth="500">
     <Grid Background="Azure">
-        <Frame Source="LogIn.xaml"></Frame>
+        <Frame Source="LogIn.xaml" NavigationUIVisibility="Hidden"></Frame>
     </Grid>
 </Window>

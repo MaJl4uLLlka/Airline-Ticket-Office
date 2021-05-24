@@ -24,7 +24,7 @@ namespace AirLineTicketOffice.ViewModels
                 return buy ??
                        (buy = new RelayCommand(o =>
                            {
-                               if (!MainWindow.isAuthorized)
+                               if (!ApplicationViewModel.isAuthorized)
                                {
                                    Authorization authWindow = new Authorization();
                                    if (authWindow.ShowDialog() == true)

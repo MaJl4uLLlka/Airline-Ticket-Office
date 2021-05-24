@@ -12,9 +12,9 @@
       Title="Registration" Height="350" Width="500">
     <Grid Background="Azure" ShowGridLines="False">
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.2*"></RowDefinition>
-            <RowDefinition Height="2*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="0.4*"></RowDefinition>
+            <RowDefinition Height="1.5*"></RowDefinition>
+            <RowDefinition Height="0.6*"></RowDefinition>
         </Grid.RowDefinitions>
         
         <Grid.ColumnDefinitions>
@@ -22,7 +22,12 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.ColumnSpan="2" Foreground="Blue" HorizontalAlignment="Center" VerticalAlignment="Center">Регистрация</TextBlock>
+        <StackPanel Grid.ColumnSpan="2">
+            <TextBlock><Hyperlink NavigateUri="LogIn.xaml">Назад</Hyperlink></TextBlock>
+            <TextBlock Foreground="Blue" VerticalAlignment="Center" Margin="0 0 30 0">Регистрация
+                <TextBlock.HorizontalAlignment>Center</TextBlock.HorizontalAlignment>
+            </TextBlock>
+        </StackPanel>
         <StackPanel Grid.Row="1" Orientation="Vertical">
             <TextBlock Foreground="Blue" HorizontalAlignment="Stretch">Логин</TextBlock>
             <TextBox></TextBox>
@@ -44,7 +49,8 @@
             <TextBlock Foreground="Blue">Срок действия документа</TextBlock>
             <TextBox></TextBox>
         </StackPanel>
-        <Button Grid.Column="0" Width="Auto" Height="30" VerticalAlignment="Top" HorizontalAlignment="Center"
-                Grid.Row="2" Grid.ColumnSpan="2">Registration</Button>
+        <Button Grid.Column="0" Width="Auto" Height="30" HorizontalAlignment="Center"
+                Grid.Row="2" Grid.ColumnSpan="2"
+                Margin="0 0 30 40">Registration</Button>
     </Grid>
 </Page>
