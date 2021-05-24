@@ -130,6 +130,7 @@
     <Compile Include="ViewModels\FlightsViewModel.cs" />
     <Compile Include="ViewModels\FlightVariant.cs" />
     <Compile Include="ViewModels\FlightViewModelMethods.cs" />
+    <Compile Include="ViewModels\UsersViewModel.cs" />
     <Compile Include="View\Entrance.xaml.cs">
       <DependentUpon>Entrance.xaml</DependentUpon>
     </Compile>

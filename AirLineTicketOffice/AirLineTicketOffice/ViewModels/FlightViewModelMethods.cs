@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows;
 using AirLineTicketOffice.Logic;
+using AirLineTicketOffice.View;
 using static AirLineTicketOffice.Logic.Service_class;
 
 namespace AirLineTicketOffice.ViewModels
@@ -13,6 +15,27 @@ namespace AirLineTicketOffice.ViewModels
     {
         private RelayCommand search;
         private RelayCommand getFilterCommand;
+        private RelayCommand buy;
+
+        public RelayCommand BuyCommand
+        {
+            get
+            {
+                return buy ??
+                       (buy = new RelayCommand(o =>
+                           {
+                               if (!MainWindow.isAuthorized)
+                               {
+                                   Authorization authWindow = new Authorization();
+                                   if (authWindow.ShowDialog() == true)
+                                   {
+                                       
+                                   }
+                               }
+                           }
+                       ));
+            }
+        }
 
         public RelayCommand GetFilterCommand
         {

@@ -4,17 +4,25 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:AirLineTicketOffice.View"
+      xmlns:viewmodel="clr-namespace:AirLineTicketOffice"
+      xmlns:viewModels="clr-namespace:AirLineTicketOffice.ViewModels"
+      d:DataContext="{d:DesignInstance Type=viewModels:UsersViewModel}"
       mc:Ignorable="d"
       ShowsNavigationUI="False"
       Title="Registration" Height="350" Width="500">
-    <Grid Background="Azure" ShowGridLines="True">
+    <Grid Background="Azure" ShowGridLines="False">
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.5*"></RowDefinition>
-            <RowDefinition Height="0.5*"></RowDefinition>
-            <RowDefinition Height="0.5*"></RowDefinition>
+            <RowDefinition Height="0.2*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
 
-        <TextBlock Foreground="Blue" HorizontalAlignment="Center" VerticalAlignment="Center">Регистрация</TextBlock>
+        <TextBlock Grid.ColumnSpan="2" Foreground="Blue" HorizontalAlignment="Center" VerticalAlignment="Center">Регистрация</TextBlock>
         <StackPanel Grid.Row="1" Orientation="Vertical">
             <TextBlock Foreground="Blue" HorizontalAlignment="Stretch">Логин</TextBlock>
             <TextBox></TextBox>
@@ -23,10 +31,20 @@
             <TextBlock Foreground="Blue">Повторите пароль</TextBlock>
             <TextBox></TextBox>
         </StackPanel>
-        <StackPanel Grid.Row="2">
-            <StackPanel  Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center">
-                <Button Width="Auto" Height="30">Registration</Button>
-            </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="1">
+            <TextBlock Foreground="Blue">Имя</TextBlock>
+            <TextBox></TextBox>
+            <TextBlock Foreground="Blue">Фамилия</TextBlock>
+            <TextBox></TextBox>
+            <TextBlock Foreground="Blue">Пол</TextBlock>
+            <TextBox></TextBox>
+            <TextBlock Foreground="Blue">Идентификационный номер паспорта</TextBlock>
+            <TextBox></TextBox><TextBlock Foreground="Blue">Дата рождения</TextBlock>
+            <TextBox></TextBox>
+            <TextBlock Foreground="Blue">Срок действия документа</TextBlock>
+            <TextBox></TextBox>
         </StackPanel>
+        <Button Grid.Column="0" Width="Auto" Height="30" VerticalAlignment="Top" HorizontalAlignment="Center"
+                Grid.Row="2" Grid.ColumnSpan="2">Registration</Button>
     </Grid>
 </Page>

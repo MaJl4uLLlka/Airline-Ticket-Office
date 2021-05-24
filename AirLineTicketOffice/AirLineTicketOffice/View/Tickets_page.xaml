@@ -10,7 +10,6 @@
       d:DesignHeight="450" d:DesignWidth="800"
       ShowsNavigationUI="False"
       Title="Tickets_page">
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="90"></RowDefinition>
@@ -185,7 +184,7 @@
                             <!--Время-->
                         </StackPanel>
 
-                        <Button Grid.Row="0" Grid.Column="3" Grid.RowSpan="2" Content="{Binding Path=Price}" Width="60" Height="30" Margin="10">
+                        <Button Grid.Row="0" Grid.Column="3" Grid.RowSpan="2" Content="{Binding Path=Price}"  Width="60" Height="30" Margin="10" Command="{Binding DataContext.BuyCommand, RelativeSource={RelativeSource AncestorType=Page}}">
                             <!--TODO here_must_be_price_binding-->
                         </Button>
                     </Grid>

@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using AirLineTicketOffice.ViewModels;
 
 namespace AirLineTicketOffice.View
 {
@@ -22,6 +23,8 @@ namespace AirLineTicketOffice.View
         public Authorization()
         {
             InitializeComponent();
+            DataContext = new UsersViewModel();
+            //TODO DATACONTEXT
         }
     }
 }
