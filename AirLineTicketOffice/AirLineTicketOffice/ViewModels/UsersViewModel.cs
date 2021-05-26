@@ -7,7 +7,7 @@ using AirLineTicketOffice.Model;
 
 namespace AirLineTicketOffice.ViewModels
 {
-    public class UsersViewModel : INotifyPropertyChanged
+    public partial class UsersViewModel : INotifyPropertyChanged
     {
         private ModelContext db;
         private Passenger selectedPassenger;

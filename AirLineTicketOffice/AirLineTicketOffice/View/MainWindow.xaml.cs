@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
 using AirLineTicketOffice.ViewModels;
@@ -14,6 +15,11 @@ namespace AirLineTicketOffice.View
         {
             InitializeComponent();
             DataContext = new ApplicationViewModel();
+        }
+
+        public void ChangeContent(Page page)
+        {
+            Frame.Content = page;
         }
     }
 }

@@ -42,7 +42,7 @@
                 <ComboBox DockPanel.Dock="Right" Width="100" Visibility="Hidden" ></ComboBox>
             </DockPanel>
         </StackPanel>
-        <Frame Grid.Row="1" Grid.ColumnSpan="2" Source="Tickets_page.xaml"></Frame>
+        <Frame x:Name="Frame" Grid.Row="1" Grid.ColumnSpan="2" Source="Tickets_page.xaml" NavigationUIVisibility="Hidden"></Frame>
         
 
     </Grid>

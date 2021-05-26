@@ -129,8 +129,12 @@
     <Compile Include="ViewModels\Filter.cs" />
     <Compile Include="ViewModels\FlightsViewModel.cs" />
     <Compile Include="ViewModels\FlightVariant.cs" />
-    <Compile Include="ViewModels\FlightViewModelMethods.cs" />
+    <Compile Include="ViewModels\FlightViewModelCommands.cs" />
     <Compile Include="ViewModels\UsersViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModelCommands.cs" />
+    <Compile Include="View\AdminPage.xaml.cs">
+      <DependentUpon>AdminPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Entrance.xaml.cs">
       <DependentUpon>Entrance.xaml</DependentUpon>
     </Compile>
@@ -158,6 +162,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\AdminPage.xaml" />
     <Page Include="View\Entrance.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

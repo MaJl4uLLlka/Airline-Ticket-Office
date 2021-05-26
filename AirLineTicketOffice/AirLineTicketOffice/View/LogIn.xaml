@@ -17,18 +17,18 @@
                 <RowDefinition Height="0.5*"></RowDefinition>
             </Grid.RowDefinitions>
         
-            <StackPanel Grid.Row="1" Orientation="Vertical">
+            <StackPanel Grid.Row="1" Orientation="Vertical" DataContext="{Binding Path=SelectedAccount}">
                 <TextBlock Foreground="Blue" HorizontalAlignment="Stretch">Логин</TextBlock>
-                <TextBox></TextBox>
-                <TextBlock Foreground="Blue">Пароль</TextBlock>
-                <TextBox></TextBox>
+                <TextBox Text="{Binding login,UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                <TextBlock  Foreground="Blue">Пароль</TextBlock>
+                <TextBox Text="{Binding password, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             </StackPanel>
             <StackPanel Grid.Row="2">
                 <StackPanel  Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center">
                     <TextBlock Margin="0 0 50 0">
                         <Hyperlink NavigateUri="Registration.xaml">Еще нет аккаунта?</Hyperlink>
                     </TextBlock>
-                    <Button Width="50" Height="30" Margin="2 0 80 0" >Sign In</Button>
+                    <Button Width="50" Height="30" Margin="2 0 80 0" Command="{Binding CheckAuthentification}">Sign In</Button>
                 </StackPanel>
             </StackPanel>
         </Grid>
