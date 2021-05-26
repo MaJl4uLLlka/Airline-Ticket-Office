@@ -4,12 +4,12 @@ using System.Data.Entity;
 using System.Runtime.CompilerServices;
 using AirLineTicketOffice.Annotations;
 using AirLineTicketOffice.Model;
+using AirLineTicketOffice.View;
 
 namespace AirLineTicketOffice.ViewModels
 {
     public partial class UsersViewModel : INotifyPropertyChanged
     {
-        private ModelContext db;
         private Passenger selectedPassenger;
         private Account selectedAccount;
 
@@ -30,13 +30,12 @@ namespace AirLineTicketOffice.ViewModels
 
         public UsersViewModel()
         {
-            db = new ModelContext();
-            
-            db.Accounts.Load();
-            db.Passengers.Load();
-
-            Passengers = db.Passengers.Local;
-            Accounts = db.Accounts.Local;
+            selectedAccount = new Account();
+            selectedPassenger = new Passenger();
+            selectedAccount.login = "";
+            selectedAccount.password = "";
+            Passengers = MainWindow.db.Passengers.Local;
+            Accounts = MainWindow.db.Accounts.Local;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

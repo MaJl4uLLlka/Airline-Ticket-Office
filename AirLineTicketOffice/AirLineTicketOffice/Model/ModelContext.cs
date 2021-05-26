@@ -2,9 +2,20 @@
 
 namespace AirLineTicketOffice.Model
 {
-    class ModelContext : DbContext
+    public class ModelContext : DbContext
     {
-        public ModelContext():base("AirlineTicketOfficeEntities"){}
+        public ModelContext():base("AirlineTicketOfficeEntities")
+        {
+            Airlines.Load();
+            Flights.Load();
+            Places.Load();
+            CanceledFlightsCollection.Load();
+            Service_classes.Load();
+            DateFlights.Load();
+            Tickets.Load();
+            Passengers.Load();
+            Accounts.Load();
+        }
         
         public DbSet<Airline> Airlines { get; set; }
         public DbSet<Flight> Flights { get; set; }

@@ -7,13 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using AirLineTicketOffice.Annotations;
+
 namespace AirLineTicketOffice.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Account
+    public partial class Account : INotifyPropertyChanged
     {
+        private string _login;
+        private string _password;
+        private string _isAdmin;
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Account()
         {
@@ -21,11 +28,46 @@ namespace AirLineTicketOffice.Model
         }
     
         public int Account_ID { get; set; }
-        public string login { get; set; }
-        public string password { get; set; }
-        public string isAdmin { get; set; }
+
+        public string login
+        {
+            get => _login;
+            set
+            {
+                _login = value;
+                OnPropertyChanged("login");
+            }
+        }
+
+        public string password
+        {
+            get=>_password;
+            set
+            {
+                _password = value;
+                OnPropertyChanged("password");
+            }
+        }
+
+        public string isAdmin
+        {
+            get=>_isAdmin;
+            set
+            {
+                _isAdmin = value;
+                OnPropertyChanged("isAdmin");
+            }
+        }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Passenger> Passengers { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

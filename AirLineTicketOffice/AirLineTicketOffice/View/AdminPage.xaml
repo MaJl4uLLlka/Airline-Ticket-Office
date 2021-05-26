@@ -7,7 +7,8 @@
       xmlns:viewmodel="clr-namespace:AirLineTicketOffice.ViewModels" d:DataContext="{d:DesignInstance Type=viewModels:FlightsViewModel}"
       xmlns:viewModels="clr-namespace:AirLineTicketOffice.ViewModels"
       mc:Ignorable="d"
-      Title="AdminPage" Height="450" Width="800">
+      Title="AdminPage" 
+      d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="90"></RowDefinition>
@@ -119,9 +120,11 @@
                         </DockPanel>
                     </Expander>
 
-                    <UniformGrid  Margin="5" Height="30" Width="Auto" HorizontalAlignment="Stretch" Columns="2">
-                        <Button Content="Применить" Margin="5 0 10 0"></Button>
-                        <Button Content="Сбросить все" Height="30" Margin="10 0 5 0"></Button>
+                    <UniformGrid  Margin="5"  Width="Auto" HorizontalAlignment="Stretch" Rows="2" Columns="2">
+                        <Button Content="Применить" Height="30"  Margin="5 0 10 5"></Button>
+                        <Button Content="Сбросить все" Height="30" Margin="10 0 5 5"></Button>
+                        <Button Content="Добавить рейс" Height="30" Margin="5 5 10 0"></Button>
+                        <Button Content="Удалить рейс" Height="30" Margin="10 5 5 0"></Button>
                     </UniformGrid>
                 </StackPanel>
             </ScrollViewer>
@@ -182,7 +185,12 @@
                             <!--Время-->
                         </StackPanel>
 
-                        <Button Grid.Row="0" Grid.Column="3" Grid.RowSpan="2" Content="{Binding Path=Price}"  Width="60" Height="30" Margin="10" Command="{Binding DataContext.BuyCommand, RelativeSource={RelativeSource AncestorType=Page}}">
+                        <Button Grid.Row="0" Grid.Column="3" Grid.RowSpan="2" 
+                                Content="{Binding Path=Price}"  
+                                Width="60" Height="30" Margin="10" 
+                                Command="{Binding DataContext.BuyCommand, RelativeSource={RelativeSource AncestorType=Page}}" 
+                                HorizontalContentAlignment="Stretch"
+                                VerticalContentAlignment="Stretch">
                             <!--TODO here_must_be_price_binding-->
                         </Button>
                     </Grid>

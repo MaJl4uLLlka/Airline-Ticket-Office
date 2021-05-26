@@ -3,12 +3,12 @@ using System.ComponentModel;
 using System.Data.Entity;
 using System.Runtime.CompilerServices;
 using AirLineTicketOffice.Model;
+using AirLineTicketOffice.View;
 
 namespace AirLineTicketOffice.ViewModels
 {
     public class ApplicationViewModel:INotifyPropertyChanged
     {
-        private ModelContext db;
         private Airline selectedAirline;
         private Flight selectedFlight;
         private Place selectedPlace;
@@ -22,27 +22,15 @@ namespace AirLineTicketOffice.ViewModels
 
         public ApplicationViewModel()
         {
-            db = new ModelContext();
-            
-            db.Airlines.Load();
-            db.Flights.Load();
-            db.Places.Load();
-            db.CanceledFlightsCollection.Load();
-            db.Service_classes.Load();
-            db.DateFlights.Load();
-            db.Tickets.Load();
-            db.Passengers.Load();
-            db.Accounts.Load();
-            
-            Airlines = db.Airlines.Local;
-            Flights = db.Flights.Local;
-            Places = db.Places.Local;
-            CanceledFlightsList = db.CanceledFlightsCollection.Local;
-            ServiceClassInfos = db.Service_classes.Local;
-            DateFlights = db.DateFlights.Local;
-            Tickets = db.Tickets.Local;
-            Passengers = db.Passengers.Local;
-            Accounts = db.Accounts.Local;
+            Airlines = MainWindow.db.Airlines.Local;
+            Flights = MainWindow.db.Flights.Local;
+            Places = MainWindow.db.Places.Local;
+            CanceledFlightsList = MainWindow.db.CanceledFlightsCollection.Local;
+            ServiceClassInfos = MainWindow.db.Service_classes.Local;
+            DateFlights = MainWindow.db.DateFlights.Local;
+            Tickets = MainWindow.db.Tickets.Local;
+            Passengers = MainWindow.db.Passengers.Local;
+            Accounts = MainWindow.db.Accounts.Local;
         }
 
         public ObservableCollection<Airline> Airlines { get; set; }

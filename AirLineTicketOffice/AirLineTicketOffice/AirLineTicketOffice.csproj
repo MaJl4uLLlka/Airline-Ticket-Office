@@ -75,6 +75,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Logic\MainSearch.cs" />
+    <Compile Include="Logic\PageClass.cs" />
     <Compile Include="Logic\RelayCommand.cs" />
     <Compile Include="Logic\Service_class.cs" />
     <Compile Include="Model\Account.cs">

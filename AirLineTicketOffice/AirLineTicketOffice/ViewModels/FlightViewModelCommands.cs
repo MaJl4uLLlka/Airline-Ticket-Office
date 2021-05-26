@@ -27,6 +27,7 @@ namespace AirLineTicketOffice.ViewModels
                                if (!ApplicationViewModel.isAuthorized)
                                {
                                    Authorization authWindow = new Authorization();
+                                   authWindow.Owner = Application.Current.MainWindow;
                                    if (authWindow.ShowDialog() == true)
                                    {
                                        
