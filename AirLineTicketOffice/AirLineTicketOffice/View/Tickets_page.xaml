@@ -129,8 +129,11 @@
             </ScrollViewer>
         </Border>
         
-        <ListBox  Grid.Column="1" Grid.Row="1" Background="#DCDEE0" BorderThickness="0" ItemsSource="{Binding filteredFlights}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"
-                 SelectedItem="{Binding Path=SelectedFlight}">
+        <ListBox  Grid.Column="1" Grid.Row="1" Background="#DCDEE0" BorderThickness="0"
+                  ItemsSource="{Binding filteredFlights}" HorizontalAlignment="Stretch" 
+                  HorizontalContentAlignment="Stretch"
+                  SelectedItem="{Binding Path=SelectedFlight}"
+                  ScrollViewer.CanContentScroll="True">
             <ListBox.ItemTemplate >
                 <DataTemplate>
                     <Border BorderBrush="Blue" BorderThickness="1" HorizontalAlignment="Stretch">

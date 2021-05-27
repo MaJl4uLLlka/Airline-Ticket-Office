@@ -35,11 +35,19 @@ namespace AirLineTicketOffice.ViewModels
                                            {
                                                 ((MainWindow)Application.Current.MainWindow).ChangeContent(PageClass.AdminPage);
                                                 ApplicationViewModel.isAuthorized = true;
+                                                CurrentUser.Name = "Administrator";
+                                               CurrentUser.IsAdmin = true;
                                                 foreach (Window window in Application.Current.MainWindow.OwnedWindows)
                                                 {
                                                     window.Close();
                                                 }
                                                 
+                                           }
+                                           else
+                                           {
+                                               ApplicationViewModel.isAuthorized = true;
+                                               //CurrentUser.Name
+                                               //CurrentUser.Surname
                                            }
                                        }
                                        else

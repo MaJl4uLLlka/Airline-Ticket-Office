@@ -6,6 +6,7 @@
         xmlns:viewmodel="clr-namespace:AirLineTicketOffice" d:DataContext="{d:DesignInstance Type=viewModels:ApplicationViewModel}"
         xmlns:local="clr-namespace:AirLineTicketOffice"
         xmlns:viewModels="clr-namespace:AirLineTicketOffice.ViewModels"
+        xmlns:user="clr-namespace:AirLineTicketOffice.Logic"
         mc:Ignorable="d"
         Icon="../img/ticket_icon.png"
         Title="Airline Ticket Office" 
@@ -29,15 +30,13 @@
         <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Background="#0c73fe">
             <DockPanel Margin="5" >
                 <Image Source="../img/client.png" Width="30" Height="30" DockPanel.Dock="Left" Margin="10 0 0 10"></Image>
+                <TextBlock Text="{Binding Path=(user:CurrentUser.Name) }"></TextBlock>
+                <TextBlock Text="{Binding Path=(user:CurrentUser.Surname) }"></TextBlock>
                 <!--TODO Here must be event-->
                 <ComboBox DockPanel.Dock="Right" Width="100" SelectedIndex="0"  Margin="3,0,0,0" Name="Currency" VerticalAlignment="Top">
                     <TextBlock Padding="18,3,5,5">USD</TextBlock>
                     <TextBlock Padding="18,3,5,5">EUR</TextBlock>
                     <TextBlock Padding="18,3,5,5">BYN</TextBlock>
-                </ComboBox>
-                <ComboBox DockPanel.Dock="Right" Width="100" Name="Language" VerticalAlignment="Top" SelectedIndex="0" Margin="0,0,3,0">
-                    <TextBlock Padding="18,3,5,5">Русский</TextBlock>
-                    <TextBlock Padding="18,3,5,5">English</TextBlock>
                 </ComboBox>
                 <ComboBox DockPanel.Dock="Right" Width="100" Visibility="Hidden" ></ComboBox>
             </DockPanel>

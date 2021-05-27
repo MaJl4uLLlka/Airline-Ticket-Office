@@ -33,6 +33,14 @@ namespace AirLineTicketOffice.ViewModels
                                        
                                    }
                                }
+                               else
+                               {
+                                   if(CurrentUser.IsAdmin)
+                                   {
+                                       //TODO ChangeThis
+                                       MessageBox.Show("А по своим шалавливым ручкам получить хочешь?");
+                                   }
+                               }
                            }
                        ));
             }

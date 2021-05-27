@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Data.Entity;
 using System.Runtime.CompilerServices;
+using AirLineTicketOffice.Logic;
 using AirLineTicketOffice.Model;
 using AirLineTicketOffice.View;
 
