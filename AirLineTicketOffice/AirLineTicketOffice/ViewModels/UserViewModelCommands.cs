@@ -36,7 +36,7 @@ namespace AirLineTicketOffice.ViewModels
                                                 ((MainWindow)Application.Current.MainWindow).ChangeContent(PageClass.AdminPage);
                                                 ApplicationViewModel.isAuthorized = true;
                                                 CurrentUser.Name = "Administrator";
-                                               CurrentUser.IsAdmin = true;
+                                                CurrentUser.IsAdmin = true;
                                                 foreach (Window window in Application.Current.MainWindow.OwnedWindows)
                                                 {
                                                     window.Close();
@@ -45,12 +45,22 @@ namespace AirLineTicketOffice.ViewModels
                                            }
                                            else
                                            {
-                                               ApplicationViewModel.isAuthorized = true;
-                                               //CurrentUser.Name
-                                               //CurrentUser.Surname
+                                               var passengers = Passengers.Where(p => p.Account_ID == user.Account_ID);
+                                               if (passengers.Count()!=0)
+                                               {
+                                                   var passenger = passengers.First();
+                                                   CurrentUser.Name = passenger.name;
+                                                   CurrentUser.Surname = passenger.surname;
+                                                   ApplicationViewModel.isAuthorized = true;
+                                               }
+                                               
+                                               foreach (Window window in Application.Current.MainWindow.OwnedWindows)
+                                               {
+                                                   window.Close();
+                                               }
                                            }
                                        }
-                                       else
+                                       else //TODO change "else" after this string 
                                        {
                                            MessageBox.Show("Неверный пароль");
                                        }
