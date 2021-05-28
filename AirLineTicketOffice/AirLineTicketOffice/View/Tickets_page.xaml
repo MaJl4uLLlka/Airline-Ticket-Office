@@ -61,7 +61,7 @@
             <ScrollViewer VerticalScrollBarVisibility="Hidden">
                 <StackPanel >
                     <Expander Header="Перевозчики">
-                        <ListBox Background="#DCDEE0" BorderThickness="0" MaxHeight="75"  ItemsSource="{Binding Airlines}" SelectionMode="Multiple">
+                        <ListBox Background="#DCDEE0" BorderThickness="0" MaxHeight="75"  ItemsSource="{Binding Airlines}" >
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <CheckBox Margin="2" Content="{Binding Path=company_name }" Command="{Binding DataContext.AddValue, RelativeSource={RelativeSource AncestorType=Page}}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"></CheckBox>
