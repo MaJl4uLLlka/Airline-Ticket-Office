@@ -22,35 +22,36 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.ColumnSpan="2">
+        <StackPanel Grid.ColumnSpan="2" >
             <TextBlock><Hyperlink NavigateUri="LogIn.xaml">Назад</Hyperlink></TextBlock>
             <TextBlock Foreground="Blue" VerticalAlignment="Center" Margin="0 0 30 0">Регистрация
                 <TextBlock.HorizontalAlignment>Center</TextBlock.HorizontalAlignment>
             </TextBlock>
         </StackPanel>
-        <StackPanel Grid.Row="1" Orientation="Vertical">
+        <StackPanel Grid.Row="1" Orientation="Vertical" DataContext="{Binding Registration }">
             <TextBlock Foreground="Blue" HorizontalAlignment="Stretch">Логин</TextBlock>
-            <TextBox></TextBox>
+            <TextBox Text="{Binding Path=Login, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <TextBlock Foreground="Blue">Пароль</TextBlock>
-            <TextBox></TextBox>
+            <TextBox Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <TextBlock Foreground="Blue">Повторите пароль</TextBlock>
-            <TextBox></TextBox>
+            <TextBox Text="{Binding Path=RepeatPassword, UpdateSourceTrigger=PropertyChanged}"></TextBox>
         </StackPanel>
-        <StackPanel Grid.Column="1" Grid.Row="1">
+        <StackPanel Grid.Column="1" Grid.Row="1" DataContext="{Binding Registration }">
             <TextBlock Foreground="Blue">Имя</TextBlock>
-            <TextBox></TextBox>
+            <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <TextBlock Foreground="Blue">Фамилия</TextBlock>
-            <TextBox></TextBox>
-            <TextBlock Foreground="Blue">Пол</TextBlock>
-            <TextBox></TextBox>
+            <TextBox Text="{Binding Surname, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <TextBlock Foreground="Blue">Идентификационный номер паспорта</TextBlock>
-            <TextBox></TextBox><TextBlock Foreground="Blue">Дата рождения</TextBlock>
-            <TextBox></TextBox>
+            <TextBox Text="{Binding PassportId, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <TextBlock Foreground="Blue">Срок действия документа</TextBlock>
-            <TextBox></TextBox>
+            <DatePicker Width="100"  HorizontalAlignment="Left" SelectedDate="{Binding ValidityPeriod, UpdateSourceTrigger=PropertyChanged}"></DatePicker>
+            <TextBlock Foreground="Blue">Дата рождения</TextBlock>
+            <DatePicker Width="100"  HorizontalAlignment="Left" SelectedDate="{Binding Birthdate, UpdateSourceTrigger=PropertyChanged}"></DatePicker>
         </StackPanel>
         <Button Grid.Column="0" Width="Auto" Height="30" HorizontalAlignment="Center"
                 Grid.Row="2" Grid.ColumnSpan="2"
-                Margin="0 0 30 40">Registration</Button>
+                Margin="0 0 30 40"
+                Command="{Binding _Registration}"
+                >Зарегистрироваться</Button>
     </Grid>
 </Page>

@@ -48,9 +48,9 @@
                     <Run Foreground="#E8EBED" FontSize="14">Класс обслуживания</Run>
             </TextBlock>
 
-            <TextBox Grid.Column="0" Grid.Row="1" Margin="6,8,3,0" VerticalAlignment="Center" Height="35" Padding="5,7,5,5" Background="White" Text="{Binding Path=MainSearch.DepartureCity, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBox Grid.Column="0" Grid.Row="1" Margin="6,8,3,0" VerticalAlignment="Center" Height="35" Padding="5,7,5,5" Background="White" Text="{Binding Path=MainSearch.DepartureCity, UpdateSourceTrigger=PropertyChanged}" MaxLength="10"></TextBox>
             <TextBox Grid.Column="1" Grid.Row="1" Margin="5,8,3,0" VerticalAlignment="Center" Height="35" Padding="5,7,5,5" Background="White" Text="{Binding Path=MainSearch.ArrivalCity ,UpdateSourceTrigger=PropertyChanged}"></TextBox>
-            <DatePicker FirstDayOfWeek="Monday"  Grid.Column="2" Grid.Row="1" Margin="5,8,3,0" VerticalAlignment="Center" Height="35" Padding="5,7,5,5" Background="White" SelectedDateFormat="Short" DisplayDateStart="{Binding DateToday, UpdateSourceTrigger=PropertyChanged}" SelectedDate="{Binding Path=MainSearch.DepartureDate}"></DatePicker>
+            <DatePicker FirstDayOfWeek="Monday"  Grid.Column="2" Grid.Row="1" Margin="5,8,3,0" VerticalAlignment="Center" Height="35" Padding="5,7,5,5" Background="White" SelectedDateFormat="Short" DisplayDateStart="{Binding DateToday, UpdateSourceTrigger=PropertyChanged}" SelectedDate="{Binding Path=MainSearch.DepartureDate, UpdateSourceTrigger=PropertyChanged}"></DatePicker>
             <ComboBox Grid.Column="3" Grid.Row="1" Margin="5,8,3,0" VerticalAlignment="Center" Height="35" Padding="5,7,5,5" SelectedIndex="{Binding Path=MainSearch.ServiceClass, UpdateSourceTrigger=PropertyChanged}">
                 <TextBlock Padding="18,3,5,5">Эконом</TextBlock>
                 <TextBlock Padding="18,3,5,5">Бизнес</TextBlock>

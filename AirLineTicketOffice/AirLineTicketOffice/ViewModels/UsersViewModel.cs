@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Data.Entity;
 using System.Runtime.CompilerServices;
 using AirLineTicketOffice.Annotations;
+using AirLineTicketOffice.Logic;
 using AirLineTicketOffice.Model;
 using AirLineTicketOffice.View;
 
@@ -12,6 +13,18 @@ namespace AirLineTicketOffice.ViewModels
     {
         private Passenger selectedPassenger;
         private Account selectedAccount;
+        private RegistrationClass _registration;
+
+        public RegistrationClass Registration
+        {
+            get => _registration;
+            set
+            {
+                if (Equals(value, _registration)) return;
+                _registration = value;
+                OnPropertyChanged();
+            }
+        }
 
         public Passenger SelectedPassenger
         {
@@ -36,6 +49,7 @@ namespace AirLineTicketOffice.ViewModels
             selectedAccount.password = "";
             Passengers = MainWindow.db.Passengers.Local;
             Accounts = MainWindow.db.Accounts.Local;
+            _registration = new RegistrationClass();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

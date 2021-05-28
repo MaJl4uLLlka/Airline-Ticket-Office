@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,6 +20,13 @@ namespace AirLineTicketOffice.View
         {
             InitializeComponent();
             DataContext = new ApplicationViewModel();
+            Closing += MainWindow_Closing;
+        }
+
+        private void MainWindow_Closing(object sender, CancelEventArgs e)
+        {
+            db.SaveChanges();
+            db.Dispose();
         }
 
         public void ChangeContent(PageClass pageClass)
