@@ -11,7 +11,6 @@ namespace AirLineTicketOffice.ViewModels
         public Nullable<TimeSpan> Departure_time;
         public Nullable<TimeSpan> Arrival_time;
         public Nullable<decimal>  Price;
-        public Nullable<TimeSpan> Duration; // TODO may be destroyed
 
         public List<string> Companies1
         {

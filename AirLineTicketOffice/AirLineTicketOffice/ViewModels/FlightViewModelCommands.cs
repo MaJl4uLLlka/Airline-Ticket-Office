@@ -40,6 +40,10 @@ namespace AirLineTicketOffice.ViewModels
                                        //TODO ChangeThis
                                        MessageBox.Show("А по своим шалавливым ручкам получить хочешь?");
                                    }
+                                   else
+                                   {
+                                       //TODO Tickets_binding
+                                   }
                                }
                            }
                        ));

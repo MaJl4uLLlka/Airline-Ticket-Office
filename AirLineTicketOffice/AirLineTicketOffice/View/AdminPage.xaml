@@ -108,17 +108,6 @@
                             ></Slider>
                         </DockPanel>
                     </Expander>
-                    <Expander Header="Продолжительность">
-                        <DockPanel VerticalAlignment="Center" Margin="10">
-                            <TextBox Text="{Binding ElementName=Travel_time, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Center" Width="40" />
-                            <Slider Value="1" Minimum="1" Maximum="60"
-                                    SelectionStart="0"
-                                    SelectionEnd="{Binding ElementName=Travel_time, Path=Value, UpdateSourceTrigger=PropertyChanged}"
-                                    IsSelectionRangeEnabled="True" Name="Travel_time"
-                                    IsSnapToTickEnabled="True"
-                                    TickFrequency="1"></Slider>
-                        </DockPanel>
-                    </Expander>
 
                     <UniformGrid  Margin="5"  Width="Auto" HorizontalAlignment="Stretch" Rows="2" Columns="2">
                         <Button Content="Применить" Height="30"  Margin="5 0 10 5"></Button>
