@@ -151,20 +151,20 @@
                         </Grid.ColumnDefinitions>
 
                         <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Vertical" Margin="8">
-                            <TextBlock Text="Airline:"></TextBlock>
+                            <TextBlock Text="Авиакомпания:"></TextBlock>
                             <TextBlock Text="{Binding Path=CompanyName }"></TextBlock>
                             <!--<TextBlock Text="Duration:"></TextBlock>
                             <TextBlock Text="{Binding Path=}"></TextBlock>-->
                         </StackPanel>
 
                         <StackPanel Grid.Row="1" Grid.Column="0" Margin="8">
-                            <TextBlock Text="Service class:"></TextBlock>
+                            <TextBlock Text="Класс обслуживания:"></TextBlock>
                             <TextBlock Text="{Binding Path=ServiceClass}"></TextBlock>
                         </StackPanel>
 
                         <UniformGrid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Rows="2" Columns="2" Margin="10">
-                            <TextBlock Text="From:"></TextBlock>
-                            <TextBlock Text="To:" Padding="15 0 0 0"></TextBlock>
+                            <TextBlock Text="Откуда:"></TextBlock>
+                            <TextBlock Text="Куда:" Padding="15 0 0 0"></TextBlock>
                             <TextBlock Text="{Binding Path=DepartureCity}"></TextBlock>
                             <!--From-->
                                 <TextBlock Text="{Binding Path=ArrivalCity}" Padding="15 0 0 0"></TextBlock>
@@ -172,7 +172,7 @@
                         </UniformGrid>
 
                         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical" Margin="7">
-                            <TextBlock>Departing At</TextBlock>
+                            <TextBlock>Отправление:</TextBlock>
                             <TextBlock Text="{Binding Path=DepartureDay}"></TextBlock>
                             <!--Дата-->
                             <TextBlock Text="{Binding Path=DepartureTime}"></TextBlock>
@@ -180,15 +180,19 @@
                         </StackPanel>
 
                         <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Vertical" Margin="7">
-                            <TextBlock>Arriving At</TextBlock>
+                            <TextBlock>Прибытие:</TextBlock>
                             <TextBlock Text="{Binding Path=ArrivalDay}"></TextBlock>
                             <!--Дата-->
                             <TextBlock Text="{Binding Path=ArrivalTime}"></TextBlock>
                             <!--Время-->
                         </StackPanel>
 
-                        <Button Grid.Row="0" Grid.Column="3" Grid.RowSpan="2" Content="{Binding Path=Price}"  Width="60" Height="30" Margin="10" Command="{Binding DataContext.BuyCommand, RelativeSource={RelativeSource AncestorType=Page}}">
+                        <Button Grid.Row="0" Grid.Column="3" Grid.RowSpan="2"   Width="Auto" Height="40" Margin="10" Command="{Binding DataContext.BuyCommand, RelativeSource={RelativeSource AncestorType=Page}}">
                             <!--TODO here_must_be_price_binding-->
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Path=Price}"></TextBlock>
+                                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">Купить</TextBlock>
+                                </StackPanel>
                         </Button>
                     </Grid>
                     </Border>

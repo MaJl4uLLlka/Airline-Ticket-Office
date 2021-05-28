@@ -30,7 +30,8 @@ namespace AirLineTicketOffice.ViewModels
                            passenger.birthdate = Registration.Birthdate;
                            passenger.Passport_ID = Registration.PassportId;
                            passenger.validity_period = Registration.ValidityPeriod;
-
+                           account.Passengers.Add(passenger);    
+    
                            MainWindow.db.Accounts.Add(account);
                            MainWindow.db.SaveChanges();
                            

@@ -30,14 +30,10 @@
         <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Background="#0c73fe">
             <DockPanel Margin="5" >
                 <Image Source="../img/client.png" Width="30" Height="30" DockPanel.Dock="Left" Margin="10 0 0 10"></Image>
-                <TextBlock Text="{Binding Path=(user:CurrentUser.Name) ,UpdateSourceTrigger=PropertyChanged}"></TextBlock>
-                <TextBlock Text="{Binding Path=(user:CurrentUser.Surname) ,UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                <TextBlock Text="{Binding Path=(user:CurrentUser.Name) ,UpdateSourceTrigger=PropertyChanged}" Margin="10 5 0 0" Foreground="Beige" FontSize="14"></TextBlock>
+                <TextBlock Text="{Binding Path=(user:CurrentUser.Surname) ,UpdateSourceTrigger=PropertyChanged}" Margin="5 5 0 0" Foreground="Beige" FontSize="14"></TextBlock>
                 <!--TODO Here must be event-->
-                <ComboBox DockPanel.Dock="Right" Width="100" SelectedIndex="0"  Margin="3,0,0,0" Name="Currency" VerticalAlignment="Top">
-                    <TextBlock Padding="18,3,5,5">USD</TextBlock>
-                    <TextBlock Padding="18,3,5,5">EUR</TextBlock>
-                    <TextBlock Padding="18,3,5,5">BYN</TextBlock>
-                </ComboBox>
+                <TextBlock Padding="18,3,5,5" DockPanel.Dock="Right" VerticalAlignment="Top" Margin="10 5 0 0" Foreground="Beige" FontSize="14">BYN</TextBlock>
                 <ComboBox DockPanel.Dock="Right" Width="100" Visibility="Hidden" ></ComboBox>
             </DockPanel>
         </StackPanel>
