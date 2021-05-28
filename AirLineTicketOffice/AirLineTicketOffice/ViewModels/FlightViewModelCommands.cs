@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using AirLineTicketOffice.Logic;
 using AirLineTicketOffice.View;
 using static AirLineTicketOffice.Logic.Service_class;
@@ -16,6 +17,20 @@ namespace AirLineTicketOffice.ViewModels
         private RelayCommand search;
         private RelayCommand getFilterCommand;
         private RelayCommand buy;
+        private RelayCommand addValue;
+
+        public RelayCommand AddValue
+        {
+            get
+            {
+                return addValue ??
+                       (addValue = new RelayCommand(o =>
+                       {
+                           var checkbox = o as CheckBox;
+                           Filter.Companies1.Add(checkbox.Content.ToString());
+                       }));
+            }
+        }
 
         public RelayCommand BuyCommand
         {
@@ -57,10 +72,29 @@ namespace AirLineTicketOffice.ViewModels
                 return getFilterCommand ??
                        (getFilterCommand = new RelayCommand(o =>
                        {
-                           Filter newFilter = o as Filter;
-                           if (newFilter != null)
+                           if (Filter.CompaniesSelected)
                            {
-                               Filter = newFilter;
+                               string str = "";
+                               foreach (var company in Filter.Companies1)
+                               {
+                                   str += company + '\n';
+                                   MessageBox.Show(str);
+                               }
+                           }
+
+                           if (Filter.DepartureTimeSelected)
+                           {
+                               MessageBox.Show(Filter.Departure_time.ToString());
+                           }
+
+                           if (Filter.ArrivalTimeSelected)
+                           {
+                               MessageBox.Show(Filter.Arrival_time.ToString());
+                           }
+
+                           if (Filter.PriceSelected)
+                           {
+                               MessageBox.Show(Filter.Price.ToString());
                            }
                            
                        }));

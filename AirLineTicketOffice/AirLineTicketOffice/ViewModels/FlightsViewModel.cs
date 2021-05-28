@@ -19,7 +19,7 @@ namespace AirLineTicketOffice.ViewModels
         private string selected_arrival_city;
         private FlightVariant selectedFlight;
         private Airline selectedAirline;
-        private Filter filter = null;
+        private Filter filter = new Filter();
         private DateTime dateToday = DateTime.Now;
         private MainSearch _mainSearch = new MainSearch();
 

@@ -61,10 +61,10 @@
             <ScrollViewer VerticalScrollBarVisibility="Hidden">
                 <StackPanel >
                     <Expander Header="Перевозчики">
-                        <ListBox Background="#DCDEE0" BorderThickness="0" MaxHeight="75"  ItemsSource="{Binding Airlines}">
+                        <ListBox Background="#DCDEE0" BorderThickness="0" MaxHeight="75"  ItemsSource="{Binding Airlines}" SelectionMode="Multiple">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <CheckBox Margin="2" Content="{Binding Path=company_name }" ></CheckBox>
+                                    <CheckBox Margin="2" Content="{Binding Path=company_name }" Command="{Binding DataContext.AddValue, RelativeSource={RelativeSource AncestorType=Page}}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"></CheckBox>
                                     <!--TODO Here_checkbox_need_binding-->
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
@@ -76,7 +76,7 @@
                             <TextBlock>Время вылета (от 0 до 24 часов)</TextBlock>
                             <DockPanel VerticalAlignment="Center" Margin="10">
                                 <TextBox Text="{Binding ElementName=Arrival_Hour, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Center" Width="40" />
-                                <Slider Value="0" Minimum="0" Maximum="24"
+                                <Slider Value="{Binding Filter.DepartureTime, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="24"
                                         SelectionStart="0"
                                         SelectionEnd="{Binding ElementName=Arrival_Hour, Path=Value, UpdateSourceTrigger=PropertyChanged}"
                                         IsSelectionRangeEnabled="True" Name="Arrival_Hour"
@@ -86,7 +86,7 @@
                             <TextBlock>Время прилета (от 0 до 24 часов)</TextBlock>
                             <DockPanel VerticalAlignment="Center" Margin="10">
                                 <TextBox Text="{Binding ElementName=Departure_Hour, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Center" Width="40" />
-                                <Slider Value="0" Minimum="0" Maximum="24" SelectionStart="0"
+                                <Slider Value="{Binding Filter.ArrivalTime  , UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="24" SelectionStart="0"
                                         SelectionEnd="{Binding ElementName=Departure_Hour, Path=Value, UpdateSourceTrigger=PropertyChanged}"
                                         IsSelectionRangeEnabled="True"
                                         Name="Departure_Hour"
@@ -100,7 +100,7 @@
                         <!-- TODO Here_must_be_Binding_Min&Max_Value-->
                         <DockPanel VerticalAlignment="Center" Margin="10">
                             <TextBox Text="{Binding ElementName=Money, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Center" Width="40" />
-                            <Slider Value="0" Minimum="0" Maximum="24" SelectionStart="0"
+                            <Slider Value="{Binding Filter.Price1, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="24" SelectionStart="0"
                                     SelectionEnd="{Binding ElementName=Money, Path=Value, UpdateSourceTrigger=PropertyChanged}"
                                     IsSelectionRangeEnabled="True"
                                     Name="Money"
@@ -111,7 +111,7 @@
                     </Expander>
 
                     <UniformGrid  Margin="5" Height="30" Width="Auto" HorizontalAlignment="Stretch" Columns="2">
-                        <Button Content="Применить" Margin="5 0 10 0"></Button>
+                        <Button Content="Применить" Margin="5 0 10 0" Command="{Binding GetFilterCommand}"></Button>
                         <Button Content="Сбросить все" Height="30" Margin="10 0 5 0"></Button>
                     </UniformGrid>
                 </StackPanel>
