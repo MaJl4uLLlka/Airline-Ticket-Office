@@ -61,7 +61,6 @@
             <ScrollViewer VerticalScrollBarVisibility="Hidden">
                 <StackPanel >
                     <Expander Header="Время">
-                        <!--TODO Here_must_be_added_Margin&Padding -->
                         <UniformGrid Rows="4">
                             <TextBlock>Время вылета (от 0 до 24 часов)</TextBlock>
                             <DockPanel VerticalAlignment="Center" Margin="10">
@@ -87,10 +86,9 @@
                         </UniformGrid>
                     </Expander>
                     <Expander Header="Цена">
-                        <!-- TODO Here_must_be_Binding_Min&Max_Value-->
                         <DockPanel VerticalAlignment="Center" Margin="10">
                             <TextBox Text="{Binding ElementName=Money, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Center" Width="40" />
-                            <Slider Value="{Binding Filter.Price1, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="24" SelectionStart="0"
+                            <Slider Value="{Binding Filter.Price1, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="{Binding MaxPrice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectionStart="0"
                                     SelectionEnd="{Binding ElementName=Money, Path=Value, UpdateSourceTrigger=PropertyChanged}"
                                     IsSelectionRangeEnabled="True"
                                     Name="Money"

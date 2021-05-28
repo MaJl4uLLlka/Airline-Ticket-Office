@@ -24,6 +24,17 @@ namespace AirLineTicketOffice.ViewModels
         private MainSearch _mainSearch = new MainSearch();
         private ObservableCollection<FlightVariant> _flightVariants;
         private ObservableCollection<FlightVariant> oldState;
+        private int maxPrice;
+
+        public int MaxPrice
+        {
+            get => maxPrice;
+            set
+            {
+                maxPrice = value;
+                OnPropertyChanged();
+            }
+        }
 
         public MainSearch MainSearch
         {
@@ -198,6 +209,8 @@ namespace AirLineTicketOffice.ViewModels
                 u => u.ServiceClass == selected_service).Select(u => u);
 
             filteredFlights = new ObservableCollection<FlightVariant>(flights_with_default_filter);
+
+            maxPrice = Convert.ToInt32(Flights.Max(u => u.Price));
         }
         
         

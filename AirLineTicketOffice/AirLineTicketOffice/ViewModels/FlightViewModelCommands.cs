@@ -41,7 +41,9 @@ namespace AirLineTicketOffice.ViewModels
                        (getFilterCommand = new RelayCommand(o =>
                        {
                            ApplyFilter();
-                       }));
+                       },
+                           o=>Filter.DepartureTimeSelected !=false ||
+                              Filter.ArrivalTimeSelected!=false || Filter.PriceSelected!=false));
             }
         }
         
