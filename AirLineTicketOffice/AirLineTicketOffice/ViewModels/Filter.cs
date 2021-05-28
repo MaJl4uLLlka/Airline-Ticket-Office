@@ -8,26 +8,14 @@ namespace AirLineTicketOffice.ViewModels
 {
     public class Filter:INotifyPropertyChanged
     {
-        public List<String> Companies= new List<string>();
         public int Departure_time=0;
         public int Arrival_time=0;
         public int  Price=0;
         
-        private bool companiesSelected = false;
         private bool departure_timeSelected = false;
         private bool arrival_timeSelected = false;
         private bool priceSelected = false;
-
-        public bool CompaniesSelected
-        {
-            get => companiesSelected;
-            set
-            {
-                companiesSelected = value;
-                OnPropertyChanged();
-            }
-        }
-
+        
         public bool DepartureTimeSelected
         {
             get => departure_timeSelected;
@@ -57,17 +45,7 @@ namespace AirLineTicketOffice.ViewModels
                 OnPropertyChanged();
             }
         }
-
-        public List<string> Companies1
-        {
-            get => Companies;
-            set
-            {
-                Companies = value;
-                CompaniesSelected = true;
-                OnPropertyChanged();
-            }
-        }
+        
 
         public int DepartureTime
         {
@@ -109,18 +87,6 @@ namespace AirLineTicketOffice.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
-        public void ResetFilter()
-        {
-            companiesSelected = false;
-            departure_timeSelected = false;
-            arrival_timeSelected = false;
-            priceSelected = false;
-            
-            Companies = new List<string>();
-            Departure_time = 0;
-            Arrival_time = 0;
-            Price = 0;
-        }
+        
     }
 }

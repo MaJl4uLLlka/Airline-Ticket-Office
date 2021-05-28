@@ -22,6 +22,8 @@ namespace AirLineTicketOffice.ViewModels
         private Filter filter = new Filter();
         private DateTime dateToday = DateTime.Now;
         private MainSearch _mainSearch = new MainSearch();
+        private ObservableCollection<FlightVariant> _flightVariants;
+        private ObservableCollection<FlightVariant> oldState;
 
         public MainSearch MainSearch
         {
@@ -63,7 +65,16 @@ namespace AirLineTicketOffice.ViewModels
         }
 
         public ObservableCollection<FlightVariant> Flights { get; set; }
-        public ObservableCollection<FlightVariant> filteredFlights { get; set; }
+
+        public ObservableCollection<FlightVariant> filteredFlights
+        {
+            get=>_flightVariants;
+            set
+            {
+                _flightVariants = value;
+                OnPropertyChanged();
+            }
+        }
 
         public ObservableCollection<Airline> Airlines { get; set; }
         public Airline SelectedAirline

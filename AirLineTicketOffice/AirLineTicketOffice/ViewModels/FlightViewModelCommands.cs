@@ -17,21 +17,34 @@ namespace AirLineTicketOffice.ViewModels
         private RelayCommand search;
         private RelayCommand getFilterCommand;
         private RelayCommand buy;
-        private RelayCommand addValue;
-
-        public RelayCommand AddValue
+        private RelayCommand resetCommand;
+        
+        public RelayCommand ResetCommand
         {
             get
             {
-                return addValue ??
-                       (addValue = new RelayCommand(o =>
+                return resetCommand ??
+                       (resetCommand = new RelayCommand(o =>
                        {
-                           var checkbox = o as CheckBox;
-                           Filter.Companies1.Add(checkbox.Content.ToString());
+                           Filter=new Filter();
+                           filteredFlights = oldState;
+                       },
+                           o=> Filter.DepartureTimeSelected || Filter.ArrivalTimeSelected || Filter.PriceSelected));
+            }
+        }
+        
+        public RelayCommand GetFilterCommand
+        {
+            get
+            {
+                return getFilterCommand ??
+                       (getFilterCommand = new RelayCommand(o =>
+                       {
+                           ApplyFilter();
                        }));
             }
         }
-
+        
         public RelayCommand BuyCommand
         {
             get
@@ -64,43 +77,7 @@ namespace AirLineTicketOffice.ViewModels
                        ));
             }
         }
-
-        public RelayCommand GetFilterCommand
-        {
-            get
-            {
-                return getFilterCommand ??
-                       (getFilterCommand = new RelayCommand(o =>
-                       {
-                           if (Filter.CompaniesSelected)
-                           {
-                               string str = "";
-                               foreach (var company in Filter.Companies1)
-                               {
-                                   str += company + '\n';
-                                   MessageBox.Show(str);
-                               }
-                           }
-
-                           if (Filter.DepartureTimeSelected)
-                           {
-                               MessageBox.Show(Filter.Departure_time.ToString());
-                           }
-
-                           if (Filter.ArrivalTimeSelected)
-                           {
-                               MessageBox.Show(Filter.Arrival_time.ToString());
-                           }
-
-                           if (Filter.PriceSelected)
-                           {
-                               MessageBox.Show(Filter.Price.ToString());
-                           }
-                           
-                       }));
-            }
-        }
-
+        
         public RelayCommand Search
         {
             get
@@ -154,17 +131,37 @@ namespace AirLineTicketOffice.ViewModels
         public void ApplyFilter()
         {
             ObservableCollection<FlightVariant> filteringResult = new ObservableCollection<FlightVariant>();
-            List<FlightVariant> flightVariants= new List<FlightVariant>();
+            List<FlightVariant> flightVariants = filteredFlights.ToList();
             
-            if (Filter.Companies != null)
+            
+            if (Filter.DepartureTimeSelected)
             {
-                for (int i = 0; i < Filter.Companies.Count; i++)
-                {
-                    var groupFlights=Flights.Where(u => u.CompanyName == Filter.Companies[i]).Select(u=> u);
-                    flightVariants=flightVariants.Union(groupFlights).ToList();
-                }
+                var filterByDepartureTime = flightVariants.Where(u=>u.DepartureTime< new TimeSpan(Filter.Departure_time,0 ,0)).Select(u=>u);
+                flightVariants= new List<FlightVariant>();
+                flightVariants.AddRange(filterByDepartureTime);
             }
+
+            if (Filter.ArrivalTimeSelected)
+            {
+                var filterByArrivalTime = flightVariants.Where(u=>u.ArrivalTime< new TimeSpan(Filter.Arrival_time,0 ,0));
+                flightVariants= new List<FlightVariant>();
+                flightVariants.AddRange(filterByArrivalTime);
+            }
+
+            if (Filter.PriceSelected)
+            {
+                var filterByPrice = flightVariants.Where(u=>u.Price< Filter.Price1);
+                flightVariants= new List<FlightVariant>();
+                flightVariants.AddRange(filterByPrice);
+            }
+
+            
+            filteringResult= new ObservableCollection<FlightVariant>(flightVariants);
+            oldState = filteredFlights;
+            filteredFlights = filteringResult;
         }
+        
+        
         
     }
 }

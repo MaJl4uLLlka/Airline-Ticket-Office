@@ -60,23 +60,13 @@
         <Border  Grid.Column="0" Grid.Row="1" Background="#DCDEE0" BorderBrush="#C3C5C7" BorderThickness="0,0,3,0" >
             <ScrollViewer VerticalScrollBarVisibility="Hidden">
                 <StackPanel >
-                    <Expander Header="Перевозчики">
-                        <ListBox Background="#DCDEE0" BorderThickness="0" MaxHeight="75"  ItemsSource="{Binding Airlines}" >
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <CheckBox Margin="2" Content="{Binding Path=company_name }" Command="{Binding DataContext.AddValue, RelativeSource={RelativeSource AncestorType=Page}}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"></CheckBox>
-                                    <!--TODO Here_checkbox_need_binding-->
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
-                    </Expander>
                     <Expander Header="Время">
                         <!--TODO Here_must_be_added_Margin&Padding -->
                         <UniformGrid Rows="4">
                             <TextBlock>Время вылета (от 0 до 24 часов)</TextBlock>
                             <DockPanel VerticalAlignment="Center" Margin="10">
                                 <TextBox Text="{Binding ElementName=Arrival_Hour, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Center" Width="40" />
-                                <Slider Value="{Binding Filter.DepartureTime, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="24"
+                                <Slider Value="{Binding Filter.DepartureTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="24"
                                         SelectionStart="0"
                                         SelectionEnd="{Binding ElementName=Arrival_Hour, Path=Value, UpdateSourceTrigger=PropertyChanged}"
                                         IsSelectionRangeEnabled="True" Name="Arrival_Hour"
@@ -112,14 +102,14 @@
 
                     <UniformGrid  Margin="5" Height="30" Width="Auto" HorizontalAlignment="Stretch" Columns="2">
                         <Button Content="Применить" Margin="5 0 10 0" Command="{Binding GetFilterCommand}"></Button>
-                        <Button Content="Сбросить все" Height="30" Margin="10 0 5 0"></Button>
+                        <Button Content="Сбросить все" Height="30" Margin="10 0 5 0" Command="{Binding ResetCommand}"></Button>
                     </UniformGrid>
                 </StackPanel>
             </ScrollViewer>
         </Border>
         
         <ListBox  Grid.Column="1" Grid.Row="1" Background="#DCDEE0" BorderThickness="0"
-                  ItemsSource="{Binding filteredFlights}" HorizontalAlignment="Stretch" 
+                  ItemsSource="{Binding filteredFlights,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" 
                   HorizontalContentAlignment="Stretch"
                   SelectedItem="{Binding Path=SelectedFlight}"
                   ScrollViewer.CanContentScroll="True">
@@ -185,8 +175,6 @@
                         </Button>
                     </Grid>
                     </Border>
-
-                    <!--TODO Here_need_binding-->
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
