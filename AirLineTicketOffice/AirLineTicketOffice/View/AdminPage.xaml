@@ -103,6 +103,21 @@
                         <Button Content="Добавить рейс" Height="30" Margin="5 5 10 0" Command="{Binding AddFlightCommand}"></Button>
                         <Button Content="Удалить рейс" Height="30" Margin="10 5 5 0" Command="{Binding RemoveFlightCommand}" CommandParameter="{Binding SelectedFlight}"></Button>
                     </UniformGrid>
+
+                    <Expander Header="Администрирование">
+                        <StackPanel DataContext="{Binding SelectedFlight}" Margin="0 3 0 3">
+                            <TextBlock Text="Выбранный рейс"  />
+                            <TextBlock Text="Город отправления" />
+                            <TextBox Text="{Binding DepartureCity, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBlock Text="Город прибытия" />
+                            <TextBox Text="{Binding ArrivalCity, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBlock Text="Цена" />
+                            <TextBox Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBlock Foreground="Blue" Text="День недели задается выбором даты из календаря"/>
+                            
+                            
+                        </StackPanel>
+                    </Expander>
                 </StackPanel>
             </ScrollViewer>
         </Border>

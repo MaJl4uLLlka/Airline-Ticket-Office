@@ -104,8 +104,7 @@ namespace AirLineTicketOffice.ViewModels
                                {
                                    if(CurrentUser.IsAdmin)
                                    {
-                                       //TODO ChangeThis
-                                       MessageBox.Show("А по своим шалавливым ручкам получить хочешь?");
+                                       MessageBox.Show("Для покупки войдите в свой личный акканут","",MessageBoxButton.OK, MessageBoxImage.Information);
                                    }
                                    else
                                    {

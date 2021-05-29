@@ -25,7 +25,17 @@ namespace AirLineTicketOffice.ViewModels
         private ObservableCollection<FlightVariant> _flightVariants;
         private ObservableCollection<FlightVariant> oldState;
         private int maxPrice;
+        private ObservableCollection<string> daysOfWeak;
 
+        public ObservableCollection<string> DaysOfWeak
+        {
+            get => daysOfWeak;
+            set
+            {
+                daysOfWeak = value;
+                OnPropertyChanged();
+            }
+        }
         public int MaxPrice
         {
             get => maxPrice;

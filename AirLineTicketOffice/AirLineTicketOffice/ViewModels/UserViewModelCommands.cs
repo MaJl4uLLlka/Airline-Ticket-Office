@@ -89,16 +89,16 @@ namespace AirLineTicketOffice.ViewModels
                                                }
                                            }
                                        }
-                                       else //TODO change "else" after this string 
+                                       else 
                                        {
-                                           MessageBox.Show("Неверный пароль");
+                                           MessageBox.Show("Неверный пароль","", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                                        }
                                    }
-                                   else MessageBox.Show("Неверный логин");
+                                   else MessageBox.Show("Неверный логин","", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                                }
                                else
                                {
-                                   MessageBox.Show("В данный момент авторизация недоступна");
+                                   MessageBox.Show("В данный момент авторизация недоступна", "Ошибка",MessageBoxButton.OK,MessageBoxImage.Error);
                                }
                            }
                        ));

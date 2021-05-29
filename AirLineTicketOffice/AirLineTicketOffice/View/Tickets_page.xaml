@@ -165,8 +165,7 @@
                         </StackPanel>
 
                         <Button Grid.Row="0" Grid.Column="3" Grid.RowSpan="2"   Width="Auto" Height="40" Margin="10" Command="{Binding DataContext.BuyCommand, RelativeSource={RelativeSource AncestorType=Page}}">
-                            <!--TODO here_must_be_price_binding-->
-                                <StackPanel>
+                            <StackPanel>
                                     <TextBlock Text="{Binding Path=Price}"></TextBlock>
                                     <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">Купить</TextBlock>
                                 </StackPanel>

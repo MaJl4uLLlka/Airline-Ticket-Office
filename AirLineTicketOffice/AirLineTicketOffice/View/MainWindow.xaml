@@ -32,7 +32,6 @@
                 <Image Source="../img/client.png" Width="30" Height="30" DockPanel.Dock="Left" Margin="10 0 0 10"></Image>
                 <TextBlock Text="{Binding Path=(user:CurrentUser.Name) ,UpdateSourceTrigger=PropertyChanged}" Margin="10 5 0 0" Foreground="Beige" FontSize="14"></TextBlock>
                 <TextBlock Text="{Binding Path=(user:CurrentUser.Surname) ,UpdateSourceTrigger=PropertyChanged}" Margin="5 5 0 0" Foreground="Beige" FontSize="14"></TextBlock>
-                <!--TODO Here must be event-->
                 <TextBlock Padding="18,3,5,5" DockPanel.Dock="Right" VerticalAlignment="Top" Margin="10 5 0 0" Foreground="Beige" FontSize="14">BYN</TextBlock>
                 <ComboBox DockPanel.Dock="Right" Width="100" Visibility="Hidden" ></ComboBox>
             </DockPanel>
