@@ -6,12 +6,12 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using AirLineTicketOffice.Logic;
 using AirLineTicketOffice.Model;
+using AirLineTicketOffice.View;
 
 namespace AirLineTicketOffice.ViewModels
 {
    public partial class FlightsViewModel:INotifyPropertyChanged
     {
-        private ModelContext db;
         private DateTime departure_day=DateTime.Now;
         private DateTime arrival_day;
         private string selected_service = "Economy";
@@ -26,8 +26,40 @@ namespace AirLineTicketOffice.ViewModels
         private ObservableCollection<FlightVariant> oldState;
         private ObservableCollection<Ticket> tickets;
         private ObservableCollection<Place> _places;
+        private ObservableCollection<Flight> _flights;
+        private ObservableCollection<DateFlight> _dateFlights;
+        private ObservableCollection<Service_class_info> _serviceClassInfos;
         private int maxPrice;
         
+        public ObservableCollection<Flight> AllFlights
+        {
+            get => _flights;
+            set
+            {
+                _flights = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ObservableCollection<Ticket> Tickets
+        {
+            get => tickets;
+            set
+            {
+                tickets = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ObservableCollection<Place> _Places
+        {
+            get => _places;
+            set
+            {
+                _places = value;
+                OnPropertyChanged();
+            }
+        }
         public int MaxPrice
         {
             get => maxPrice;
@@ -152,25 +184,13 @@ namespace AirLineTicketOffice.ViewModels
         
         public FlightsViewModel()
         {
-            db = new ModelContext();
-            
-            db.Airlines.Load();
-            db.Flights.Load();
-            db.Places.Load();
-            db.CanceledFlightsCollection.Load();
-            db.Service_classes.Load();
-            db.DateFlights.Load();
-            db.Tickets.Load();
-            db.Passengers.Load();
-            db.Accounts.Load();
+            Airlines = MainWindow.db.Airlines.Local;
 
-            Airlines = db.Airlines.Local;
+            var group_places = MainWindow.db.Places.GroupBy(p=>new {p.Flight_ID,p.service_class,p.price});
 
-            var group_places = db.Places.GroupBy(p=>new {p.Flight_ID,p.service_class,p.price});
-
-            var result = from flight in db.Flights
-                join airline in db.Airlines on flight.Airline_ID equals airline.Company_ID
-                join flight_info in db.DateFlights on flight.Flight_ID equals flight_info.flight_id
+            var result = from flight in MainWindow.db.Flights
+                join airline in MainWindow.db.Airlines on flight.Airline_ID equals airline.Company_ID
+                join flight_info in MainWindow.db.DateFlights on flight.Flight_ID equals flight_info.flight_id
                 join group_place in group_places on flight.Flight_ID equals group_place.Key.Flight_ID
                 select new 
                 {
