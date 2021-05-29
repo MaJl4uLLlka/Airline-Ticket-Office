@@ -21,14 +21,14 @@
                 <TextBlock Foreground="Blue" HorizontalAlignment="Stretch">Логин</TextBlock>
                 <TextBox Text="{Binding login,UpdateSourceTrigger=PropertyChanged}"></TextBox>
                 <TextBlock  Foreground="Blue">Пароль</TextBlock>
-                <TextBox Text="{Binding password, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                <PasswordBox x:Name="PassBox" ></PasswordBox>
             </StackPanel>
             <StackPanel Grid.Row="2">
                 <StackPanel  Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center">
                     <TextBlock Margin="0 0 50 0">
                         <Hyperlink NavigateUri="Registration.xaml">Еще нет аккаунта?</Hyperlink>
                     </TextBlock>
-                    <Button Width="50" Height="30" Margin="2 0 80 0" Command="{Binding CheckAuthentification}">Sign In</Button>
+                    <Button Width="50" Height="30" Margin="2 0 80 0" Command="{Binding CheckAuthentification}" CommandParameter="{Binding ElementName=PassBox}">Войти</Button>
                 </StackPanel>
             </StackPanel>
         </Grid>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using AirLineTicketOffice.Logic;
 using AirLineTicketOffice.Model;
 using AirLineTicketOffice.View;
@@ -48,6 +49,8 @@ namespace AirLineTicketOffice.ViewModels
                 return checkAuthentification ??
                        (checkAuthentification = new RelayCommand(o =>
                            {
+                               PasswordBox passwordBox= o as PasswordBox;
+                               SelectedAccount.password = passwordBox.Password;
                                if (MainWindow.db.Accounts.Count()!=0)
                                {
                                    var users = Accounts.Where(u => u.login == SelectedAccount.login).Select(u=>u);
