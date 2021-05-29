@@ -109,6 +109,8 @@ namespace AirLineTicketOffice.ViewModels
                                    else
                                    {
                                        //TODO tickets_binding
+                                       
+                                       
                                    }
                                }
                            }

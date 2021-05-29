@@ -20,6 +20,7 @@ namespace AirLineTicketOffice.ViewModels
         private Passenger selectedPassenger;
         private Account selectedAccount;
         public static bool isAuthorized = false;
+        
 
         public ApplicationViewModel()
         {

@@ -17,6 +17,9 @@
         <ResourceDictionary Source="../Resources/Dictionary1.xaml"></ResourceDictionary>
     </Window.Resources>
     <Grid Background="Azure" ShowGridLines="False">
+        <Grid.Resources>
+            <user:BindingProxy x:Key="Proxy" Data="{Binding}" />
+        </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1.5*"></ColumnDefinition>
             <ColumnDefinition Width="3*"></ColumnDefinition>
@@ -29,7 +32,32 @@
 
         <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Background="#0c73fe">
             <DockPanel Margin="5" >
-                <Image Source="../img/client.png" Width="30" Height="30" DockPanel.Dock="Left" Margin="10 0 0 10"></Image>
+                <Image Source="../img/client.png" Width="30" Height="30" DockPanel.Dock="Left" Margin="10 0 0 10">
+                    <Image.Style>
+                        <Style TargetType="{x:Type Image}">
+                            <Style.Triggers>
+                                <EventTrigger RoutedEvent="MouseUp">
+                                    <EventTrigger.Actions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <BooleanAnimationUsingKeyFrames Storyboard.TargetProperty="ContextMenu.IsOpen">
+                                                    <DiscreteBooleanKeyFrame KeyTime="0:0:0" Value="True"/>
+                                                </BooleanAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger.Actions>
+                                </EventTrigger>
+                            </Style.Triggers>
+                            <Setter Property="ContextMenu">
+                                <Setter.Value>
+                                    <ContextMenu>
+                                        <MenuItem  Header="Выйти" Command="{Binding Source={StaticResource Proxy}, Path=ExitCommand}"/>
+                                    </ContextMenu>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Image.Style>
+                </Image>
                 <TextBlock Text="{Binding Path=(user:CurrentUser.Name) ,UpdateSourceTrigger=PropertyChanged}" Margin="10 5 0 0" Foreground="Beige" FontSize="14"></TextBlock>
                 <TextBlock Text="{Binding Path=(user:CurrentUser.Surname) ,UpdateSourceTrigger=PropertyChanged}" Margin="5 5 0 0" Foreground="Beige" FontSize="14"></TextBlock>
                 <TextBlock Padding="18,3,5,5" DockPanel.Dock="Right" VerticalAlignment="Top" Margin="10 5 0 0" Foreground="Beige" FontSize="14">BYN</TextBlock>

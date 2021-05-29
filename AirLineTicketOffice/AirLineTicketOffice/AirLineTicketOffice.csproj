@@ -74,6 +74,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Logic\BindingProxy.cs" />
     <Compile Include="Logic\FullUserInfo.cs" />
     <Compile Include="Logic\MainSearch.cs" />
     <Compile Include="Logic\PageClass.cs" />

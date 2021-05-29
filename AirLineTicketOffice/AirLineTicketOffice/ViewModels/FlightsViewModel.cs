@@ -24,18 +24,10 @@ namespace AirLineTicketOffice.ViewModels
         private MainSearch _mainSearch = new MainSearch();
         private ObservableCollection<FlightVariant> _flightVariants;
         private ObservableCollection<FlightVariant> oldState;
+        private ObservableCollection<Ticket> tickets;
+        private ObservableCollection<Place> _places;
         private int maxPrice;
-        private ObservableCollection<string> daysOfWeak;
-
-        public ObservableCollection<string> DaysOfWeak
-        {
-            get => daysOfWeak;
-            set
-            {
-                daysOfWeak = value;
-                OnPropertyChanged();
-            }
-        }
+        
         public int MaxPrice
         {
             get => maxPrice;
