@@ -9,11 +9,11 @@ namespace AirLineTicketOffice.ViewModels
         private string company_name;
         private string departure_city;
         private string arrival_city;
-        private string departure_day;
+        private string departure_day=DateTime.Today.DayOfWeek.ToString();
         private Nullable<TimeSpan> departure_time;
         private string arrival_day;
         private Nullable<TimeSpan> arrival_time;
-        private string service_class;
+        private string service_class="Economy";
         private Nullable<decimal> price;
 
         public string CompanyName

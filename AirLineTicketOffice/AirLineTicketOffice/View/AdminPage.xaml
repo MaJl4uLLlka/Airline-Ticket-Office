@@ -100,8 +100,8 @@
                     <UniformGrid  Margin="5"  Width="Auto" HorizontalAlignment="Stretch" Rows="2" Columns="2">
                         <Button Content="Применить" Height="30"  Margin="5 0 10 5" Command="{Binding GetFilterCommand}"></Button>
                         <Button Content="Сбросить все" Height="30" Margin="10 0 5 5" Command="{Binding ResetCommand}"></Button>
-                        <Button Content="Добавить рейс" Height="30" Margin="5 5 10 0"></Button>
-                        <Button Content="Удалить рейс" Height="30" Margin="10 5 5 0"></Button>
+                        <Button Content="Добавить рейс" Height="30" Margin="5 5 10 0" Command="{Binding AddFlightCommand}"></Button>
+                        <Button Content="Удалить рейс" Height="30" Margin="10 5 5 0" Command="{Binding RemoveFlightCommand}" CommandParameter="{Binding SelectedFlight}"></Button>
                     </UniformGrid>
                 </StackPanel>
             </ScrollViewer>

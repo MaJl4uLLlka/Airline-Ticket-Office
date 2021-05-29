@@ -18,6 +18,43 @@ namespace AirLineTicketOffice.ViewModels
         private RelayCommand getFilterCommand;
         private RelayCommand buy;
         private RelayCommand resetCommand;
+        private RelayCommand addFlight;
+        private RelayCommand removeFLight;
+
+        public RelayCommand RemoveFlightCommand
+        {
+            get
+            {
+                return removeFLight ??
+                       (removeFLight = new RelayCommand(o =>
+                       {
+                           FlightVariant flight=o as FlightVariant;
+                           if (flight!=null)
+                           {
+                               Flights.Remove(flight);
+                               //TODO Deleting from db
+                           }
+                       },
+                        o=>Flights.Count()!=0  ));
+            }
+        }
+        
+        public RelayCommand AddFlightCommand
+        {
+            get
+            {
+                return addFlight ??
+                       (addFlight = new RelayCommand(o =>
+                       {
+                           FlightVariant newFlight = new FlightVariant();
+                           filteredFlights.Insert(0,newFlight);
+                           Flights.Insert(0,newFlight);
+                           SelectedFlight = newFlight;
+                           
+                           //TODO add_to_db
+                       }));
+            }
+        }
         
         public RelayCommand ResetCommand
         {
@@ -72,7 +109,7 @@ namespace AirLineTicketOffice.ViewModels
                                    }
                                    else
                                    {
-                                       //TODO Tickets_binding
+                                       //TODO tickets_binding
                                    }
                                }
                            }

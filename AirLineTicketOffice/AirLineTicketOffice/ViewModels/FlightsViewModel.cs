@@ -203,13 +203,12 @@ namespace AirLineTicketOffice.ViewModels
                 });
             }
             
-            //iterator.Reset();
+                var flights_with_default_filter = Flights.Where(
+                    u => u.ServiceClass == selected_service).Select(u => u);
 
-            var flights_with_default_filter = Flights.Where(
-                u => u.ServiceClass == selected_service).Select(u => u);
+                filteredFlights = new ObservableCollection<FlightVariant>(flights_with_default_filter);
 
-            filteredFlights = new ObservableCollection<FlightVariant>(flights_with_default_filter);
-
+                //iterator.Reset();
             maxPrice = Convert.ToInt32(Flights.Max(u => u.Price));
         }
         
