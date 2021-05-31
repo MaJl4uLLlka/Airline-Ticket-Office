@@ -52,6 +52,8 @@
                                 <Setter.Value>
                                     <ContextMenu>
                                         <MenuItem  Header="Выйти" Command="{Binding Source={StaticResource Proxy}, Path=ExitCommand}"/>
+                                        <MenuItem  Header="Мои билеты" />
+                                        <MenuItem  Header="Отзывы о приложении" />
                                     </ContextMenu>
                                 </Setter.Value>
                             </Setter>

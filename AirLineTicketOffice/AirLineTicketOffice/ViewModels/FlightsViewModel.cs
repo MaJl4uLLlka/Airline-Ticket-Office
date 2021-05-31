@@ -31,6 +31,27 @@ namespace AirLineTicketOffice.ViewModels
         private ObservableCollection<Service_class_info> _serviceClassInfos;
         private int maxPrice;
         
+        public ObservableCollection<Service_class_info> ServiceInfo
+        {
+            get => _serviceClassInfos;
+            set
+            {
+                _serviceClassInfos = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ObservableCollection<DateFlight> DateFlights 
+        {
+            get => _dateFlights;
+            set
+            {
+                _dateFlights = value;
+                OnPropertyChanged();
+            }
+        }
+        
+        
         public ObservableCollection<Flight> AllFlights
         {
             get => _flights;
@@ -185,7 +206,12 @@ namespace AirLineTicketOffice.ViewModels
         public FlightsViewModel()
         {
             Airlines = MainWindow.db.Airlines.Local;
-
+            AllFlights= MainWindow.db.Flights.Local;
+            DateFlights = MainWindow.db.DateFlights.Local;
+            ServiceInfo = MainWindow.db.Service_classes.Local;
+            _Places = MainWindow.db.Places.Local;
+            Tickets = MainWindow.db.Tickets.Local;
+            
             var group_places = MainWindow.db.Places.GroupBy(p=>new {p.Flight_ID,p.service_class,p.price});
 
             var result = from flight in MainWindow.db.Flights

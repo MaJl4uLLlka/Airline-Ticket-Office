@@ -7,6 +7,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using AirLineTicketOffice.Logic;
+using AirLineTicketOffice.Model;
 using AirLineTicketOffice.View;
 using static AirLineTicketOffice.Logic.Service_class;
 
@@ -109,7 +110,11 @@ namespace AirLineTicketOffice.ViewModels
                                    else
                                    {
                                        //TODO tickets_binding
-                                       
+
+                                       foreach (Flight flight in AllFlights)
+                                       {
+                                           
+                                       }
                                        
                                    }
                                }
