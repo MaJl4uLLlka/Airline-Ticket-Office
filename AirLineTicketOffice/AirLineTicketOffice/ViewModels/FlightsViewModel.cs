@@ -126,7 +126,7 @@ namespace AirLineTicketOffice.ViewModels
             set
             {
                 selectedFlight = value;
-                OnPropertyChanged("SelectedFlight");
+                OnPropertyChanged();
             }
         }
 
@@ -230,6 +230,8 @@ namespace AirLineTicketOffice.ViewModels
                     Serv_class=group_place.Key.service_class,
                     Price=group_place.Key.price
                 };
+
+            selectedFlight = new FlightVariant();
             
             Flights = new ObservableCollection<FlightVariant>();
 

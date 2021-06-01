@@ -109,7 +109,7 @@
         <ListBox  Grid.Column="1" Grid.Row="1" Background="#DCDEE0" BorderThickness="0"
                   ItemsSource="{Binding filteredFlights,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" 
                   HorizontalContentAlignment="Stretch"
-                  SelectedItem="{Binding Path=SelectedFlight}"
+                  SelectedItem="{Binding Path=SelectedFlight, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                   ScrollViewer.CanContentScroll="True">
             <ListBox.ItemTemplate >
                 <DataTemplate>
@@ -164,12 +164,12 @@
                             <!--Время-->
                         </StackPanel>
 
-                        <Button Grid.Row="0" Grid.Column="3" Grid.RowSpan="2"   Width="Auto" Height="40" Margin="10" Command="{Binding DataContext.BuyCommand, RelativeSource={RelativeSource AncestorType=Page}}">
+                        <ToggleButton IsChecked="{Binding Path=IsSelected, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" Grid.Row="0" Grid.Column="3" Grid.RowSpan="2"   Width="Auto" Height="40" Margin="10" Command="{Binding DataContext.BuyCommand, RelativeSource={RelativeSource AncestorType=Page}}">
                             <StackPanel>
                                     <TextBlock Text="{Binding Path=Price}"></TextBlock>
                                     <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">Купить</TextBlock>
                                 </StackPanel>
-                        </Button>
+                        </ToggleButton>
                     </Grid>
                     </Border>
                 </DataTemplate>

@@ -111,11 +111,63 @@ namespace AirLineTicketOffice.ViewModels
                                    {
                                        //TODO tickets_binding
 
-                                       foreach (Flight flight in AllFlights)
+                                       Passenger currentPassenger = MainWindow.db.Passengers.First(u=>u.name==CurrentUser.Name && u.surname==CurrentUser.Surname);
+                                       Airline currentAirline = Airlines
+                                           .First(u => SelectedFlight.CompanyName.Contains(u.company_name));
+
+                                       Flight currentFlight=currentAirline.Flights.First(
+                                           u=>u.departure_city==SelectedFlight.DepartureCity && u.arrival_city==SelectedFlight.ArrivalCity);
+
+                                       List<Place> places = _Places.Where(u=>currentFlight==u.Flight).Select(u=>u).ToList();
+
+                                       var TicketsAndPlaces = _Places.Join(Tickets,
+                                           p => p.Place_ID,
+                                           t => t.Place_ID,
+                                           ((place, ticket) =>
+                                               new
+                                               {
+                                                    ticket.Ticket_ID,
+                                                    ticket.Place_ID,
+                                                    ticket.Place,
+                                                    ticket.Passenger,
+                                                    ticket.departure_date,
+                                                    ticket.departure_time,
+                                                    ticket.isCanceled,
+                                                    ticket.isExpired
+                                               }));
+
+                                       //генерация билетов, если их нет
+                                       if ( TicketsAndPlaces.Count() == 0)
                                        {
+                                           List<Ticket> tickets = new List<Ticket>();
+                                           for (int i = 0; i < places.Count(); i++)
+                                           {
+                                               tickets.Add(new Ticket
+                                               {
+                                                   Place = places[i],
+                                                   Passenger = null,
+                                                   departure_date = DepartureDay,
+                                                   departure_time = SelectedFlight.DepartureTime,
+                                                   isCanceled = "No",
+                                                   isExpired = "No"
+                                               });
+                                           }
+
                                            
+
+                                           tickets[0].Passenger = currentPassenger;
+
+
+                                           MainWindow.db.Tickets.AddRange(tickets);
+                                           MainWindow.db.SaveChanges();
                                        }
-                                       
+                                       else //если билеты уже сгенерированны
+                                       {
+                                           var freeTicketID=TicketsAndPlaces.Where(u => u.Passenger == null).Select(u=>u.Ticket_ID).First();
+                                           Ticket freeTicket=MainWindow.db.Tickets.First(u=>u.Ticket_ID==freeTicketID);
+                                           freeTicket.Passenger = currentPassenger;
+                                           MainWindow.db.SaveChanges();
+                                       }
                                    }
                                }
                            }

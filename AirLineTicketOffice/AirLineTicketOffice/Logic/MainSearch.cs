@@ -5,7 +5,7 @@ using AirLineTicketOffice.Annotations;
 
 namespace AirLineTicketOffice.Logic
 {
-    public class MainSearch:INotifyPropertyChanged
+    public class MainSearch:INotifyPropertyChanged,IDataErrorInfo
     {
         private string departure_city = "";
         private string arrival_city = "";
@@ -59,6 +59,34 @@ namespace AirLineTicketOffice.Logic
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public string this[string columnName]
+        {
+            get
+            {
+                string error=String.Empty;
+                switch (columnName)
+                {
+                    case "DepartureCity":
+                        break;
+                    case "ArrivalCity":
+                        
+                        break;
+                    case "DepartureDate":
+                        if (DepartureDate <= DateTime.Today)
+                        {
+                            error = "Дата отправления должна быть не раньше сегодняшнего дня";
+                        }
+                        break;
+                }
+
+                return error;
+            }
+        }
+
+        public string Error {
+            get { throw new NotImplementedException(); }
         }
     }
 }
