@@ -4,13 +4,14 @@ using System.ComponentModel;
 using System.Data.Entity;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
 using AirLineTicketOffice.Logic;
 using AirLineTicketOffice.Model;
 using AirLineTicketOffice.View;
 
 namespace AirLineTicketOffice.ViewModels
 {
-   public partial class FlightsViewModel:INotifyPropertyChanged
+   public partial class FlightsViewModel: IDataErrorInfo
     {
         private DateTime departure_day=DateTime.Now;
         private DateTime arrival_day;
@@ -29,9 +30,91 @@ namespace AirLineTicketOffice.ViewModels
         private ObservableCollection<Flight> _flights;
         private ObservableCollection<DateFlight> _dateFlights;
         private ObservableCollection<Service_class_info> _serviceClassInfos;
+        private IDataErrorInfo _dataErrorInfoImplemetation;
         private int maxPrice;
         
-        public ObservableCollection<Service_class_info> ServiceInfo
+        private string departure_city = "";
+        private string arrival_city = "";
+        private DateTime departure_date=DateTime.Today;
+        private int service_class = (int) Service_class.Economy;
+
+        public string DepartureCity
+        {
+            get => departure_city;
+            set
+            {
+                departure_city = value;
+                OnPropertyChanged("DepartureCity");
+            }
+        }
+
+        public string ArrivalCity
+        {
+            get => arrival_city;
+            set
+            {
+                arrival_city = value;
+                OnPropertyChanged("ArrivalCity");
+            }
+        }
+
+        public DateTime DepartureDate
+        {
+            get => departure_date;
+            set
+            {
+                departure_date = value;
+                OnPropertyChanged("DepartureDate");
+            }
+        }
+
+        public int ServiceClass
+        {
+            get => service_class;
+            set
+            {
+                service_class = value;
+                OnPropertyChanged("ServiceClass");
+            }
+        }
+
+        public string Test { get; set; }
+
+        public string this[string columnName]
+        {
+            get
+            {
+                string error=String.Empty;
+                Regex regex=new Regex(@"[0-9_=+~,./?!@#$:;%&*()]");
+                switch (columnName)
+                { 
+                    case "DepartureCity":
+                        if (regex.IsMatch(DepartureCity))
+                        {
+                            error = "Данное поле не должно сожержать других символов кроме букв";
+                        }
+                        break;
+                    case "ArrivalCity":
+                        if (regex.IsMatch(ArrivalCity))
+                        {
+                            error = "Данное поле не должно сожержать других символов";
+                        }
+                        break;
+                    case "DepartureDate":
+                        if (DepartureDate<DateTime.Today)
+                        {
+                            error = "Дата отправления не может быть раньше текущей";
+                        }
+                        break;
+                }
+
+                return error;
+            }
+        }
+
+        public string Error => _dataErrorInfoImplemetation.Error; 
+
+   public ObservableCollection<Service_class_info> ServiceInfo
         {
             get => _serviceClassInfos;
             set

@@ -182,7 +182,7 @@ namespace AirLineTicketOffice.ViewModels
                 return search ?? (search = new RelayCommand(o =>
                     {
                         string serviceClass = "";
-                        switch (MainSearch.ServiceClass)
+                        switch (ServiceClass)
                         {
                             case (int)Economy:
                                 serviceClass = "Economy";
@@ -194,9 +194,9 @@ namespace AirLineTicketOffice.ViewModels
                         }
 
                         var foundFlights = Flights.Where(obj =>
-                            obj.DepartureCity == MainSearch.DepartureCity &&
-                            obj.ArrivalCity == MainSearch.ArrivalCity &&
-                            obj.DepartureDay == MainSearch.DepartureDate.DayOfWeek.ToString() &&
+                            obj.DepartureCity == DepartureCity &&
+                            obj.ArrivalCity == ArrivalCity &&
+                            obj.DepartureDay == DepartureDate.DayOfWeek.ToString() &&
                             obj.ServiceClass == serviceClass).Select(obj => obj);
 
                         filteredFlights.Clear();
@@ -219,7 +219,7 @@ namespace AirLineTicketOffice.ViewModels
                             });
                         }
                     },
-        (o => (MainSearch.DepartureCity != "") && (MainSearch.ArrivalCity != "")
+        (o => (DepartureCity != "") && (ArrivalCity != "")
                 )));
             }
         }
