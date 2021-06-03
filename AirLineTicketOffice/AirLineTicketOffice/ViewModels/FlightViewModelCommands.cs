@@ -21,6 +21,7 @@ namespace AirLineTicketOffice.ViewModels
         private RelayCommand resetCommand;
         private RelayCommand addFlight;
         private RelayCommand removeFLight;
+        
 
         public RelayCommand RemoveFlightCommand
         {
@@ -80,12 +81,12 @@ namespace AirLineTicketOffice.ViewModels
                        {
                            ApplyFilter();
                        },
-                           o=>Filter.DepartureTimeSelected !=false ||
-                              Filter.ArrivalTimeSelected!=false || Filter.PriceSelected!=false));
+                           o=>Filter.DepartureTimeSelected  ||
+                              Filter.ArrivalTimeSelected || Filter.PriceSelected));
             }
         }
         
-        public RelayCommand BuyCommand
+        public RelayCommand BuyCommand 
         {
             get
             {
@@ -107,13 +108,13 @@ namespace AirLineTicketOffice.ViewModels
                                    {
                                        MessageBox.Show("Для покупки войдите в свой личный акканут","",MessageBoxButton.OK, MessageBoxImage.Information);
                                    }
-                                   else
+                                   else //TODO kakaja-to fignja
                                    {
-                                       //TODO tickets_binding
-                                       
                                        Passenger currentPassenger = MainWindow.db.Passengers.First(u=>u.name==CurrentUser.Name && u.surname==CurrentUser.Surname);
                                        Airline currentAirline = Airlines
                                            .First(u => SelectedFlight.CompanyName==u.company_name);
+                                       
+                                       
 
                                        Flight currentFlight=currentAirline.Flights.First(
                                            u=>u.departure_city==SelectedFlight.DepartureCity && u.arrival_city==SelectedFlight.ArrivalCity);
@@ -152,12 +153,9 @@ namespace AirLineTicketOffice.ViewModels
                                                    isExpired = "No"
                                                });
                                            }
-
                                            
-
                                            tickets[0].Passenger = currentPassenger;
-
-
+                                           
                                            MainWindow.db.Tickets.AddRange(tickets);
                                            MainWindow.db.SaveChanges();
                                        }
@@ -168,6 +166,8 @@ namespace AirLineTicketOffice.ViewModels
                                            freeTicket.Passenger = currentPassenger;
                                            MainWindow.db.SaveChanges();
                                        }
+
+                                       MessageBox.Show("\u2714  Билет успешно приобретён");
                                    }
                                }
                            }
@@ -175,7 +175,7 @@ namespace AirLineTicketOffice.ViewModels
             }
         }
         
-        public RelayCommand Search
+        public RelayCommand Search 
         {
             get
             {
@@ -257,7 +257,12 @@ namespace AirLineTicketOffice.ViewModels
             oldState = filteredFlights;
             filteredFlights = filteringResult;
         }
-        
+
+
+        void CheckPassengerTicket(Passenger passenger)
+        {
+            
+        }
         
         
     }

@@ -134,6 +134,7 @@
     <Compile Include="ViewModels\FlightsViewModel.cs" />
     <Compile Include="ViewModels\FlightVariant.cs" />
     <Compile Include="ViewModels\FlightViewModelCommands.cs" />
+    <Compile Include="ViewModels\MyTicketsViewModel.cs" />
     <Compile Include="ViewModels\UsersViewModel.cs" />
     <Compile Include="ViewModels\UserViewModelCommands.cs" />
     <Compile Include="View\AdminPage.xaml.cs">
@@ -148,6 +149,9 @@
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="View\MyTicketPage.xaml.cs">
+      <DependentUpon>MyTicketPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Registration.xaml.cs">
       <DependentUpon>Registration.xaml</DependentUpon>
@@ -176,6 +180,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\MyTicketPage.xaml" />
     <Page Include="View\Registration.xaml" />
     <Page Include="View\Reviews.xaml" />
     <Page Include="View\Tickets_page.xaml">

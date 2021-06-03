@@ -4,6 +4,7 @@
     {
         AdminPage,
         ReviewPage,
-        TicketPage
+        TicketPage,
+        MyTicketPage
     }
 }

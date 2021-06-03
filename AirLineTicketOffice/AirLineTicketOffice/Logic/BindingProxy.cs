@@ -8,6 +8,33 @@ namespace AirLineTicketOffice.Logic
     public class BindingProxy : Freezable
     {
         private RelayCommand exitCommand;
+        private RelayCommand transitionCommand;
+        private RelayCommand transitionReviewsCommand;
+
+        public RelayCommand TransitionReviewCommand
+        {
+            get
+            {
+                return transitionReviewsCommand ??
+                       (transitionReviewsCommand = new RelayCommand(o =>
+                           {
+                               ((MainWindow)Application.Current.MainWindow).ChangeContent(PageClass.ReviewPage);
+                           }));
+            }
+        }
+        
+        public RelayCommand TransitionMyTicketsCommand
+        {
+            get
+            {
+                return transitionCommand ??
+                       (transitionCommand = new RelayCommand(o =>
+                       {
+                            ((MainWindow)Application.Current.MainWindow).ChangeContent(PageClass.MyTicketPage);
+                       },
+                           o=> ApplicationViewModel.isAuthorized && !CurrentUser.IsAdmin));
+            }
+        }
 
         public RelayCommand ExitCommand
         {

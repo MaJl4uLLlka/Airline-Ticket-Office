@@ -42,6 +42,10 @@ namespace AirLineTicketOffice.View
                 case PageClass.TicketPage:
                     Frame.Source = new Uri("Tickets_page.xaml",UriKind.Relative);
                     break;
+                case PageClass.MyTicketPage:
+                    Frame.Source = new Uri("MyTicketPage.xaml", UriKind.Relative);
+                    break;
+                    
             }
         }
     }
