@@ -3,14 +3,14 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:viewModels="clr-namespace:AirLineTicketOffice.ViewModels" d:DataContext="{d:DesignInstance Type=viewModels:MyTicketsViewModel}"
       xmlns:local="clr-namespace:AirLineTicketOffice.View"
       mc:Ignorable="d"
       Title="MyTicketPage" Height="450" Width="800">
     <Grid Background="#DCDEE0">
         <ListBox  Grid.Column="0" Grid.Row="0" Background="#DCDEE0" BorderThickness="0"
-                  ItemsSource="{Binding filteredFlights,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" 
+                  ItemsSource="{Binding MyTickets,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" 
                   HorizontalContentAlignment="Stretch"
-                  SelectedItem="{Binding Path=SelectedFlight, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                   ScrollViewer.CanContentScroll="True">
             <ListBox.ItemTemplate >
                 <DataTemplate>
@@ -25,11 +25,12 @@
                             <ColumnDefinition Width="1.5*"></ColumnDefinition>
                             <ColumnDefinition Width="2*"></ColumnDefinition>
                             <ColumnDefinition Width="2*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
 
                         <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Vertical" Margin="8">
                             <TextBlock Text="Авиакомпания:"></TextBlock>
-                            <TextBlock Text="{Binding Path=CompanyName }"></TextBlock>
+                            <TextBlock Text="{Binding Path=Airline }"></TextBlock>
                             <!--<TextBlock Text="Duration:"></TextBlock>
                             <TextBlock Text="{Binding Path=}"></TextBlock>-->
                         </StackPanel>
@@ -50,7 +51,7 @@
 
                         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical" Margin="7">
                             <TextBlock>Отправление:</TextBlock>
-                            <TextBlock Text="{Binding Path=DepartureDay}"></TextBlock>
+                            <TextBlock Text="{Binding Path=DepartureDate}"></TextBlock>
                             <!--Дата-->
                             <TextBlock Text="{Binding Path=DepartureTime}"></TextBlock>
                             <!--Время-->
@@ -58,11 +59,20 @@
 
                         <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Vertical" Margin="7">
                             <TextBlock>Прибытие:</TextBlock>
-                            <TextBlock Text="{Binding Path=ArrivalDay}"></TextBlock>
+                            <TextBlock Text="{Binding Path=ArrivalDate}"></TextBlock>
                             <!--Дата-->
                             <TextBlock Text="{Binding Path=ArrivalTime}"></TextBlock>
                             <!--Время-->
                         </StackPanel>
+                        
+                        <DockPanel Grid.Column="3" Grid.Row="0" Grid.RowSpan="2">
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="Место: "/>
+                                <TextBlock Text="{Binding Place}"/>
+                            </StackPanel>
+                        </DockPanel>
+                        
+                        
                     </Grid>
                     </Border>
                 </DataTemplate>
