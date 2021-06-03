@@ -110,10 +110,10 @@ namespace AirLineTicketOffice.ViewModels
                                    else
                                    {
                                        //TODO tickets_binding
-
+                                       
                                        Passenger currentPassenger = MainWindow.db.Passengers.First(u=>u.name==CurrentUser.Name && u.surname==CurrentUser.Surname);
                                        Airline currentAirline = Airlines
-                                           .First(u => SelectedFlight.CompanyName.Contains(u.company_name));
+                                           .First(u => SelectedFlight.CompanyName==u.company_name);
 
                                        Flight currentFlight=currentAirline.Flights.First(
                                            u=>u.departure_city==SelectedFlight.DepartureCity && u.arrival_city==SelectedFlight.ArrivalCity);

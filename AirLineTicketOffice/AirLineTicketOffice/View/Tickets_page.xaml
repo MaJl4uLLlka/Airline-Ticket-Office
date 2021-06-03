@@ -20,6 +20,7 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        
     </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -200,11 +201,11 @@
                             <!--Время-->
                         </StackPanel>
 
-                        <ToggleButton IsChecked="{Binding Path=IsSelected, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" Grid.Row="0" Grid.Column="3" Grid.RowSpan="2"   Width="Auto" Height="40" Margin="10" Command="{Binding DataContext.BuyCommand, RelativeSource={RelativeSource AncestorType=Page}}">
-                            <StackPanel>
-                                    <TextBlock Text="{Binding Path=Price}"></TextBlock>
-                                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">Купить</TextBlock>
-                                </StackPanel>
+                        <ToggleButton IsChecked="{Binding Path=IsSelected, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" Grid.Row="0" Grid.Column="3" 
+                                      Grid.RowSpan="2"   Width="Auto" Height="40" 
+                                      Margin="10" 
+                                      Command="{Binding DataContext.BuyCommand, RelativeSource={RelativeSource AncestorType=Page}}"
+                                      Content="{Binding Path=Price, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                         </ToggleButton>
                     </Grid>
                     </Border>
