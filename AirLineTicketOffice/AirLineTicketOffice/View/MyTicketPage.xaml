@@ -6,9 +6,17 @@
       xmlns:viewModels="clr-namespace:AirLineTicketOffice.ViewModels" d:DataContext="{d:DesignInstance Type=viewModels:MyTicketsViewModel}"
       xmlns:local="clr-namespace:AirLineTicketOffice.View"
       mc:Ignorable="d"
-      Title="MyTicketPage" Height="450" Width="800">
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MyTicketPage" >
     <Grid Background="#DCDEE0">
-        <ListBox  Grid.Column="0" Grid.Row="0" Background="#DCDEE0" BorderThickness="0"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0">
+            <TextBlock><Hyperlink NavigateUri="Tickets_page.xaml">К билетам</Hyperlink></TextBlock>
+        </DockPanel>
+        <ListBox  Grid.Column="0" Grid.Row="1" Background="#DCDEE0" BorderThickness="0"
                   ItemsSource="{Binding MyTickets,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" 
                   HorizontalContentAlignment="Stretch"
                   ScrollViewer.CanContentScroll="True">

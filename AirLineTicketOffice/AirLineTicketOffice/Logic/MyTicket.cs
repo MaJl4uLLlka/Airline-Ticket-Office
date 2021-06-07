@@ -10,9 +10,9 @@ namespace AirLineTicketOffice.Logic
         private string _airline;
         private string _departureCity;
         private string _arrivalCity;
-        private DateTime? _departureDate;
+        private string _departureDate;
         private TimeSpan? _departureTime;
-        private DateTime? _arrivalDate;
+        private string _arrivalDate;
         private TimeSpan? _arrivalTime;
         private string _serviceClass;
         private int? _place;
@@ -72,7 +72,7 @@ namespace AirLineTicketOffice.Logic
             }
         }
 
-        public DateTime? DepartureDate
+        public string DepartureDate
         {
             get => _departureDate;
             set
@@ -94,7 +94,7 @@ namespace AirLineTicketOffice.Logic
             }
         }
 
-        public DateTime? ArrivalDate
+        public string ArrivalDate
         {
             get => _arrivalDate;
             set

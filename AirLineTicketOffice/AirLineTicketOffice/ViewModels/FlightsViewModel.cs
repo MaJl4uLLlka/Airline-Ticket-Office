@@ -32,6 +32,11 @@ namespace AirLineTicketOffice.ViewModels
         private ObservableCollection<Service_class_info> _serviceClassInfos;
         private IDataErrorInfo _dataErrorInfoImplemetation;
         private int maxPrice;
+
+
+        #region AdminVariables
+            
+        #endregion
         
         private string departure_city = "";
         private string arrival_city = "";

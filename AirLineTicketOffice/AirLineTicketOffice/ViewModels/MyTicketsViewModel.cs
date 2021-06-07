@@ -12,13 +12,26 @@ namespace AirLineTicketOffice.ViewModels
 {
     public class MyTicketsViewModel:INotifyPropertyChanged
     {
+        private ObservableCollection<Passenger> _passengers;
+
+        public ObservableCollection<Passenger> Passengers
+        {
+            get => _passengers;
+            set
+            {
+                if (Equals(value, _passengers)) return;
+                _passengers = value;
+                OnPropertyChanged();
+            }
+        }
+
         public MyTicketsViewModel()
         {
-            var current_account = MainWindow.db.Accounts.First(u =>
-                u.Passengers.First() != null && u.Passengers.First().name == CurrentUser.Name &&
-                u.Passengers.First().surname == CurrentUser.Surname);
+            Passengers = MainWindow.db.Passengers.Local;
 
-            Passenger current_passenger = current_account.Passengers.First();
+
+            Passenger current_passenger = Passengers.First(u=>
+                u.name==CurrentUser.Name && u.surname==CurrentUser.Surname);
 
             List<Ticket> tickets = current_passenger.Tickets.ToList();
 
@@ -42,12 +55,13 @@ namespace AirLineTicketOffice.ViewModels
             {
                 airlines.Add(flight.Airline);
             }
-            
-            List<>
+
+            List<DateFlight> dateFlights = new List<DateFlight>();
 
             for (int i = 0; i < tickets.Count(); i++)
             {
-                
+                dateFlights.Add(flights[i].DateFlights.First(u => u.departure_time == tickets[i].departure_time));
+
             }
 
             _myTickets = new ObservableCollection<MyTicket>();
@@ -56,11 +70,15 @@ namespace AirLineTicketOffice.ViewModels
             {
                 _myTickets.Add(new MyTicket
                     {
-                        DepartureDate = tickets[i].departure_date,
+                        DepartureDate = tickets[i].departure_date?.ToShortDateString(),
                         DepartureTime = tickets[i].departure_time,
+                        DepartureCity = flights[i].departure_city,
+                        ArrivalCity = flights[i].arrival_city,
+                        ArrivalDate = tickets[i].departure_date?.ToShortDateString(),
+                        ArrivalTime = dateFlights[i].arrival_time,
                         Place = places[i].place_number,
                         ServiceClass = places[i].service_class,
-                        
+                        Airline = airlines[i].company_name
                     }
                         );
             }

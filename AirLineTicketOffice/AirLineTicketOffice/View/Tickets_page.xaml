@@ -205,7 +205,9 @@
                                       Grid.RowSpan="2"   Width="Auto" Height="40" 
                                       Margin="10" 
                                       Command="{Binding DataContext.BuyCommand, RelativeSource={RelativeSource AncestorType=Page}}"
-                                      Content="{Binding Path=Price, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                      CommandParameter="{Binding ElementName=button}"
+                                      Content="{Binding Path=Price, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      x:Name="button">
                         </ToggleButton>
                     </Grid>
                     </Border>
