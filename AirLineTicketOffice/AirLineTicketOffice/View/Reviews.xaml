@@ -7,8 +7,39 @@
       xmlns:viewModels="clr-namespace:AirLineTicketOffice.ViewModels" d:DataContext="{d:DesignInstance Type=viewModels:ApplicationViewModel}"
       mc:Ignorable="d"
       ShowsNavigationUI="False"
-      Title="Reviews" Height="450" Width="800">
-    <Grid Background="Azure">
-        
+      Title="Reviews" d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="#DCDEE0" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Row="0">
+            <TextBlock><Hyperlink NavigateUri="Tickets_page.xaml">К билетам</Hyperlink></TextBlock>
+        </DockPanel>
+
+        <ListBox  Grid.Row="1" Background="#DCDEE0" BorderThickness="0"
+                  ItemsSource="{Binding MyTickets,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" 
+                  HorizontalContentAlignment="Stretch"
+                  ScrollViewer.CanContentScroll="True">
+            <ListBox.ItemTemplate >
+                <DataTemplate>
+                    <GroupBox Header="{Binding }"> <!--TODO Fullname Binding-->
+                        <TextBlock Text="{Binding }"/> <!--TODO Text Binding-->
+                    </GroupBox>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <Grid Grid.Row="2" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="90"/>
+            </Grid.ColumnDefinitions>
+
+            <RichTextBox Grid.Column="0" ></RichTextBox>
+            <Button Grid.Column="1" Content="Опубликовать"/> 
+        </Grid>
     </Grid>
 </Page>
