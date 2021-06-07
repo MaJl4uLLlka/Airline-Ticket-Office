@@ -23,7 +23,6 @@ namespace AirLineTicketOffice.Model
         public string Passport_ID { get; set; }
         public string name { get; set; }
         public string surname { get; set; }
-        public string gender { get; set; }
         public Nullable<System.DateTime> birthdate { get; set; }
         public Nullable<System.DateTime> validity_period { get; set; }
         public Nullable<int> Account_ID { get; set; }

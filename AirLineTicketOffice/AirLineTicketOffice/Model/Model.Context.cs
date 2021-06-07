@@ -13,10 +13,10 @@ namespace AirLineTicketOffice.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class AirlineTicketOfficeEntities : DbContext
+    public partial class AirlineTicketOfficeEntities1 : DbContext
     {
-        public AirlineTicketOfficeEntities()
-            : base("name=AirlineTicketOfficeEntities")
+        public AirlineTicketOfficeEntities1()
+            : base("name=AirlineTicketOfficeEntities1")
         {
         }
     
@@ -32,8 +32,8 @@ namespace AirLineTicketOffice.Model
         public virtual DbSet<Flight> Flights { get; set; }
         public virtual DbSet<Passenger> Passengers { get; set; }
         public virtual DbSet<Place> Places { get; set; }
+        public virtual DbSet<Review> Reviews { get; set; }
         public virtual DbSet<Service_class_info> Service_class_info { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Ticket> Tickets { get; set; }
     }
 }

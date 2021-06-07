@@ -4,7 +4,7 @@ namespace AirLineTicketOffice.Model
 {
     public class ModelContext : DbContext
     {
-        public ModelContext():base("AirlineTicketOfficeEntities")
+        public ModelContext():base("AirlineTicketOfficeEntities1")
         {
             Airlines.Load();
             Flights.Load();

@@ -12,12 +12,12 @@ namespace AirLineTicketOffice.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class sysdiagram
+    public partial class Review
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public int ID { get; set; }
+        public string Text { get; set; }
+        public Nullable<int> Account_ID { get; set; }
+    
+        public virtual Account Account { get; set; }
     }
 }
