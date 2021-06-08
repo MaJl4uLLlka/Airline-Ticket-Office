@@ -160,28 +160,86 @@ namespace AirLineTicketOffice.ViewModels
                            //инфа о рейсе
                            newFlight.DateFlights.Add(dateNewFlight);
                            
-                           //генерация мест
-                           
-                           
-                           
-                           //TODO add_to_db
+                           //преобразование string к decimal 
+                           decimal priceEconomyPlace = Convert.ToDecimal(PriceEconomyPlace);
+                           decimal priceBusinessPlace = Convert.ToDecimal(PriceBusinessPlace);
 
-                           try
+                           if (priceEconomyPlace>priceBusinessPlace)
                            {
-                                
+                               MessageBox.Show("Цена билета бизнес класса ниже, чем цена билета эконом класса","", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                               return;
                            }
-                           catch (Exception e)
+                           //генерация мест
+                           for (int i = 1; i <= economyclassInfo.count_places; i++)
                            {
-                               MessageBox.Show(e.Message);
+                               newFlight.Places.Add(new Place
+                               {
+                                   place_number = i,
+                                   service_class = economyclassInfo.service_class,
+                                   price = priceEconomyPlace
+                               });
                            }
                            
+                           for (int i = 1; i <= businessClassInfo.count_places; i++)
+                           {
+                               newFlight.Places.Add(new Place
+                               {
+                                   place_number = i,
+                                   service_class = businessClassInfo.service_class,
+                                   price = priceBusinessPlace
+                               });
+                           }
                            
-                           filteredFlights.Insert(0,);
-                           Flights.Insert(0,newFlight);
+                           currentAirline.Flights.Add(newFlight);
+
+                           MainWindow.db.Airlines.Add(currentAirline);
+                           MainWindow.db.SaveChanges();
+
+
+                           newFlightVariant.DepartureCity = NewDepartureCity;
+                           newFlightVariant.CompanyName = NewCompanyName;
+                           newFlightVariant.ArrivalCity = NewArrivalCity;
+                           newFlightVariant.DepartureDay = departureDay;
+                           newFlightVariant.DepartureTime = departureTime;
+                           newFlightVariant.ArrivalDay = arrivalDay;
+                           newFlightVariant.ArrivalTime = arrivalTime;
+                           newFlightVariant.ServiceClass = "Economy";
+                           newFlightVariant.Price = priceEconomyPlace;
+
+                           FlightVariant newBusinessFlightVariant = new FlightVariant
+                           {
+                               DepartureCity = NewDepartureCity,
+                               CompanyName = NewCompanyName,
+                               ArrivalCity = NewArrivalCity,
+                               DepartureDay = departureDay,
+                               DepartureTime = departureTime,
+                               ArrivalDay = arrivalDay,
+                               ArrivalTime = arrivalTime,
+                               ServiceClass = "Economy",
+                               Price = priceBusinessPlace
+                           };
                            
+                           Flights.Insert(0,newFlightVariant);
+                           Flights.Insert(0, newBusinessFlightVariant);
+                           
+                           //сброс переменных
+                           NewCompanyName = "";
+                           NewDepartureCity = "";
+                           NewArrivalCity = "";
+                           NewDepartureIndex = 0;
+                           NewArrivalIndex = 0;
+                           NewDepartureHour = 0;
+                           NewDepartureMinutes = 0;
+                           NewArrivalHour = 0;
+                           NewArrivalMinutes = 0;
+                           CountEconomyPlaces = 0;
+                           CountBusinessPlaces = 0;
+                           PriceEconomyPlace = "";
+                           PriceBusinessPlace = "";
                        },
                            o=> NewCompanyName!="" && NewDepartureCity!="" && NewArrivalCity!="" &&
-                               CountEconomyPlaces>0 && CountBusinessPlaces>0 ));
+                               CountEconomyPlaces>0 && CountBusinessPlaces>0 && PriceEconomyPlace!="" &&
+                               PriceBusinessPlace!=""));
             }
         }
         
