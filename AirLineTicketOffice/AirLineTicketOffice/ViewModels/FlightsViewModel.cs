@@ -49,6 +49,17 @@ namespace AirLineTicketOffice.ViewModels
         private int _count_business_places;
         private string _priceEconomyPlace;
         private string _priceBusinessPlace;
+        private DateTime? _canceledFlightDate=DateTime.Today;
+
+        public DateTime? CanceledFlightDate
+        {
+            get => _canceledFlightDate;
+            set
+            {
+                _canceledFlightDate = value;
+                OnPropertyChanged();
+            }
+        }
 
         public string PriceEconomyPlace
         {
@@ -235,6 +246,7 @@ namespace AirLineTicketOffice.ViewModels
             {
                 string error=String.Empty;
                 Regex regex=new Regex(@"[0-9_=+~,./?!@#$:;%&*()]");
+                Regex regex1 = new Regex("\\d{3,4}.\\d{0,2}");
                 switch (columnName)
                 { 
                     case "DepartureCity":
@@ -246,15 +258,52 @@ namespace AirLineTicketOffice.ViewModels
                     case "ArrivalCity":
                         if (regex.IsMatch(ArrivalCity))
                         {
-                            error = "Данное поле не должно сожержать других символов";
+                            error = "Данное поле не должно сожержать других символов кроме букв";
                         }
                         break;
+                    case "NewCompanyName":
+                        if (regex.IsMatch(NewCompanyName))
+                        {
+                            error = "Данное поле не должно сожержать других символов кроме букв";
+                        }
+                        break;
+                    case "NewDepartureCity":
+                        if (regex.IsMatch(NewDepartureCity))
+                        {
+                            error = "Данное поле не должно сожержать других символов кроме букв";
+                        }
+                        break;
+                    case "NewArrivalCity":
+                        if (regex.IsMatch(NewArrivalCity))
+                        {
+                            error = "Данное поле не должно сожержать других символов кроме букв";
+                        }
+                        break;
+                        
+                   
+                    case "PriceEconomyPlace":
+                        if (!regex1.IsMatch(PriceEconomyPlace))
+                        {
+                            error = "Формат ввода 0-4_цифр.0-2_цифры";
+                        }
+                        break;
+                    case "PriceBusinessPlace":
+                        if (!regex1.IsMatch(PriceBusinessPlace))
+                        {
+                            error = "Формат ввода 0-4_цифр.0-2_цифры";
+                        }
+                        break;
+                        
+
                     case "DepartureDate":
                         if (DepartureDate<DateTime.Today)
                         {
                             error = "Дата отправления не может быть раньше текущей";
                         }
                         break;
+                    
+                    
+                    //TODO Validation
                 }
 
                 return error;

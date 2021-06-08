@@ -10,6 +10,25 @@ namespace AirLineTicketOffice.Logic
         private RelayCommand exitCommand;
         private RelayCommand transitionCommand;
         private RelayCommand transitionReviewsCommand;
+        private RelayCommand logInCommand;
+
+        public RelayCommand LogInCommand
+        {
+            get
+            {
+                return logInCommand ??
+                       (logInCommand = new RelayCommand(o =>
+                       {
+                           Authorization authWindow = new Authorization();
+                           authWindow.Owner = Application.Current.MainWindow;
+                           if (authWindow.ShowDialog() == true)
+                           {
+
+                           }
+                       },
+                       o=> !ApplicationViewModel.isAuthorized ));
+            }
+        }
 
         public RelayCommand TransitionReviewCommand
         {

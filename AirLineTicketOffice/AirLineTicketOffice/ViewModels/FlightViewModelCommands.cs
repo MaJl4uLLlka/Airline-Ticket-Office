@@ -23,34 +23,68 @@ namespace AirLineTicketOffice.ViewModels
         private RelayCommand resetCommand;
         private RelayCommand addFlight;
         private RelayCommand removeFLight;
+        private RelayCommand cancelFlight;
         
+        
+        public RelayCommand CancelFlightCommand
+        {
+            get
+            {
+                //TODO check
+                return cancelFlight ??
+                       (cancelFlight = new RelayCommand(o =>
+                           {
+                               FlightVariant selectedFlight = o as FlightVariant;
+                               var currentFlight = AllFlights.Where(u =>
+                                   u.Airline.company_name == selectedFlight.CompanyName &&
+                                   u.departure_city == selectedFlight.DepartureCity &&
+                                   u.arrival_city == selectedFlight.ArrivalCity).Select(u => u).First();
+
+                               Canceled_flights canceledFlight = new Canceled_flights();
+                               canceledFlight.departure_date=CanceledFlightDate;
+                               canceledFlight.departure_time = selectedFlight.DepartureTime;
+                               canceledFlight.Flight = currentFlight;
+
+                               MainWindow.db.CanceledFlightsCollection.Add(canceledFlight);
+                               MainWindow.db.SaveChanges();
+                               
+                               SelectedFlight = null;
+                               CanceledFlightDate=DateTime.Today;
+                               //currentFlight.Canceled_flights
+                           },
+                           o => o != null
+                       ));
+            }
+        }
 
         public RelayCommand RemoveFlightCommand
         {
             get
-            {
+            { //TODO Check
                 return removeFLight ??
                        (removeFLight = new RelayCommand(o =>
                        {
                            FlightVariant flight=o as FlightVariant;
                            if (flight!=null)
                            {
+                               filteredFlights.Remove(flight);
                                Flights.Remove(flight);
-                               //TODO Deleting from db
-                               
+
                                var selectedFlight=AllFlights.Where(u => u.Airline.company_name == flight.CompanyName &&
-                                                     u.departure_city == flight.DepartureCity &&
-                                                     u.arrival_city == flight.ArrivalCity).Select(u=>u).First();
+                                                                        u.departure_city == flight.DepartureCity &&
+                                                                        u.arrival_city == flight.ArrivalCity).Select(u=>u).First();
                                
-                               DateFlight deletingDateFlight = selectedFlight.DateFlights.Where(u => u.departure_day == flight.DepartureDay &&
+                               var deletingDateFlight = selectedFlight.DateFlights.Where(u => u.departure_day == flight.DepartureDay &&
                                                                      u.departure_time == flight.DepartureTime)
                                    .Select(u => u).First();
 
                                MainWindow.db.DateFlights.Remove(deletingDateFlight);
                                MainWindow.db.SaveChanges();
+
+                               SelectedFlight = null;
                            }
                        },
-                        o=>Flights.Count()!= 0 && o!=null && SelectedFlight!=null));
+                        o=>Flights.Count()!=0));
             }
         }
         
@@ -286,7 +320,8 @@ namespace AirLineTicketOffice.ViewModels
         public RelayCommand BuyCommand 
         {
             get
-            {
+            { 
+                //TODO check
                 return buy ??
                        (buy = new RelayCommand(o =>
                            {

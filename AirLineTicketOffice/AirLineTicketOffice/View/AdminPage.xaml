@@ -137,15 +137,55 @@
                                <StackPanel> 
                                     <TextBlock Text="Выбранный рейс"  />
                                     <TextBlock Text="Название авиакомпании" />
-                                    <TextBox Text="{Binding NewCompanyName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    <TextBox   MaxLength="20">
+                                        <TextBox.Text>
+                                            <Binding Path="NewCompanyName" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                                                <Binding.ValidationRules>
+                                                    <DataErrorValidationRule/>
+                                                </Binding.ValidationRules>
+                                            </Binding>
+                                        </TextBox.Text>
+                                    </TextBox>
                                     <TextBlock Text="Город отправления" />
-                                    <TextBox Text="{Binding NewDepartureCity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    <TextBox  MaxLength="20">
+                                        <TextBox.Text>
+                                            <Binding Path="NewDepartureCity" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                                                <Binding.ValidationRules>
+                                                    <DataErrorValidationRule/>
+                                                </Binding.ValidationRules>
+                                            </Binding>
+                                        </TextBox.Text>
+                                    </TextBox>
                                     <TextBlock Text="Город прибытия" />
-                                    <TextBox Text="{Binding NewArrivalCity,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    <TextBox  MaxLength="20" >
+                                        <TextBox.Text>
+                                            <Binding  Path="NewArrivalCity" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                                                <Binding.ValidationRules>
+                                                    <DataErrorValidationRule/>
+                                                </Binding.ValidationRules>
+                                            </Binding>
+                                        </TextBox.Text>
+                                    </TextBox>
                                     <TextBlock Text="Цена эконом места" />
-                                    <TextBox Text="{Binding PriceEconomyPlace,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    <TextBox  MaxLength="7">
+                                        <TextBox.Text>
+                                            <Binding Path="PriceEconomyPlace" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                                                <Binding.ValidationRules>
+                                                    <DataErrorValidationRule/>
+                                                </Binding.ValidationRules>
+                                            </Binding>
+                                        </TextBox.Text>
+                                    </TextBox>
                                     <TextBlock Text="Цена бизнес места" />
-                                    <TextBox Text="{Binding PriceBusinessPlace,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    <TextBox  MaxLength="7" >
+                                        <TextBox.Text>
+                                            <Binding Path="PriceBusinessPlace" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                                               <Binding.ValidationRules>
+                                                   <DataErrorValidationRule/>
+                                               </Binding.ValidationRules>
+                                            </Binding>
+                                        </TextBox.Text>
+                                    </TextBox>
                                </StackPanel>
                             </Expander>
                             
@@ -249,6 +289,13 @@
                                 <Button Content="Добавить рейс" Height="30" Margin="5 5 10 0" Command="{Binding AddFlightCommand}"></Button>
                                 <Button Content="Удалить рейс" Height="30" Margin="10 5 5 0" Command="{Binding RemoveFlightCommand}" CommandParameter="{Binding SelectedFlight}"></Button>
                             </UniformGrid>
+                            
+                            <Expander Header="Отмена рейса">
+                                <StackPanel Orientation="Horizontal">
+                                    <DatePicker FirstDayOfWeek="Monday"  Grid.Column="2" Grid.Row="1" Margin="5,8,3,0" VerticalAlignment="Center" Height="35" Width="100" Padding="5,7,5,5" Background="White" SelectedDateFormat="Short" DisplayDateStart="{Binding DateToday, UpdateSourceTrigger=PropertyChanged}" SelectedDate="{Binding Path=CanceledFlightDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></DatePicker>
+                                    <Button Content="Отменить рейс" Height="30" VerticalAlignment="Center" Margin="10 5 5 0" Command="{Binding CancelFlightCommand}"/>
+                                </StackPanel>
+                            </Expander>
                         </StackPanel>
                     </Expander>
                 </StackPanel>
@@ -258,7 +305,7 @@
         <ListBox  Grid.Column="1" Grid.Row="1" Background="#DCDEE0" BorderThickness="0"
                   ItemsSource="{Binding filteredFlights}" HorizontalAlignment="Stretch" 
                   HorizontalContentAlignment="Stretch"
-                  SelectedItem="{Binding Path=SelectedFlight}"
+                  SelectedItem="{Binding Path=SelectedFlight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                   ScrollViewer.CanContentScroll="True">
             <ListBox.ItemTemplate >
                 <DataTemplate>
