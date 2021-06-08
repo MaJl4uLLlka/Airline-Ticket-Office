@@ -35,7 +35,125 @@ namespace AirLineTicketOffice.ViewModels
 
 
         #region AdminVariables
-            
+
+        private string _newCompany_Name;
+        private string _newDepartureCity;
+        private string _newArrivalCity;
+        private int _newDepartureIndex;
+        private int _newArrivalIndex;
+        private int _newDepartureHour;
+        private int _newDepartureMinutes;
+        private int _newArrivalHour;
+        private int _newArrivalMinutes;
+        private int _count_economy_places;
+        private int _count_business_places;
+
+        public string NewCompanyName
+        {
+            get => _newCompany_Name;
+            set
+            {
+                _newCompany_Name = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string NewDepartureCity
+        {
+            get => _newDepartureCity;
+            set => _newDepartureCity = value;
+        }
+
+        public string NewArrivalCity
+        {
+            get => _newArrivalCity;
+            set
+            {
+                _newArrivalCity = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int NewDepartureIndex
+        {
+            get => _newDepartureIndex;
+            set
+            {
+                _newDepartureIndex = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int NewArrivalIndex
+        {
+            get => _newArrivalIndex;
+            set
+            {
+                _newArrivalIndex = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int NewDepartureHour
+        {
+            get => _newDepartureHour;
+            set
+            {
+                _newDepartureHour = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int NewDepartureMinutes
+        {
+            get => _newDepartureMinutes;
+            set
+            {
+                _newDepartureMinutes = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int NewArrivalHour
+        {
+            get => _newArrivalHour;
+            set
+            {
+                _newArrivalHour = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int NewArrivalMinutes
+        {
+            get => _newArrivalMinutes;
+            set
+            {
+                _newArrivalMinutes = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int CountEconomyPlaces
+        {
+            get => _count_economy_places;
+            set
+            {
+                _count_economy_places = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int CountBusinessPlaces
+        {
+            get => _count_business_places;
+            set
+            {
+                _count_business_places = value;
+                OnPropertyChanged();
+            }
+        }
+
         #endregion
         
         private string departure_city = "";

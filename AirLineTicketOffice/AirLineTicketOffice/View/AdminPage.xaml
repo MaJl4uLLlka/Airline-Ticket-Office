@@ -137,6 +137,8 @@
                             <Expander Header="Общая информация о рейсе">
                                <StackPanel> 
                                     <TextBlock Text="Выбранный рейс"  />
+                                    <TextBlock Text="Название авиакомпании" /> <!--TODO Dinding admin variables-->
+                                    <TextBox Text="{Binding DepartureCity, UpdateSourceTrigger=PropertyChanged}" />
                                     <TextBlock Text="Город отправления" />
                                     <TextBox Text="{Binding DepartureCity, UpdateSourceTrigger=PropertyChanged}" />
                                     <TextBlock Text="Город прибытия" />
@@ -145,6 +147,31 @@
                                     <TextBox Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}" />
                                     <TextBlock Foreground="Blue" Text="День недели задается выбором даты из календаря"/>
                                </StackPanel>
+                            </Expander>
+                            
+                            <Expander Header="Дни курсирования">
+                                <UniformGrid Columns="2" Rows="2">
+                                    <TextBlock Text="День отправления" HorizontalAlignment="Center" Margin="5 0 6 0"/>
+                                    <TextBlock Text="День прилета" HorizontalAlignment="Center"/>
+                                    <ComboBox SelectedIndex="{Binding Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"><!--TODO binding-->
+                                        <TextBlock Text="Понедельник"/>
+                                        <TextBlock Text="Вторник"/>
+                                        <TextBlock Text="Среда"/>
+                                        <TextBlock Text="Четверг"/>
+                                        <TextBlock Text="Пятница"/>
+                                        <TextBlock Text="Суббота"/>
+                                        <TextBlock Text="Воскресенье"/>
+                                    </ComboBox>
+                                    <ComboBox SelectedIndex="{Binding Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                        <TextBlock Text="Понедельник"/>
+                                        <TextBlock Text="Вторник"/>
+                                        <TextBlock Text="Среда"/>
+                                        <TextBlock Text="Четверг"/>
+                                        <TextBlock Text="Пятница"/>
+                                        <TextBlock Text="Суббота"/>
+                                        <TextBlock Text="Воскресенье"/>
+                                    </ComboBox>
+                                </UniformGrid>
                             </Expander>
                             
                             <Expander Header="Время">

@@ -36,6 +36,17 @@ namespace AirLineTicketOffice.ViewModels
                            {
                                Flights.Remove(flight);
                                //TODO Deleting from db
+                               
+                               var selectedFlight=AllFlights.Where(u => u.Airline.company_name == flight.CompanyName &&
+                                                     u.departure_city == flight.DepartureCity &&
+                                                     u.arrival_city == flight.ArrivalCity).Select(u=>u).First();
+                               
+                               DateFlight deletingDateFlight = selectedFlight.DateFlights.Where(u => u.departure_day == flight.DepartureDay &&
+                                                                     u.departure_time == flight.DepartureTime)
+                                   .Select(u => u).First();
+
+                               MainWindow.db.DateFlights.Remove(deletingDateFlight);
+                               MainWindow.db.SaveChanges();
                            }
                        },
                         o=>Flights.Count()!=0  ));
@@ -55,6 +66,8 @@ namespace AirLineTicketOffice.ViewModels
                            SelectedFlight = newFlight;
                            
                            //TODO add_to_db
+                           
+                           
                        }));
             }
         }
