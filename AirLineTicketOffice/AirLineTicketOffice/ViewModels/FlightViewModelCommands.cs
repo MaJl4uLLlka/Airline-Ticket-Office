@@ -49,7 +49,7 @@ namespace AirLineTicketOffice.ViewModels
                                MainWindow.db.SaveChanges();
                            }
                        },
-                        o=>Flights.Count()!=0  ));
+                        o=>Flights.Count()!= 0 && o!=null && SelectedFlight!=null));
             }
         }
         
@@ -60,15 +60,128 @@ namespace AirLineTicketOffice.ViewModels
                 return addFlight ??
                        (addFlight = new RelayCommand(o =>
                        {
-                           FlightVariant newFlight = new FlightVariant();
-                           filteredFlights.Insert(0,newFlight);
-                           Flights.Insert(0,newFlight);
-                           SelectedFlight = newFlight;
+                           FlightVariant newFlightVariant = new FlightVariant();
+
+                           Airline currentAirline;
+
+                           //Авиакомпания
+                           if (Airlines.Any(u => u.company_name == NewCompanyName))
+                           {
+                               currentAirline = MainWindow.db.Airlines.First(u => u.company_name == NewCompanyName);
+                           }
+                           else
+                           {
+                               currentAirline = new Airline();
+                               currentAirline.company_name = NewCompanyName;
+                           }
+
+                           Flight newFlight = new Flight();
+                           newFlight.departure_city = NewDepartureCity;
+                           newFlight.arrival_city = NewArrivalCity;
+
+                           Service_class_info economyclassInfo = new Service_class_info
+                           {
+                               service_class = "Economy", count_places = CountEconomyPlaces
+                           };
+
+                           Service_class_info businessClassInfo = new Service_class_info
+                           {
+                               service_class = "Business", count_places = CountBusinessPlaces
+                           };
+
+                           //добавлена инфа о местах
+                           newFlight.Service_class_info.Add(economyclassInfo);
+                           newFlight.Service_class_info.Add(businessClassInfo);
+
+
+                           string departureDay = "";
+                           string arrivalDay = "";
+                           switch (NewDepartureIndex)
+                           {
+                               case (int)DayOfWeak.Monday:
+                                   departureDay = "Monday";
+                                   break;
+                               case (int)DayOfWeak.Tuesday:
+                                   departureDay = "Tuesday";
+                                   break;
+                               case (int)DayOfWeak.Wednesday:
+                                   departureDay = "Wednesday";
+                                   break;
+                               case (int)DayOfWeak.Thursday:
+                                   departureDay = "Thursday";
+                                   break;
+                               case (int)DayOfWeak.Friday:
+                                   departureDay = "Friday";
+                                   break;
+                               case (int)DayOfWeak.Saturday:
+                                   departureDay = "Saturday";
+                                   break;
+                               case (int)DayOfWeak.Sunday:
+                                   departureDay = "Sunday";
+                                   break;
+                           }
+                           
+                           switch (NewArrivalIndex)
+                           {
+                               case (int)DayOfWeak.Monday:
+                                   arrivalDay = "Monday";
+                                   break;
+                               case (int)DayOfWeak.Tuesday:
+                                   arrivalDay = "Tuesday";
+                                   break;
+                               case (int)DayOfWeak.Wednesday:
+                                   arrivalDay = "Wednesday";
+                                   break;
+                               case (int)DayOfWeak.Thursday:
+                                   arrivalDay = "Thursday";
+                                   break;
+                               case (int)DayOfWeak.Friday:
+                                   arrivalDay = "Friday";
+                                   break;
+                               case (int)DayOfWeak.Saturday:
+                                   arrivalDay = "Saturday";
+                                   break;
+                               case (int)DayOfWeak.Sunday:
+                                   arrivalDay = "Sunday";
+                                   break;
+                           }
+
+                           TimeSpan? departureTime = new TimeSpan(NewDepartureHour, NewDepartureMinutes, 0);
+                           TimeSpan? arrivalTime = new TimeSpan(NewArrivalHour, NewArrivalMinutes ,0);
+                           
+                           DateFlight dateNewFlight = new DateFlight
+                           {
+                               departure_day = departureDay,
+                               departure_time = departureTime,
+                               arrival_day = arrivalDay,
+                               arrival_time = arrivalTime
+                           };
+                           
+                           //инфа о рейсе
+                           newFlight.DateFlights.Add(dateNewFlight);
+                           
+                           //генерация мест
+                           
+                           
                            
                            //TODO add_to_db
+
+                           try
+                           {
+                                
+                           }
+                           catch (Exception e)
+                           {
+                               MessageBox.Show(e.Message);
+                           }
                            
                            
-                       }));
+                           filteredFlights.Insert(0,);
+                           Flights.Insert(0,newFlight);
+                           
+                       },
+                           o=> NewCompanyName!="" && NewDepartureCity!="" && NewArrivalCity!="" &&
+                               CountEconomyPlaces>0 && CountBusinessPlaces>0 ));
             }
         }
         
