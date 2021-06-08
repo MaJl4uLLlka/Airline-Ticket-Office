@@ -15,6 +15,7 @@ namespace AirLineTicketOffice.Model
             Tickets.Load();
             Passengers.Load();
             Accounts.Load();
+            Reviews.Load();
         }
         
         public DbSet<Airline> Airlines { get; set; }

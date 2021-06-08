@@ -34,18 +34,17 @@ namespace AirLineTicketOffice.View
             switch (pageClass)
             {
                 case PageClass.AdminPage:
-                    Frame.Source = new Uri("AdminPage.xaml",UriKind.Relative);
+                    Frame.Content = new AdminPage();
                     break;
                 case PageClass.ReviewPage:
-                    Frame.Source = new Uri("Reviews.xaml",UriKind.Relative);
+                    Frame.Content= new Reviews();
                     break;
                 case PageClass.TicketPage:
-                    Frame.Source = new Uri("Tickets_page.xaml",UriKind.Relative);
+                    Frame.Content = new Tickets_page();
                     break;
                 case PageClass.MyTicketPage:
-                    Frame.Source = new Uri("MyTicketPage.xaml", UriKind.Relative);
+                    Frame.Content= new MyTicketPage();
                     break;
-                    
             }
         }
     }

@@ -42,8 +42,8 @@ namespace AirLineTicketOffice.ViewModels
 
         public ReviewsViewModel()
         {
-            _reviews = new ObservableCollection<ReviewInfo>();
-            var allReviews = MainWindow.db.Reviews.Local;
+            Reviews = new ObservableCollection<ReviewInfo>();
+            var allReviews = MainWindow.db.Reviews.Local.OrderByDescending(u=>u.ID);
             foreach (var review in allReviews)
             {
                 ReviewInfo reviewInfo = new ReviewInfo();
@@ -52,7 +52,7 @@ namespace AirLineTicketOffice.ViewModels
                 reviewInfo.Fullname = review.Account.Passengers.First().name + " " +
                                       review.Account.Passengers.First().surname;
                 
-                _reviews.Add(reviewInfo);
+                Reviews.Add(reviewInfo);
             }
         }
 

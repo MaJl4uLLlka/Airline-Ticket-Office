@@ -23,10 +23,12 @@
                   ItemsSource="{Binding Reviews,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" 
                   HorizontalContentAlignment="Stretch"
                   ScrollViewer.CanContentScroll="True">
-            <ListBox.ItemTemplate >
+           
+
+            <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <GroupBox Header="{Binding Fullname}"> <!--TODO Fullname Binding-->
-                        <TextBlock Text="{Binding Text}"/> <!--TODO Text Binding-->
+                    <GroupBox Header="{Binding Fullname}" BorderBrush="Black"> 
+                        <TextBlock Text="{Binding Text}"/>  
                     </GroupBox>
                 </DataTemplate>
             </ListBox.ItemTemplate>
