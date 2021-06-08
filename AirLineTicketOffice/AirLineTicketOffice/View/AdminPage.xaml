@@ -133,19 +133,21 @@
                     </UniformGrid>
 
                     <Expander Header="Администрирование">
-                        <StackPanel DataContext="{Binding SelectedFlight}" Margin="0 3 0 3">
+                        <StackPanel  Margin="0 3 0 3">
+                            
                             <Expander Header="Общая информация о рейсе">
                                <StackPanel> 
                                     <TextBlock Text="Выбранный рейс"  />
                                     <TextBlock Text="Название авиакомпании" /> <!--TODO Dinding admin variables-->
-                                    <TextBox Text="{Binding DepartureCity, UpdateSourceTrigger=PropertyChanged}" />
+                                    <TextBox Text="{Binding NewCompanyName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                     <TextBlock Text="Город отправления" />
-                                    <TextBox Text="{Binding DepartureCity, UpdateSourceTrigger=PropertyChanged}" />
+                                    <TextBox Text="{Binding NewDepartureCity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                     <TextBlock Text="Город прибытия" />
-                                    <TextBox Text="{Binding ArrivalCity, UpdateSourceTrigger=PropertyChanged}" />
-                                    <TextBlock Text="Цена" />
-                                    <TextBox Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}" />
-                                    <TextBlock Foreground="Blue" Text="День недели задается выбором даты из календаря"/>
+                                    <TextBox Text="{Binding NewArrivalCity,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    <TextBlock Text="Цена эконом места" />
+                                    <TextBox Text="{Binding PriceEconomyPlace,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    <TextBlock Text="Цена бизнес места" />
+                                    <TextBox Text="{Binding PriceBusinessPlace,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                </StackPanel>
                             </Expander>
                             
@@ -153,7 +155,7 @@
                                 <UniformGrid Columns="2" Rows="2">
                                     <TextBlock Text="День отправления" HorizontalAlignment="Center" Margin="5 0 6 0"/>
                                     <TextBlock Text="День прилета" HorizontalAlignment="Center"/>
-                                    <ComboBox SelectedIndex="{Binding Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"><!--TODO binding-->
+                                    <ComboBox SelectedIndex="{Binding NewDepartureIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"><!--TODO binding-->
                                         <TextBlock Text="Понедельник"/>
                                         <TextBlock Text="Вторник"/>
                                         <TextBlock Text="Среда"/>
@@ -162,7 +164,7 @@
                                         <TextBlock Text="Суббота"/>
                                         <TextBlock Text="Воскресенье"/>
                                     </ComboBox>
-                                    <ComboBox SelectedIndex="{Binding Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                    <ComboBox SelectedIndex="{Binding NewArrivalIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                         <TextBlock Text="Понедельник"/>
                                         <TextBlock Text="Вторник"/>
                                         <TextBlock Text="Среда"/>
@@ -178,9 +180,9 @@
                                 <StackPanel>
                                     <TextBlock>Час вылета (0-23)</TextBlock>
                                     <DockPanel VerticalAlignment="Center" Margin="10">
-                                        <TextBox Text="{Binding ElementName=Departure_Hour1, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Center" Width="40" />
-                                        <Slider Value="{Binding Filter.ArrivalTime  , UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="23" 
-                                                SelectionStart="0" SelectionEnd="{Binding ElementName=Departure_Hour1, Path=Value, UpdateSourceTrigger=PropertyChanged}"
+                                        <TextBox Text="{Binding ElementName=Departure_Hour1, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Center" Width="40" />
+                                        <Slider Value="{Binding NewDepartureHour,Mode=TwoWay  , UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="23" 
+                                                SelectionStart="0" SelectionEnd="{Binding ElementName=Departure_Hour1,Mode=TwoWay, Path=Value, UpdateSourceTrigger=PropertyChanged}"
                                                 IsSelectionRangeEnabled="True"
                                                 Name="Departure_Hour1"
                                                 IsSnapToTickEnabled="True"
@@ -188,31 +190,31 @@
                                     </DockPanel>
                                     <TextBlock>Минуты вылета(0-59)</TextBlock>
                                     <DockPanel VerticalAlignment="Center" Margin="10">
-                                        <TextBox Text="{Binding ElementName=Arrival_Minute, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Center" Width="40" />
-                                        <Slider Value="{Binding Filter.DepartureTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="59"
+                                        <TextBox Text="{Binding ElementName=Departure_Minute1, Path=Value, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Center" Width="40" />
+                                        <Slider Value="{Binding NewDepartureMinutes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="59"
                                                 SelectionStart="0"
-                                                SelectionEnd="{Binding ElementName=Arrival_Minute, Path=Value, UpdateSourceTrigger=PropertyChanged}"
-                                                IsSelectionRangeEnabled="True" Name="Arrival_Minute"
+                                                SelectionEnd="{Binding ElementName=Departure_Minute1, Path=Value ,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                IsSelectionRangeEnabled="True" Name="Departure_Minute1"
                                                 IsSnapToTickEnabled="True"
                                                 TickFrequency="1"/>
                                     </DockPanel>
                                     <TextBlock>Час прилета(0-23)</TextBlock>
                                     <DockPanel VerticalAlignment="Center" Margin="10">
-                                        <TextBox Text="{Binding ElementName=Arrival_Hour1, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Center" Width="40" />
-                                        <Slider Value="{Binding Filter.DepartureTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="23"
+                                        <TextBox Text="{Binding ElementName=Arrival_Hour1, Path=Value,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Center" Width="40" />
+                                        <Slider Value="{Binding NewArrivalHour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="23"
                                         SelectionStart="0"
-                                        SelectionEnd="{Binding ElementName=Arrival_Hour1, Path=Value, UpdateSourceTrigger=PropertyChanged}"
+                                        SelectionEnd="{Binding ElementName=Arrival_Hour1, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                         IsSelectionRangeEnabled="True" Name="Arrival_Hour1"
                                         IsSnapToTickEnabled="True"
                                         TickFrequency="1"/>
                                     </DockPanel>
                                     <TextBlock>Минуты прилета(0-59)</TextBlock>
                                     <DockPanel VerticalAlignment="Center" Margin="10">
-                                        <TextBox Text="{Binding ElementName=Depatrure_Minute, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Center" Width="40" />
-                                        <Slider Value="{Binding Filter.DepartureTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="59"
+                                        <TextBox Text="{Binding ElementName=Arrival_Minute1, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Center" Width="40" />
+                                        <Slider Value="{Binding NewArrivalMinutes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="59"
                                                 SelectionStart="0"
-                                                SelectionEnd="{Binding ElementName=Depatrure_Minute, Path=Value, UpdateSourceTrigger=PropertyChanged}"
-                                                IsSelectionRangeEnabled="True" Name="Depatrure_Minute"
+                                                SelectionEnd="{Binding ElementName=Arrival_Minute1, Path=Value,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                IsSelectionRangeEnabled="True" Name="Arrival_Minute1"
                                                 IsSnapToTickEnabled="True"
                                                 TickFrequency="5"/>
                                     </DockPanel>
@@ -222,9 +224,9 @@
                                 <StackPanel>
                                     <TextBlock>Количество эконом мест</TextBlock>
                                     <DockPanel VerticalAlignment="Center" Margin="10">
-                                        <TextBox Text="{Binding ElementName=Count_econom_place, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Center" Width="40" />
-                                        <Slider Value="{Binding Filter.ArrivalTime  , UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="40" 
-                                                SelectionStart="0" SelectionEnd="{Binding ElementName=Count_econom_place, Path=Value, UpdateSourceTrigger=PropertyChanged}"
+                                        <TextBox Text="{Binding ElementName=Count_econom_place, Path=Value,Mode=TwoWay ,UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Center" Width="40" />
+                                        <Slider Value="{Binding CountEconomyPlaces,Mode=TwoWay  , UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="40" 
+                                                SelectionStart="0" SelectionEnd="{Binding ElementName=Count_econom_place, Path=Value, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                                 IsSelectionRangeEnabled="True"
                                                 Name="Count_econom_place"
                                                 IsSnapToTickEnabled="True"
@@ -233,9 +235,11 @@
                                     
                                     <TextBlock>Количество бизнес мест</TextBlock>
                                     <DockPanel VerticalAlignment="Center" Margin="10">
-                                        <TextBox Text="{Binding ElementName=Count_business_place, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Center" Width="40" />
-                                        <Slider Value="{Binding Filter.ArrivalTime  , UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="20" 
-                                                SelectionStart="0" SelectionEnd="{Binding ElementName=Count_business_place, Path=Value, UpdateSourceTrigger=PropertyChanged}"
+                                        <TextBox Text="{Binding ElementName=Count_business_place, Path=Value,Mode=TwoWay ,UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Center" Width="40" />
+                                        <Slider Value="{Binding CountBusinessPlaces,
+                                        Mode=TwoWay,
+                                         UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="20" 
+                                                SelectionStart="0" SelectionEnd="{Binding ElementName=Count_business_place, Path=Value,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                 IsSelectionRangeEnabled="True"
                                                 Name="Count_business_place"
                                                 IsSnapToTickEnabled="True"

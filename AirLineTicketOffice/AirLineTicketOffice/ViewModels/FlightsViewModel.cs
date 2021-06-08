@@ -36,9 +36,9 @@ namespace AirLineTicketOffice.ViewModels
 
         #region AdminVariables
 
-        private string _newCompany_Name;
-        private string _newDepartureCity;
-        private string _newArrivalCity;
+        private string _newCompany_Name="";
+        private string _newDepartureCity="";
+        private string _newArrivalCity="";
         private int _newDepartureIndex;
         private int _newArrivalIndex;
         private int _newDepartureHour;
@@ -47,6 +47,28 @@ namespace AirLineTicketOffice.ViewModels
         private int _newArrivalMinutes;
         private int _count_economy_places;
         private int _count_business_places;
+        private string _priceEconomyPlace;
+        private string _priceBusinessPlace;
+
+        public string PriceEconomyPlace
+        {
+            get => _priceEconomyPlace;
+            set
+            {
+                _priceEconomyPlace = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string PriceBusinessPlace
+        {
+            get => _priceBusinessPlace;
+            set
+            {
+                _priceBusinessPlace = value;
+                OnPropertyChanged();
+            }
+        }
 
         public string NewCompanyName
         {
