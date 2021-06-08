@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -63,11 +64,13 @@ namespace AirLineTicketOffice.ViewModels
                            FlightVariant newFlightVariant = new FlightVariant();
 
                            Airline currentAirline;
+                           bool exist = false;
 
                            //Авиакомпания
                            if (Airlines.Any(u => u.company_name == NewCompanyName))
                            {
                                currentAirline = MainWindow.db.Airlines.First(u => u.company_name == NewCompanyName);
+                               exist = true;
                            }
                            else
                            {
@@ -161,8 +164,8 @@ namespace AirLineTicketOffice.ViewModels
                            newFlight.DateFlights.Add(dateNewFlight);
                            
                            //преобразование string к decimal 
-                           decimal priceEconomyPlace = Convert.ToDecimal(PriceEconomyPlace);
-                           decimal priceBusinessPlace = Convert.ToDecimal(PriceBusinessPlace);
+                           decimal priceEconomyPlace =Decimal.Parse(PriceEconomyPlace,NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture);
+                           decimal priceBusinessPlace = Decimal.Parse(PriceBusinessPlace, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture);
 
                            if (priceEconomyPlace>priceBusinessPlace)
                            {
@@ -190,9 +193,18 @@ namespace AirLineTicketOffice.ViewModels
                                });
                            }
                            
-                           currentAirline.Flights.Add(newFlight);
+                           
 
-                           MainWindow.db.Airlines.Add(currentAirline);
+                           if (!exist)
+                           {
+                               currentAirline.Flights.Add(newFlight);
+                               MainWindow.db.Airlines.Add(currentAirline);
+                           }
+                           else
+                           {
+                               newFlight.Airline = currentAirline;
+                               MainWindow.db.Flights.Add(newFlight);
+                           }
                            MainWindow.db.SaveChanges();
 
 
@@ -224,7 +236,7 @@ namespace AirLineTicketOffice.ViewModels
                            
                            //сброс переменных
                            NewCompanyName = "";
-                           NewDepartureCity = "";
+                           NewDepartureCity ="";
                            NewArrivalCity = "";
                            NewDepartureIndex = 0;
                            NewArrivalIndex = 0;
