@@ -26,5 +26,7 @@ namespace AirLineTicketOffice.Model
         public DbSet<Ticket> Tickets { get; set; }
         public DbSet<Passenger> Passengers { get; set; }
         public DbSet<Account>   Accounts { get; set; }
+        
+        public DbSet<Review>  Reviews { get; set; }
     }
 }

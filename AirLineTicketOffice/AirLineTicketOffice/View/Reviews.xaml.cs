@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using AirLineTicketOffice.ViewModels;
 
 namespace AirLineTicketOffice.View
 {
@@ -7,6 +8,7 @@ namespace AirLineTicketOffice.View
         public Reviews()
         {
             InitializeComponent();
+            DataContext = new ReviewsViewModel();
         }
     }
 }

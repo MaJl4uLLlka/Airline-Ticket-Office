@@ -103,6 +103,9 @@ namespace AirLineTicketOffice.ViewModels
                                    {
                                        
                                    }
+                                   currentButton.IsChecked = false;
+                                   return;
+                                   
                                }
 
                                if(!ApplicationViewModel.isAuthorized)

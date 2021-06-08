@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:AirLineTicketOffice.View"
-      xmlns:viewModels="clr-namespace:AirLineTicketOffice.ViewModels" d:DataContext="{d:DesignInstance Type=viewModels:ApplicationViewModel}"
+      xmlns:viewModels="clr-namespace:AirLineTicketOffice.ViewModels" d:DataContext="{d:DesignInstance Type=viewModels:ReviewsViewModel}"
       mc:Ignorable="d"
       ShowsNavigationUI="False"
       Title="Reviews" d:DesignHeight="450" d:DesignWidth="800">
@@ -20,13 +20,13 @@
         </DockPanel>
 
         <ListBox  Grid.Row="1" Background="#DCDEE0" BorderThickness="0"
-                  ItemsSource="{Binding MyTickets,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" 
+                  ItemsSource="{Binding Reviews,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" 
                   HorizontalContentAlignment="Stretch"
                   ScrollViewer.CanContentScroll="True">
             <ListBox.ItemTemplate >
                 <DataTemplate>
-                    <GroupBox Header="{Binding }"> <!--TODO Fullname Binding-->
-                        <TextBlock Text="{Binding }"/> <!--TODO Text Binding-->
+                    <GroupBox Header="{Binding Fullname}"> <!--TODO Fullname Binding-->
+                        <TextBlock Text="{Binding Text}"/> <!--TODO Text Binding-->
                     </GroupBox>
                 </DataTemplate>
             </ListBox.ItemTemplate>
@@ -38,8 +38,8 @@
                 <ColumnDefinition Width="90"/>
             </Grid.ColumnDefinitions>
 
-            <RichTextBox Grid.Column="0" ></RichTextBox>
-            <Button Grid.Column="1" Content="Опубликовать"/> 
+            <TextBox Grid.Column="0" Text="{Binding ReviewText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MaxLength="1000"></TextBox>
+            <Button Grid.Column="1" Content="Опубликовать" Command="{Binding PublishReview}"/> 
         </Grid>
     </Grid>
 </Page>
