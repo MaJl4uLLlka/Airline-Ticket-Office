@@ -83,7 +83,11 @@ namespace AirLineTicketOffice.ViewModels
         public string NewDepartureCity
         {
             get => _newDepartureCity;
-            set => _newDepartureCity = value;
+            set
+            {
+                _newDepartureCity = value;
+                OnPropertyChanged();
+            }
         }
 
         public string NewArrivalCity

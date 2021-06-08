@@ -136,7 +136,7 @@
                             <Expander Header="Общая информация о рейсе">
                                <StackPanel> 
                                     <TextBlock Text="Выбранный рейс"  />
-                                    <TextBlock Text="Название авиакомпании" /> <!--TODO Dinding admin variables-->
+                                    <TextBlock Text="Название авиакомпании" />
                                     <TextBox Text="{Binding NewCompanyName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                     <TextBlock Text="Город отправления" />
                                     <TextBox Text="{Binding NewDepartureCity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
@@ -153,7 +153,7 @@
                                 <UniformGrid Columns="2" Rows="2">
                                     <TextBlock Text="День отправления" HorizontalAlignment="Center" Margin="5 0 6 0"/>
                                     <TextBlock Text="День прилета" HorizontalAlignment="Center"/>
-                                    <ComboBox SelectedIndex="{Binding NewDepartureIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"><!--TODO binding-->
+                                    <ComboBox SelectedIndex="{Binding NewDepartureIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                         <TextBlock Text="Понедельник"/>
                                         <TextBlock Text="Вторник"/>
                                         <TextBlock Text="Среда"/>
