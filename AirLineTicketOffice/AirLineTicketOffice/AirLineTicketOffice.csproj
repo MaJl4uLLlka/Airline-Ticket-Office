@@ -76,7 +76,6 @@
     </ApplicationDefinition>
     <Compile Include="Logic\BindingProxy.cs" />
     <Compile Include="Logic\DayOfWeak.cs" />
-    <Compile Include="Logic\FullUserInfo.cs" />
     <Compile Include="Logic\MainSearch.cs" />
     <Compile Include="Logic\MyTicket.cs" />
     <Compile Include="Logic\PageClass.cs" />

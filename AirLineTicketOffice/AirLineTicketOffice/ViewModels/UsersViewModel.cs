@@ -1,7 +1,9 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data.Entity;
 using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
 using AirLineTicketOffice.Annotations;
 using AirLineTicketOffice.Logic;
 using AirLineTicketOffice.Model;
@@ -9,23 +11,122 @@ using AirLineTicketOffice.View;
 
 namespace AirLineTicketOffice.ViewModels
 {
-    public partial class UsersViewModel : INotifyPropertyChanged
+    public partial class UsersViewModel : INotifyPropertyChanged, IDataErrorInfo
     {
         private Passenger selectedPassenger;
         private Account selectedAccount;
-        private RegistrationClass _registration;
+        private IDataErrorInfo _dataErrorInfoImplemetation;
+        private string login="";
+        private string password="";
+        private string repeatPassword="";
+        private string isAdmin="No";
+        private string name="";
+        private string surname="";
+        private string passport_ID="";
+        private DateTime? birthdate=DateTime.Today;
+        private DateTime? validity_period=DateTime.Today;
+        private DateTime? _dateToday;
 
-        public RegistrationClass Registration
+        public DateTime? DateToday
         {
-            get => _registration;
+            get => _dateToday;
             set
             {
-                if (Equals(value, _registration)) return;
-                _registration = value;
+                if (Nullable.Equals(value, _dateToday)) return;
+                _dateToday = value;
                 OnPropertyChanged();
             }
         }
 
+        public string Login
+        {
+            get => login;
+            set
+            {
+                if (value == login) return;
+                login = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string Password
+        {
+            get => password;
+            set
+            {
+                if (value == password) return;
+                password = value;
+                OnPropertyChanged();
+            }
+        }
+        
+        public string IsAdmin
+        {
+            get => isAdmin;
+            set
+            {
+                if (value == isAdmin) return;
+                isAdmin = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string Name
+        {
+            get => name;
+            set
+            {
+                if (value == name) return;
+                name = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string Surname
+        {
+            get => surname;
+            set
+            {
+                if (value == surname) return;
+                surname = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string PassportId
+        {
+            get => passport_ID;
+            set
+            {
+                if (value == passport_ID) return;
+                passport_ID = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public DateTime? Birthdate
+        {
+            get => birthdate;
+            set
+            {
+                if (value.Equals(birthdate)) return;
+                birthdate = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public DateTime? ValidityPeriod
+        {
+            get => validity_period;
+            set
+            {
+                if (value.Equals(validity_period)) return;
+                validity_period = value;
+                OnPropertyChanged();
+            }
+        }
+
+        
         public Passenger SelectedPassenger
         {
             get => selectedPassenger;
@@ -49,7 +150,6 @@ namespace AirLineTicketOffice.ViewModels
             selectedAccount.password = "";
             Passengers = MainWindow.db.Passengers.Local;
             Accounts = MainWindow.db.Accounts.Local;
-            _registration = new RegistrationClass();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -59,5 +159,55 @@ namespace AirLineTicketOffice.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        public string this[string columnName]
+        {
+            get
+            {
+                string error=String.Empty;
+                Regex forbiddenSymbols = new Regex(@"[<>?#@!~`,.%&]");
+                switch (columnName)
+                {
+                    case "Login":
+                        if (forbiddenSymbols.IsMatch(Login))
+                        {
+                            error = "Логин не должен содержать запрещенных символов";
+                        }
+                        break;
+                    case "Password":
+                        if (forbiddenSymbols.IsMatch(Password))
+                        {
+                            error = "Пароль не должен содержать запрещенных символов";
+                        }
+                        break;
+                    case "Name":
+                        Regex onlyText = new Regex(@"[a-zA-ZА-Яа-я]{2,20}");
+                        if (!onlyText.IsMatch(Name))
+                        {
+                            error = "Имя должно содержать только буквы и должно быть не короче 2 символов";
+                        }
+                        break;
+                    case "Surname":
+                        Regex onlyText1 = new Regex(@"[a-zA-ZА-Яа-я]{3,20}");
+                        if (!onlyText1.IsMatch(Name))
+                        {
+                            error = "Фамилия должна содержать только буквы и должна быть не короче 3 символов";
+                        }
+                        
+                        break;
+                    case "PassportId":
+                        Regex passport = new Regex(@"KH\d{7}");
+                        if (!passport.IsMatch(PassportId))
+                        {
+                            error = "Формат: КНxxxxxxx";
+                        }
+                        break;
+                }
+                
+                return error;
+            }
+        }
+
+        public string Error => _dataErrorInfoImplemetation.Error; 
     }
 }

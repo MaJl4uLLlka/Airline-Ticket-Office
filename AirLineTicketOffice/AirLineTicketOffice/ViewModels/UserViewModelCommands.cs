@@ -20,17 +20,19 @@ namespace AirLineTicketOffice.ViewModels
                 return registration??
                        (registration= new RelayCommand(o =>
                        {
-                           Account account = new Account();
-                           account.login = Registration.Login;
-                           account.password = Registration.Password.GetHashCode().ToString();
-                           account.isAdmin = Registration.IsAdmin;
-                           
-                           Passenger passenger = new Passenger();
-                           passenger.name = Registration.Name;
-                           passenger.surname = Registration.Surname;
-                           passenger.birthdate = Registration.Birthdate;
-                           passenger.Passport_ID = Registration.PassportId;
-                           passenger.validity_period = Registration.ValidityPeriod;
+                           Account account = new Account
+                           {
+                               login = Login, password = Password.GetHashCode().ToString(), isAdmin = IsAdmin
+                           };
+
+                           Passenger passenger = new Passenger
+                           {
+                               name = Name,
+                               surname = Surname,
+                               birthdate = Birthdate,
+                               Passport_ID = PassportId,
+                               validity_period = ValidityPeriod
+                           };
                            account.Passengers.Add(passenger);    
     
                            MainWindow.db.Accounts.Add(account);

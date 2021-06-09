@@ -10,6 +10,19 @@
       mc:Ignorable="d"
       ShowsNavigationUI="False"
       Title="Registration" Height="350" Width="500">
+    <Page.Resources>
+        <Style TargetType="TextBox">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="ToolTip"
+                            Value="{Binding RelativeSource={RelativeSource Self},
+                    Path=(Validation.Errors)[0].ErrorContent}" />
+                    <Setter Property="Foreground" Value="Red" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
+    
     <Grid Background="Azure" ShowGridLines="False">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.4*"></RowDefinition>
@@ -28,25 +41,63 @@
                 <TextBlock.HorizontalAlignment>Center</TextBlock.HorizontalAlignment>
             </TextBlock>
         </StackPanel>
-        <StackPanel Grid.Row="1" Orientation="Vertical" DataContext="{Binding Registration }">
+        <StackPanel Grid.Row="1" Orientation="Vertical" >
             <TextBlock Foreground="Blue" HorizontalAlignment="Stretch">Логин</TextBlock>
-            <TextBox Text="{Binding Path=Login, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBox  MaxLength="20" Width="200" HorizontalAlignment="Left" >
+                <TextBox.Text>
+                    <Binding Path="Login" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                        <Binding.ValidationRules>
+                            <DataErrorValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
             <TextBlock Foreground="Blue">Пароль</TextBlock>
-            <TextBox Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-            <TextBlock Foreground="Blue">Повторите пароль</TextBlock>
-            <TextBox Text="{Binding Path=RepeatPassword, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBox  MaxLength="20" Width="200" HorizontalAlignment="Left">
+                <TextBox.Text>
+                    <Binding Path="Password" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                        <Binding.ValidationRules>
+                            <DataErrorValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
         </StackPanel>
-        <StackPanel Grid.Column="1" Grid.Row="1" DataContext="{Binding Registration }">
+        <StackPanel Grid.Column="1" Grid.Row="1" >
             <TextBlock Foreground="Blue">Имя</TextBlock>
-            <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBox  MaxLength="20" Width="200" HorizontalAlignment="Left">
+                <TextBox.Text>
+                    <Binding Path="Name" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                        <Binding.ValidationRules>
+                            <DataErrorValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
             <TextBlock Foreground="Blue">Фамилия</TextBlock>
-            <TextBox Text="{Binding Surname, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBox  MaxLength="20" Width="200" HorizontalAlignment="Left">
+                <TextBox.Text>
+                    <Binding  Path="Surname" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                        <Binding.ValidationRules>
+                            <DataErrorValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
             <TextBlock Foreground="Blue">Идентификационный номер паспорта</TextBlock>
-            <TextBox Text="{Binding PassportId, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBox  MaxLength="9" Width="200" HorizontalAlignment="Left">
+                <TextBox.Text>
+                    <Binding Path="PassportId" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                        <Binding.ValidationRules>
+                            <DataErrorValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
             <TextBlock Foreground="Blue">Срок действия документа</TextBlock>
-            <DatePicker Width="100"  HorizontalAlignment="Left" SelectedDate="{Binding ValidityPeriod, UpdateSourceTrigger=PropertyChanged}"></DatePicker>
+            <DatePicker Width="100" FirstDayOfWeek="Monday" SelectedDateFormat="Short" DisplayDateStart="{Binding DateToday, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left" SelectedDate="{Binding ValidityPeriod, UpdateSourceTrigger=PropertyChanged}"></DatePicker>
             <TextBlock Foreground="Blue">Дата рождения</TextBlock>
-            <DatePicker Width="100"  HorizontalAlignment="Left" SelectedDate="{Binding Birthdate, UpdateSourceTrigger=PropertyChanged}"></DatePicker>
+            <DatePicker Width="100" FirstDayOfWeek="Monday" SelectedDateFormat="Short" HorizontalAlignment="Left" SelectedDate="{Binding Birthdate, UpdateSourceTrigger=PropertyChanged}"></DatePicker>
         </StackPanel>
         <Button Grid.Column="0" Width="Auto" Height="30" HorizontalAlignment="Center"
                 Grid.Row="2" Grid.ColumnSpan="2"
