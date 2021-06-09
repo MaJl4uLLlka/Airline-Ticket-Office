@@ -320,8 +320,7 @@ namespace AirLineTicketOffice.ViewModels
         public RelayCommand BuyCommand 
         {
             get
-            { 
-                //TODO check
+            {
                 return buy ??
                        (buy = new RelayCommand(o =>
                            {
@@ -349,67 +348,76 @@ namespace AirLineTicketOffice.ViewModels
                                {
                                    MessageBox.Show("Для покупки войдите в свой личный акканут","",MessageBoxButton.OK, MessageBoxImage.Information);
                                }
-                               else //TODO kakaja-to fignja
+                               else 
                                {
-                                   Passenger currentPassenger = MainWindow.db.Passengers.First(u=>u.name==CurrentUser.Name && u.surname==CurrentUser.Surname);
-                                   Airline currentAirline = Airlines
-                                       .First(u => SelectedFlight.CompanyName==u.company_name);
-                                   
-                                   
-                                   //TODO ne tot bilet
-                                   Flight currentFlight=currentAirline.Flights.First(
-                                       u=>u.departure_city==SelectedFlight.DepartureCity && u.arrival_city==SelectedFlight.ArrivalCity);
-
-                                   List<Place> places = _Places.Where(u=>currentFlight==u.Flight).Select(u=>u).ToList();
-
-                                   var TicketsAndPlaces = _Places.Join(Tickets,
-                                       p => p.Place_ID,
-                                       t => t.Place_ID,
-                                       ((place, ticket) =>
-                                           new
-                                           {
-                                                ticket.Ticket_ID,
-                                                ticket.Place_ID,
-                                                ticket.Place,
-                                                ticket.Passenger,
-                                                ticket.departure_date,
-                                                ticket.departure_time,
-                                                ticket.isCanceled,
-                                                ticket.isExpired
-                                           }));
-
-                                   //генерация билетов, если их нет
-                                   if ( TicketsAndPlaces.Count() == 0)
+                                   try
                                    {
-                                       List<Ticket> tickets = new List<Ticket>();
-                                       for (int i = 0; i < places.Count(); i++)
+                                       Passenger currentPassenger = MainWindow.db.Passengers.First(u=>u.name==CurrentUser.Name && u.surname==CurrentUser.Surname);
+                                       Airline currentAirline = Airlines
+                                           .First(u => SelectedFlight.CompanyName==u.company_name);
+                                   
+                                   
+                                       Flight currentFlight=currentAirline.Flights.First(
+                                           u=>u.departure_city==SelectedFlight.DepartureCity && u.arrival_city==SelectedFlight.ArrivalCity);
+
+                                       List<Place> places = currentFlight.Places.ToList();
+
+                                       var TicketsAndPlaces = places.Join(Tickets,
+                                           p => p.Place_ID,
+                                           t => t.Place_ID,
+                                           ((place, ticket) =>
+                                               new
+                                               {
+                                                   ticket.Ticket_ID,
+                                                   ticket.Place_ID,
+                                                   ticket.Place,
+                                                   ticket.Passenger,
+                                                   ticket.departure_date,
+                                                   ticket.departure_time,
+                                                   ticket.isCanceled,
+                                                   ticket.isExpired
+                                               }));
+
+                                       //генерация билетов, если их нет
+                                       if ( TicketsAndPlaces.Count() == 0 || !TicketsAndPlaces.Any(u=>u.departure_date==DepartureDay))
                                        {
-                                           tickets.Add(new Ticket
+                                           List<Ticket> tickets = new List<Ticket>();
+                                           for (int i = 0; i < places.Count(); i++)
                                            {
-                                               Place = places[i],
-                                               Passenger = null,
-                                               departure_date = DepartureDay,
-                                               departure_time = SelectedFlight.DepartureTime,
-                                               isCanceled = "No",
-                                               isExpired = "No"
-                                           });
+                                               tickets.Add(new Ticket
+                                               {
+                                                   Place = places[i],
+                                                   Passenger = null,
+                                                   departure_date = DepartureDay,
+                                                   departure_time = SelectedFlight.DepartureTime,
+                                                   isCanceled = "No",
+                                                   isExpired = "No"
+                                               });
+                                           }
+                                       
+                                           tickets[0].Passenger = currentPassenger;
+                                       
+                                           MainWindow.db.Tickets.AddRange(tickets);
+                                           MainWindow.db.SaveChanges();
                                        }
-                                       
-                                       tickets[0].Passenger = currentPassenger;
-                                       
-                                       MainWindow.db.Tickets.AddRange(tickets);
-                                       MainWindow.db.SaveChanges();
-                                   }
-                                   else //если билеты уже сгенерированны
-                                   {
-                                       var freeTicketID=TicketsAndPlaces.Where(u => u.Passenger == null).Select(u=>u.Ticket_ID).First();
-                                       Ticket freeTicket=MainWindow.db.Tickets.First(u=>u.Ticket_ID==freeTicketID);
-                                       currentPassenger.Tickets.Add(freeTicket);
-                                       MainWindow.db.SaveChanges();
-                                   }
+                                       else //если билеты уже сгенерированны
+                                       {
+                                           var freeTicketID=TicketsAndPlaces.Where(u => u.Passenger == null &&
+                                               u.departure_date==DepartureDay).Select(u=>u.Ticket_ID).First();
+                                           Ticket freeTicket=MainWindow.db.Tickets.First(u=>u.Ticket_ID==freeTicketID);
+                                           currentPassenger.Tickets.Add(freeTicket);
+                                           MainWindow.db.SaveChanges();
+                                       }
 
-                                   currentButton.IsChecked = false;
-                                   MessageBox.Show("\u2714  Билет успешно приобретён");
+                                       currentButton.IsChecked = false;
+                                       MessageBox.Show("\u2714  Билет успешно приобретён");
+                                   }
+                                   catch
+                                   {
+                                       MessageBox.Show("К сожалению, в данный момент выбранный рейс недоступен","",MessageBoxButton.OK, MessageBoxImage.Information);
+                                       currentButton.IsChecked = false;
+                                   }
+                                   
                                }
                          
                            }

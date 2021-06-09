@@ -38,7 +38,8 @@ namespace AirLineTicketOffice.ViewModels
                            MainWindow.db.Accounts.Add(account);
                            MainWindow.db.SaveChanges();
                            
-                       }));
+                       }, o=>Name.Length!=0 && Surname.Length!=0 && PassportId.Length!=0 &&
+                             Login.Length!=0 && Password.Length!=0));
             }
         }
 
