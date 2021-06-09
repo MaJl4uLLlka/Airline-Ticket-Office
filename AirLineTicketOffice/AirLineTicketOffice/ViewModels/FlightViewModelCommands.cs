@@ -51,8 +51,7 @@ namespace AirLineTicketOffice.ViewModels
                                SelectedFlight = null;
                                CanceledFlightDate=DateTime.Today;
                                //currentFlight.Canceled_flights
-                           },
-                           o => o != null
+                           }
                        ));
             }
         }
