@@ -5,6 +5,7 @@
         AdminPage,
         ReviewPage,
         TicketPage,
-        MyTicketPage
+        MyTicketPage,
+        BadTickets
     }
 }

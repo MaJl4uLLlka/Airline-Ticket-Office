@@ -24,7 +24,21 @@ namespace AirLineTicketOffice.ViewModels
         private RelayCommand addFlight;
         private RelayCommand removeFLight;
         private RelayCommand cancelFlight;
-        
+        private RelayCommand _getBadTickets;
+
+        public RelayCommand GetBadTickets
+        {
+            get
+            {
+                //TODO check
+                return _getBadTickets ??
+                       (_getBadTickets = new RelayCommand(o =>
+                           {
+                               ((MainWindow)Application.Current.MainWindow).ChangeContent(PageClass.BadTickets);
+                           }
+                       ));
+            }
+        }
         
         public RelayCommand CancelFlightCommand
         {
@@ -359,6 +373,20 @@ namespace AirLineTicketOffice.ViewModels
                                        Flight currentFlight=currentAirline.Flights.First(
                                            u=>u.departure_city==SelectedFlight.DepartureCity && u.arrival_city==SelectedFlight.ArrivalCity);
 
+                                       if (currentFlight.Canceled_flights.Count() != 0)
+                                       {
+                                           foreach (var canceledFlight in currentFlight.Canceled_flights)
+                                           {
+                                               if (canceledFlight.departure_date == DepartureDay &&
+                                                   canceledFlight.departure_time == SelectedFlight.DepartureTime)
+                                               {
+                                                   MessageBox.Show("Извините, данный рейс был отменён", "",
+                                                       MessageBoxButton.OK, MessageBoxImage.Information);
+                                                   return;
+                                               }
+                                           }
+                                       }
+
                                        List<Place> places = currentFlight.Places.ToList();
 
                                        var TicketsAndPlaces = places.Join(Tickets,
@@ -387,7 +415,7 @@ namespace AirLineTicketOffice.ViewModels
                                                {
                                                    Place = places[i],
                                                    Passenger = null,
-                                                   departure_date = DepartureDay,
+                                                   departure_date = DepartureDate,
                                                    departure_time = SelectedFlight.DepartureTime,
                                                    isCanceled = "No",
                                                    isExpired = "No"
@@ -403,6 +431,7 @@ namespace AirLineTicketOffice.ViewModels
                                        {
                                            var freeTicketID=TicketsAndPlaces.Where(u => u.Passenger == null &&
                                                u.departure_date==DepartureDay).Select(u=>u.Ticket_ID).First();
+                                           
                                            Ticket freeTicket=MainWindow.db.Tickets.First(u=>u.Ticket_ID==freeTicketID);
                                            currentPassenger.Tickets.Add(freeTicket);
                                            MainWindow.db.SaveChanges();

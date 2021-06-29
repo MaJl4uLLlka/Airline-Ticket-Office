@@ -296,6 +296,12 @@
                                     <Button Content="Отменить рейс" Height="30" VerticalAlignment="Center" Margin="10 5 5 0" Command="{Binding CancelFlightCommand}" CommandParameter="{Binding SelectedFlight}"/>
                                 </StackPanel>
                             </Expander>
+                            
+                            <Expander Header="Список отсутствующих билетов">
+                                <StackPanel>
+                                    <Button Content="Отмененные рейсы" Height="30" VerticalAlignment="Center" Margin="10 5 5 0" Command="{Binding GetBadTickets}"/>
+                                </StackPanel>
+                            </Expander>
                         </StackPanel>
                     </Expander>
                 </StackPanel>

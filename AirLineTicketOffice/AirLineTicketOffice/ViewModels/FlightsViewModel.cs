@@ -50,6 +50,17 @@ namespace AirLineTicketOffice.ViewModels
         private string _priceEconomyPlace;
         private string _priceBusinessPlace;
         private DateTime? _canceledFlightDate=DateTime.Today;
+        private ObservableCollection<Ticket> _badTickets= new ObservableCollection<Ticket>();
+
+        public ObservableCollection<Ticket> BadTickets
+        {
+            get => _badTickets;
+            set
+            {
+                _badTickets = value;
+                OnPropertyChanged();
+            }
+        }
 
         public DateTime? CanceledFlightDate
         {
@@ -492,6 +503,9 @@ namespace AirLineTicketOffice.ViewModels
             ServiceInfo = MainWindow.db.Service_classes.Local;
             _Places = MainWindow.db.Places.Local;
             Tickets = MainWindow.db.Tickets.Local;
+
+            
+            BadTickets= new ObservableCollection<Ticket>(Tickets.Where(u => u.departure_date < DateTime.Today).Select(u => u));
             
             var group_places = MainWindow.db.Places.GroupBy(p=>new {p.Flight_ID,p.service_class,p.price});
 

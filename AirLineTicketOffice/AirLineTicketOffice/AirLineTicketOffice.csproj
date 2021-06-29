@@ -144,6 +144,9 @@
     <Compile Include="View\AdminPage.xaml.cs">
       <DependentUpon>AdminPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\BadTickets.xaml.cs">
+      <DependentUpon>BadTickets.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Entrance.xaml.cs">
       <DependentUpon>Entrance.xaml</DependentUpon>
     </Compile>
@@ -175,6 +178,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AdminPage.xaml" />
+    <Page Include="View\BadTickets.xaml" />
     <Page Include="View\Entrance.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

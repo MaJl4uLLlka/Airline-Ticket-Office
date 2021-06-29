@@ -45,6 +45,9 @@ namespace AirLineTicketOffice.View
                 case PageClass.MyTicketPage:
                     Frame.Content= new MyTicketPage();
                     break;
+                case PageClass.BadTickets:
+                    Frame.Content = new BadTickets();
+                    break;
             }
         }
     }
